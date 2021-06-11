@@ -10,7 +10,7 @@
 <body>
 ${msg}
 <h2>ログイン</h2>
-<form>
+<form method="POST" action="/ShareNote/Login">
 	<table align="center">
 		<tr>
 			<th>ニックネーム</th>
@@ -24,7 +24,7 @@ ${msg}
 			<td colspan="2">${errMsg}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><input type="submit" name="login" value="ログイン" ></td>
+			<td colspan="2" align="center"><input type="submit" name="login" value="ログイン" ></td>
 		</tr>
 		<tr>
 			<td><a href="New_regist.java">新規登録</a></td>

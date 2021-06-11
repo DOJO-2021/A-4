@@ -20,7 +20,7 @@ public class UserDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SELECT文を準備する☆
-			String sql = "select count(*) from USER where NICKNAME = ? and PW = ?";
+			String sql = "select count(*) from USER where NICKNAME = ? and PASSWORD = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, nickname);
 			pStmt.setString(2, pw);
