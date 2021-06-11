@@ -44,7 +44,7 @@
 			<td colspan="2">${errMsg3}</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" name="login" value="ログイン" ></td>
+			<td colspan="2" align="center"><input type="submit" name="login" value="登録" ></td>
 		</tr>
 		<tr>
 			<td><a href="Login.java">ログイン画面に戻る</a></td>
