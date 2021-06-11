@@ -1,13 +1,37 @@
 //Note関連のデータアクセス用DAO
 package dao;
 
-//JDBCの基本機能
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 public class NoteDao {
+
+//マイページ画面
+//マイページに最近アップロードしたノートを3件ほど表示する
+
+
+//マイページに最近お気に入り登録したノートを3件ほど表示する
+
+
+//ノートアップロード画面
+//ノートをアップロードする
+
+
+//マイノート一覧
+//マイノートを表示する
+
+
+//編集画面
+//ノートの編集をする
+
+
+//ノートの削除をする
+
+
+//
+
+
+
+
+
+
+
 
 }
