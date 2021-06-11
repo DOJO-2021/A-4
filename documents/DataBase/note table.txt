@@ -1,0 +1,23 @@
+create table note(
+note_id int auto_increment,
+user_id int not null,
+image_files varchar(100) not null unique,
+text_files varchar(100) unique,
+year date not null,
+title varchar(50) not null,
+public_select int not null,
+favorites_num int not null default 0,
+tag varchar(100) not null
+)
+
+insert into note values(
+null,
+1,
+'a',
+null,
+20210611,
+'title',
+1,
+default,
+'java'
+)
