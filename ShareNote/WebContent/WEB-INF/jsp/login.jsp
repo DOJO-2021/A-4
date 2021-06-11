@@ -14,11 +14,11 @@ ${msg}
 	<table align="center">
 		<tr>
 			<th>ニックネーム</th>
-			<td><input type="text" name="nickname" placeholder="重複不可"></td>
+			<td><input type="text" name="nickname" placeholder="重複不可" required></td>
 		</tr>
 		<tr>
 			<th>パスワード</th>
-			<td><input type="password" name="password" placeholder="5文字以上16文字以内"></td>
+			<td><input type="password" name="password" placeholder="5文字以上16文字以内" required></td>
 		</tr>
 		<tr>
 			<td colspan="2">${errMsg}</td>

@@ -34,10 +34,11 @@ public class Login extends HttpServlet {
 		UserDao userDao = new UserDao();
 		// ログイン成功
 		if (userDao.isLoginOK(nickname, password)) {
-			// セッションスコープにnicknameを格納する
+			// セッションスコープにuser_idとnicknameを格納する
 			User user = new User();
 			HttpSession session = request.getSession();
 			session.setAttribute("nickname",user.getNickname());
+			session.setAttribute("user_id", user.getUser_id());
 
 			// マイページサーブレットにリダイレクト
 			response.sendRedirect("/ShareNote/Mypage");
