@@ -49,4 +49,5 @@ public class User implements Serializable {
 		this.new_password = new_password;
 	}
 
+
 }
