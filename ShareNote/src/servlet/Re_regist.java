@@ -70,6 +70,7 @@ public class Re_regist extends HttpServlet {
 		}
 
 
+
 		//ログインページにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);

@@ -55,6 +55,7 @@ public class UserDao {
 			}
 		}
 
+
 		// 結果を返す
 		return loginResult;
 	}

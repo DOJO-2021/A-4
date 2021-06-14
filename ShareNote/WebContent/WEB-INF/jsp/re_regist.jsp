@@ -16,6 +16,7 @@ ${msg}
 			<th>ニックネーム</th>
 			<td><input type="text" name="nickname" ></td>
 		</tr>
+
 		<tr>
 			<th>秘密の質問</th>
 		<td><select  name="question">
