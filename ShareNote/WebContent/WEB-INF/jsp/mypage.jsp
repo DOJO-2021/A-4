@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 <!-- サイドメニュー -->
-<h2>${nickname}さんのマイページ</h2>
+<h2>${sessionScope.nickname}さんのマイページ</h2>
 <form method="POST" action="/ShareNote/Mypage">
 	<table>
 	<tr>
