@@ -8,26 +8,7 @@
 <title>mynote++</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
-<!-- サイドメニュー
-<h2>${nickname}さんのマイページ</h2>
-<ul>
-	<li><a href="Note_uplode">ノートをアップロード</a></li>
-</ul>
-<ul>
-	<li><a href="Mynote_list">マイノート一覧</a></li>
-</ul>
-<ul>
-	<li><a href="Favorites_list">お気に入り一覧</a></li>
-</ul>
-<ul>
-	<li></li>
-</ul>
-<ul>
-	<li><a href="Logout">ログアウト</a></li>
-</ul>
--->
 <p>マイノート一覧</p>
 
 	<!-- 試しにforの外に書いてみる -->
