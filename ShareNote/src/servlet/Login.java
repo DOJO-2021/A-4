@@ -44,6 +44,17 @@ public class Login extends HttpServlet {
 			response.sendRedirect("/ShareNote/Mypage");
 		// ログイン失敗
 		} else {
+/*			if(nickname.equals("") || password.trim().equals("")) {
+				String errMsg = "入力箇所が抜けています";
+				request.setAttribute("errMsg", errMsg);
+
+				this.doGet(request, response);
+			} else {
+*/
+				String errMsg = "ニックネームまたはパスワードが違います";
+				request.setAttribute("errMsg", errMsg);
+
+				this.doGet(request, response);
 
 		}
 
