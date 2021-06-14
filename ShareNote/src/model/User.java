@@ -9,6 +9,7 @@ public class User implements Serializable {
 	private String password;
 	private String question;
 	private String answer;
+	private String new_password;
 
 	//getter・setter
 	public int getUser_id() {
@@ -40,6 +41,12 @@ public class User implements Serializable {
 	}
 	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+	public String getNew_password() {
+		return new_password;
+	}
+	public void setNew_password(String new_password) {
+		this.new_password = new_password;
 	}
 
 }
