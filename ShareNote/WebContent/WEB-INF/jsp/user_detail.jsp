@@ -33,7 +33,7 @@
 		<tr>
 			<td>${e.tag}タグ</td>
 			<td><input type="submit" name="download" value="ダウンロード"></td>
-			<td><input type="submit" name="favorite" value="★"></td>
+			<td align="center"><input type="submit" name="favorite" value="★"></td>
 		</tr>
 		</table>
 		<hr>
