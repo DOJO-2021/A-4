@@ -16,12 +16,13 @@ ${msg}
 			<th>ニックネーム</th>
 			<td><input type="text" name="nickname" ></td>
 		</tr>
+
 		<tr>
 			<th>秘密の質問</th>
-			<td><select>
-			<option value="好きな食べ物は？" >好きな食べ物は？</option>
-			<option value="初めて飼ったペットの名前は？">初めて飼ったペットの名前は？</option>
-			<option value="初めて行った海外は？">初めて行った海外は？</option>
+		<td><select  name="question">
+			<option value="好きな食べ物は？"  >好きな食べ物は？</option>
+			<option value="初めて飼ったペットの名前は？" >初めて飼ったペットの名前は？</option>
+			<option value="初めて行った海外は？"  >初めて行った海外は？</option>
 			</select>
 			</td>
 		</tr>
@@ -30,25 +31,21 @@ ${msg}
 			<td><input type="text" name="answer" ></td>
 		</tr>
 		<tr>
-			<td colspan="2">${errMsg}</td>
+			<td colspan="2" align="center">${errMsg}</td>
 		</tr>
-	</table>
-	<table>
 		<tr>
 			<th>新しいパスワード</th>
-			<td><input type="password" name="password" placeholder="5文字以上16文字以内"></td>
-			<td>※半角英数字と記号のみ使用可</td>
+			<td><input type="password" name="password" placeholder="5文字以上16文字以内">※半角英数字と記号のみ使用可</td>
 		</tr>
 		<tr>
 			<th>新しいパスワード(確認)</th>
-			<td><input type="password" name="password2" ></td>
-			<td>${errMsg2}</td>
+			<td><input type="password" name="password2" >${errMsg2}</</td>
 		</tr>
 		<tr>
-			<td colspan="3" align="center"><input type="submit" name="re_regist" value="登録" ></td>
+			<td colspan="2" align="center"><input type="submit" name="re_regist" value="登録" ></td>
 		</tr>
 		<tr>
-			<td colspan="3" align="center"><a href="Login.java">ログイン画面に戻る</a></td>
+			<td colspan="2" align="center"><a href="Login.java">ログイン画面に戻る</a></td>
 		</tr>
 	</table>
 </form>

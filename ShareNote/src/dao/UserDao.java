@@ -55,12 +55,68 @@ public class UserDao {
 			}
 		}
 
+
 		// 結果を返す
 		return loginResult;
 	}
+
+	//確認用メソッド
+	public boolean selectUser(String nickname,String question, String answer) {
+		Connection conn = null;
+		boolean selectUser = false;
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select count(*) from USER where NICKNAME = ? and QUESTION = ? and ANSWER = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, nickname);
+			pStmt.setString(2, question);
+			pStmt.setString(3, answer);
+
+
+			// SELECT文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// ニックネーム、秘密の質問、答えが一致するユーザーがいたかどうかをチェックする
+			rs.next();
+			if (rs.getInt("count(*)") == 1) {
+				selectUser = true;
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch(IllegalStateException e) {
+			e.printStackTrace();
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		// 結果を返す
+		return selectUser;
+	}
+
 	//再設定
 	// 引数cardで指定されたレコードを更新し、成功したらtrueを返す
-			public boolean update(String new_password) {
+			public boolean update(String nickname,String new_password) {
 				Connection conn = null;
 				boolean result = false;
 
@@ -69,19 +125,21 @@ public class UserDao {
 					Class.forName("org.h2.Driver");
 
 					// データベースに接続する
-					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/simpleBC", "sa", "");
+					conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 					// SQL文を準備する
-					String sql = "update IDPW set pw=?";
+					String sql = "update USER  set PASSWORD=? where NICKNAME=?";
 					PreparedStatement pStmt = conn.prepareStatement(sql);
 
 					// SQL文を完成させる
-					if (new_password.getPassword() != null) {
-						pStmt.setString(1, new_password.getPassword());
+
+					if (new_password != null) {
+						pStmt.setString(1, new_password);
 					}
 					else {
-						pStmt.setString(1, "null");
+						pStmt.setString(1, null);
 					}
+					pStmt.setString(2, nickname);
 
 					// SQL文を実行する
 					if (pStmt.executeUpdate() == 1) {
