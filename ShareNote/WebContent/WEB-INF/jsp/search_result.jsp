@@ -41,7 +41,7 @@
 			<tr>
 			 	<td colspan="4" align="center"><select name="sort">
 						<option value ="新着順">新着順</option>
-						<option value="お気に入り数順">お気に入り数順</option>
+						<option value="お気に入り数順">お気に入り順</option>
 					</select>
 				</td>
 			</tr>
@@ -50,9 +50,25 @@
 			</tr>
 	</table>
 </form>
+<form action ="POST" >
+	<select>
+	<option value="新着順">新着順</option>
+	<option value="お気に入り順">お気に入り順</option>
+	</select>
+</form>ヒット数：〇件
+<c:forEach var ="e" items="${noteList} }">
 
+
+</c:forEach>
+<table>
+</table>
 
 
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
+<sclipt>
+'use strict';
+
+ noteList.sort()
+</sclipt>
 </html>
