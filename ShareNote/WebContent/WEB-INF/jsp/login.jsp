@@ -27,8 +27,8 @@ ${msg}
 			<td colspan="2" align="center"><input type="submit" name="login" value="ログイン" ></td>
 		</tr>
 		<tr>
-			<td><a href="New_regist.java">新規登録</a></td>
-			<td><a href="Re_regist.java">パスワードを忘れた方</a></td>
+			<td><a href="New_regist">新規登録</a></td>
+			<td><a href="Re_regist">パスワードを忘れた方</a></td>
 		</tr>
 	</table>
 </form>
