@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.UserDao;
+import model.User;
+
 @WebServlet("/New_regist")
 public class New_regist extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,9 +32,17 @@ public class New_regist extends HttpServlet {
 		String answer = request.getParameter("answer");
 
 		// 新規登録処理
-
+		UserDao bDao = new UserDao();
 		// 新規登録が成功
+		User user = new User();
+		if (bDao.insert( 0, user.getNickname(), user.getPassword(), user.getQuestion(), user.getAnswer())) {
+			request.setAttribute("msg","ユーザー登録が完了しました");
+
 		// 新規登録が失敗
+		}else {
+			request.setAttribute("errMsg4","ユーザー登録が失敗しました");
+		}
+
 	}
 
 }

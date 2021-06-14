@@ -8,6 +8,7 @@
 <title>mynote++</title>
 </head>
 <body>
+${errMsg4}
 <h2>ユーザー登録</h2>
 <form method="POST" action="/ShareNote/New_regist">
 	<table align="center">
