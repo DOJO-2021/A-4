@@ -48,6 +48,4 @@ public class User implements Serializable {
 	public void setNew_password(String new_password) {
 		this.new_password = new_password;
 	}
-
-
 }
