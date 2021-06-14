@@ -23,6 +23,7 @@ public class New_regist extends HttpServlet {
 			}
 
 
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
