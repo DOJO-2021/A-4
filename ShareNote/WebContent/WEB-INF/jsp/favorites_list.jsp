@@ -54,7 +54,6 @@
 	</tr>
 	</table>
 	</form>
-
 </c:forEach>
 
 
