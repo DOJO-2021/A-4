@@ -21,10 +21,25 @@ public class Mypage extends HttpServlet {
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/ShareNote/Login");
 			return;
-	}
+		}
 		// メニューページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-				dispatcher.forward(request, response);
+		String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+		dispatcher.forward(request, response);
 
 	}
+
+	// ノートをアップロードボタン・マイノート一覧ボタン・お気に入り一覧ボタンが押されたとき
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//リクエストパラメータを取得
+		request.setCharacterEncoding("UTF-8");
+
+		// マイページにフォワードする
+		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+		dispatcher.forward(request, response);
+	}
+
 }
