@@ -8,6 +8,8 @@
 <title>mynote++</title>
 </head>
 <body>
+${errMsg4}
+
 <h2>ユーザー登録</h2>
 <form method="POST" action="/ShareNote/New_regist">
 	<table align="center">
@@ -47,7 +49,7 @@
 			<td colspan="2" align="center"><input type="submit" name="login" value="登録" ></td>
 		</tr>
 		<tr>
-			<td><a href="Login.java">ログイン画面に戻る</a></td>
+			<td><a href="Login">ログイン画面に戻る</a></td>
 		</tr>
 	</table>
 </form>
