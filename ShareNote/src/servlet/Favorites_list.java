@@ -21,10 +21,19 @@ public class Favorites_list extends HttpServlet {
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("/ShareNote/Login");
 			return;
-	}
+		}
+
+
 		// お気に入り一覧ページにフォワードする
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/favorites_list.jsp");
-				dispatcher.forward(request, response);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/favorites_list.jsp");
+		dispatcher.forward(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	//	RequestDispatcher dispatcher = request.getRequestDispatcher("/ShareNote/Edit");
+	//	dispatcher.forward(request, response);
 
 	}
 }
