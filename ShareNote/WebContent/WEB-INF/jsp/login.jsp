@@ -8,6 +8,7 @@
 <title>mynote++</title>
 </head>
 <body>
+<img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 ${msg}
 <h2>ログイン</h2>
 <form method="POST" action="/ShareNote/Login">
