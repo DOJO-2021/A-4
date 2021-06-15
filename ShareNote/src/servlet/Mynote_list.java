@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.UserDao;
+import dao.NoteDao;
 import model.User;
 
 @WebServlet("/Mynote_list")
@@ -26,10 +26,12 @@ public class Mynote_list extends HttpServlet {
 			return;
 		}
 
-		UserDao userDao = new UserDao();
-		//int user_id = userDao.selectUser_id("nickname");
-		int u = (int) session.getAttribute("user_id");
-		User user = (User) session.getAttribute("loginUser");
+
+		User user = (User) session.getAttribute("user");
+		// ログインしているユーザーのノート情報を検索する
+		NoteDao nDao = new NoteDao();
+
+		// NoteDaoのuser_idからノート情報を検索するメソッドを呼ぶ
 
 
 
