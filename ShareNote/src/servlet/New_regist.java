@@ -43,14 +43,34 @@ public class New_regist extends HttpServlet {
 		// 同じニックネームが使われていない場合
 		if(bDao.checkNickname(nickname)==true) {
 
+			int errCount = 0;
 			if(!this.checkLogic(regex_AlphaNum, password)) {
 				//使用不可能文字の処理
 				request.setAttribute("errMsg2", "使用できない文字が含まれています");
-				}
+				errCount+=1;
+			}
 
+			if(password.length()<5||password.length()>17||password=="") {
+				//文字列の長さチェック
+				String errMsg3="5文字以上16文字以内で入力してください";
+				request.setAttribute("errMsg3", errMsg3);
+				errCount+=1;
 
-			// 新規登録が成功
-			if (bDao.insert( nickname, password, question, answer)) {
+			}
+
+			if(!password.equals(password_check)) {
+			//パスワード確認不一致
+				String errMsg4="パスワードが一致しません";
+				request.setAttribute("errMsg4", errMsg4);
+				errCount+=1;
+			}
+
+			if(errCount!=0) {
+				//新規登録画面にフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/new_regist.jsp");
+				dispatcher.forward(request, response);
+
+			}else if (bDao.insert( nickname, password, question, answer)) {
 				request.setAttribute("msg","ユーザー登録が完了しました");
 				//ログインページにフォワード
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -58,7 +78,7 @@ public class New_regist extends HttpServlet {
 
 			// 新規登録が失敗
 			}else {
-				request.setAttribute("errMsg4","ユーザー登録が失敗しました");
+				request.setAttribute("errMsg6","ユーザー登録が失敗しました");
 				//新規登録画面にフォワード
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/new_regist.jsp");
 				dispatcher.forward(request, response);

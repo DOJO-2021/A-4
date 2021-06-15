@@ -39,6 +39,7 @@ public class Re_regist extends HttpServlet {
 		UserDao uDao = new UserDao();
 		//ユーザー確認
 		if(uDao.selectUser(nickname,question,answer)==true) {
+
 			if(uDao.update(nickname,new_password)) {
 				//パスワード再設定成功
 				request.setAttribute("result", new_password);
@@ -46,22 +47,24 @@ public class Re_regist extends HttpServlet {
 			}else {
 				//パスワード再設定失敗
 				if(!this.checkLogic(regex_AlphaNum, new_password)) {
-				//使用不可能文字の処理
-				String errMsg2="使用できない文字が含まれています";
-				request.setAttribute("errMsg2", errMsg2);
-				}
-				if(new_password.length()<5&&new_password.length()>17) {
-					//文字列の長さチェック
-						String errMsg2="パスワード一致しません";
-						request.setAttribute("errMsg2", errMsg2);
-				}
-				else if(new_password==new_password2) {
-				//パスワード確認不一致
-					String errMsg2="パスワードが一致しません";
+					//使用不可能文字の処理
+					String errMsg2="使用できない文字が含まれています";
 					request.setAttribute("errMsg2", errMsg2);
 				}
 
+				if(new_password.length()<5||new_password.length()>17) {
+					//文字列の長さチェック
+					String errMsg2="5文字以上16文字以内で入力してください";
+					request.setAttribute("errMsg2", errMsg2);
+				}
+
+				if(!new_password.equals(new_password2)) {
+					//パスワード確認不一致
+					String errMsg2="パスワードが一致しません";
+					request.setAttribute("errMsg2", errMsg2);
+				}
 			}
+
 		}else {
 			String errMsg = "ユーザーが見つかりません。";
 			request.setAttribute("errMsg", errMsg);

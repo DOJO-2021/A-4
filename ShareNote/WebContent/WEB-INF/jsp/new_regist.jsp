@@ -8,7 +8,7 @@
 <title>mynote++</title>
 </head>
 <body>
-${errMsg4}
+${errMsg6}
 
 <h2>ユーザー登録</h2>
 <form method="POST" action="/ShareNote/New_regist">
@@ -26,7 +26,7 @@ ${errMsg4}
 		<tr>
 			<th>パスワード(確認)</th>
 			<td><input type="password" name="password_check"></td>
-			<td>${errMsg2}</td>
+			<td>${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
 		</tr>
 		<tr>
 			<th>秘密の質問</th>
@@ -43,7 +43,7 @@ ${errMsg4}
 			<td><input type="text" name="answer"></td>
 		</tr>
 		<tr>
-			<td colspan="2">${errMsg3}</td>
+			<td colspan="2">${errMsg5}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" name="login" value="登録" ></td>
