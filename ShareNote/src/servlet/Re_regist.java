@@ -37,46 +37,53 @@ public class Re_regist extends HttpServlet {
 		//パスワードを再設定
 
 		UserDao uDao = new UserDao();
-		//ユーザー確認
+		//ユーザー確認  ニックネームと秘密の質問とその回答が一致していることを確認
 		if(uDao.selectUser(nickname,question,answer)==true) {
 
-			if(uDao.update(nickname,new_password)) {
-				//パスワード再設定成功
-				request.setAttribute("result", new_password);
+			int errCount = 0;
 
-			}else {
-				//パスワード再設定失敗
-				if(!this.checkLogic(regex_AlphaNum, new_password)) {
-					//使用不可能文字の処理
-					String errMsg2="使用できない文字が含まれています";
-					request.setAttribute("errMsg2", errMsg2);
-				}
-
-				if(new_password.length()<5||new_password.length()>17) {
-					//文字列の長さチェック
-					String errMsg2="5文字以上16文字以内で入力してください";
-					request.setAttribute("errMsg2", errMsg2);
-				}
-
-				if(!new_password.equals(new_password2)) {
-					//パスワード確認不一致
-					String errMsg2="パスワードが一致しません";
-					request.setAttribute("errMsg2", errMsg2);
-				}
+			if(!this.checkLogic(regex_AlphaNum, new_password)) {
+				//使用不可能文字の処理
+				String errMsg2="使用できない文字が含まれています";
+				request.setAttribute("errMsg2", errMsg2);
+				errCount += 1;
 			}
 
+			if(new_password.length()<5||new_password.length()>17||new_password=="") {
+				//文字列の長さチェック
+				String errMsg3="5文字以上16文字以内で入力してください";
+				request.setAttribute("errMsg3", errMsg3);
+				errCount += 1;
+			}
+
+			if(!new_password.equals(new_password2)) {
+				//パスワード確認不一致
+				String errMsg4="パスワードが一致しません";
+				request.setAttribute("errMsg4", errMsg4);
+				errCount += 1;
+			}
+
+			if(errCount!=0) {
+				//新規登録画面にフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/re_regist.jsp");
+				dispatcher.forward(request, response);
+
+			}else if(uDao.update(nickname,new_password)) {
+				//パスワード再設定成功
+				request.setAttribute("msg","パスワードを再設定しました");
+				//ログインページにフォワード
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+				dispatcher.forward(request, response);
+			}
+
+
+		// 登録されているユーザー情報の中に一致するものがなかった場合
 		}else {
 			String errMsg = "ユーザーが見つかりません。";
 			request.setAttribute("errMsg", errMsg);
-
 			this.doGet(request, response);
 		}
 
-
-
-		//ログインページにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	 public boolean checkLogic(String regex, String target) {

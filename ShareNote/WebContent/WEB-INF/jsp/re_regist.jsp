@@ -36,17 +36,19 @@ ${msg}
 		</tr>
 		<tr>
 			<th>新しいパスワード</th>
-			<td><input type="password" name="password" placeholder="5文字以上16文字以内">※半角英数字と記号のみ使用可</td>
+			<td><input type="password" name="password" placeholder="5文字以上16文字以内"></td>
+			<td>※半角英数字と記号のみ使用可</td>
 		</tr>
 		<tr>
 			<th>新しいパスワード(確認)</th>
-			<td><input type="password" name="password2" >${errMsg2}</</td>
+			<td><input type="password" name="password2" ></td>
+			<td>${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" name="re_regist" value="登録" ></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><a href="Login.java">ログイン画面に戻る</a></td>
+			<td colspan="2" align="center"><a href="Login">ログイン画面に戻る</a></td>
 		</tr>
 	</table>
 </form>
