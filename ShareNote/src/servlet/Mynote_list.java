@@ -23,6 +23,8 @@ public class Mynote_list extends HttpServlet {
 			return;
 		}
 
+		int user_id = session.getAttribute("user_id");
+
 		// マイノート一覧ページをインクルードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mynote_list.jsp");
 		dispatcher.forward(request, response);
@@ -30,8 +32,8 @@ public class Mynote_list extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	//	RequestDispatcher dispatcher = request.getRequestDispatcher("/ShareNote/Edit");
-	//	dispatcher.forward(request, response);
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/ShareNote/Edit");
+	dispatcher.forward(request, response);
 
 	}
 }
