@@ -46,7 +46,7 @@
 	</tr>
 
 	<tr>
-		<td><input type="file" name="datafile"></td>
+		<td><input type="file" name="datafile" accept="image/jpeg, image/png"></td>
 		<td><input type="checkbox" name="tag" value="linux9" onClick="DisChecked()">jQuery</td>
 		<td><input type="checkbox" name="tag" value="linux10" onClick="DisChecked()">その他</td>
 		<td><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</td>
@@ -56,16 +56,16 @@
 		<td>4.公開設定</td>
 	</tr>
 	<tr>
-		<td><input type="file" name="datafile"></td>
+		<td><input type="file" name="datafile" accept=" .docx, .txt"></td>
 		<td><input type="radio" name="public" value="open"> 公開<input type="radio" name="public" value="close"> 非公開</td>
 	</tr>
 	</table>
-		<input type="submit" name="download" value="ダウンロード">
+		<input type="submit" name="upload" value="アップロード">
 	</form>
-
+<a href="/ShareNote/Edit">編集</a>
 
 <c:forEach var="e" items="${cardList}" >
-	<form method="POST" action="/ShareNote/Edit">
+ 	<form method="POST" action="/ShareNote/Edit">
 
 	</form>
 

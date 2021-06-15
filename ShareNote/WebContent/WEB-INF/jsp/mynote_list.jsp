@@ -12,7 +12,7 @@
 <p>マイノート一覧</p>
 
 	<!-- 試しにforの外に書いてみる -->
-	<form method="POST" action="/ShareNote/Edit">
+	<form method="GET" action="/ShareNote/Edit">
 	<table border="1">
 	<tr>
 		<td rowspan="3">${e.image_files}ノート画像</td>
