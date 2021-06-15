@@ -9,48 +9,60 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Note;
+
 public class NoteDao {
+
 
 //マイページ画面
 	//マイページに最近アップロードしたノートを3件ほど表示する
-	public List<String> selectLatestUpload(String nickname) {
-		//接続されるとConnectionオブジェクトが入る→切断するときに必要
+	public List<Note> selectLatestUpload(int user_id) {
+		//接続されるとConnectionオブジェクトが入る
 		Connection conn = null;
 		//検索結果を入れる配列を用意
-		List<String> cardList = new ArrayList<String>();
+		List<Note> noteList = new ArrayList<Note>();
 
 		try {
 			// JDBCドライバを読み込む
 			Class.forName("org.h2.Driver");
 
-			// データベースに接続する☆
+			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select count(*) from USER where NICKNAME = ?";
+			String sql = "select * from NOTE where USER_ID = ? order by NOTE_ID desc limit 3";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, nickname);
+			pStmt.setInt(1, user_id);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-
+			//System.out.println(rs);
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
-			// rs.next():次の要素があったらtrue
 			while (rs.next()) {
-				String card = new String(
-				);
-				cardList.add(card);
+				Note note = new Note(
+						rs.getInt("note_id"),
+						rs.getInt("user_id"),
+						rs.getString("image_files"),
+						rs.getString("text_files"),
+						rs.getInt("year"),
+						rs.getString("title"),
+						rs.getInt("public_select"),
+						rs.getInt("favorites_num"),
+						rs.getString("tag")
+						);
+				noteList.add(note);
 			}
+			System.out.println(noteList);
 		}
 
 		//例外
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			noteList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			noteList = null;
 		}
 		//例外が起きてもどっちにしろ切断
 		finally {
@@ -61,18 +73,82 @@ public class NoteDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					noteList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return noteList;
 	}
 
 
+	//マイノート一覧にアップロードしたノート全てを表示する
+	public List<Note> selectMynote(int user_id) {
+		//接続されるとConnectionオブジェクトが入る
+		Connection conn = null;
+		//検索結果を入れる配列を用意
+		List<Note> mynoteList = new ArrayList<Note>();
 
-//マイページに最近お気に入り登録したノートを3件ほど表示する
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from NOTE where USER_ID = ? order by NOTE_ID desc";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			//System.out.println(rs);
+			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
+			while (rs.next()) {
+				Note note = new Note(
+						rs.getInt("note_id"),
+						rs.getInt("user_id"),
+						rs.getString("image_files"),
+						rs.getString("text_files"),
+						rs.getInt("year"),
+						rs.getString("title"),
+						rs.getInt("public_select"),
+						rs.getInt("favorites_num"),
+						rs.getString("tag")
+						);
+				mynoteList.add(note);
+			}
+		}
+
+		//例外
+		catch (SQLException e) {
+			e.printStackTrace();
+			mynoteList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			mynoteList = null;
+		}
+		//例外が起きてもどっちにしろ切断
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					mynoteList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return mynoteList;
+	}
+
 
 
 //ノートアップロード画面
