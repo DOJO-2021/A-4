@@ -38,9 +38,9 @@ public class Login extends HttpServlet {
 		//ろぐいんok
 		if(user!=null) {
 			session.setAttribute("user",user);
-			User user2 = (User)session.getAttribute("user");
-			System.out.println(user2.getUser_id());
-			${sessionScope.user.user_id}
+		//	User user2 = (User)session.getAttribute("user");
+		//	System.out.println(user2.getUser_id());
+		//	${sessionScope.user.user_id}
 			response.sendRedirect("/ShareNote/Mypage");
 		}else {
 			String errMsg = "ニックネームまたはパスワードが違います";

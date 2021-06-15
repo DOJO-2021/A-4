@@ -176,57 +176,6 @@ public class UserDao {
 				return result;
 			}
 
-	//ニックネームからuser_idを持ってくる
-	public int selectUser_id(String nickname) {
-		//接続されるとConnectionオブジェクトが入る
-		Connection conn = null;
-		int user_id = 1;
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
-
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
-
-			// SQL文を準備する
-			String sql = "select user_id from USER where nickname = ?";
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, nickname);
-
-			// SQL文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
-			System.out.println(rs);
-		}
-
-		//例外
-		catch (SQLException e) {
-			e.printStackTrace();
-			user_id = 0;
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			user_id = 0;
-		}
-		//例外が起きてもどっちにしろ切断
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
-				}
-				catch (SQLException e) {
-					e.printStackTrace();
-					user_id = 0;
-				}
-			}
-		}
-
-		// 結果を返す
-		return user_id;
-
-	}
-
-
 		//確認用メソッド 新規登録の際、同じニックネームがいないか確認する
 		public boolean checkNickname(String nickname) {
 				Connection conn = null;
