@@ -9,8 +9,6 @@
 <title>mynote++</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
 
 <!-- 初期状態 -->
 <p>お気に入り一覧</p>
