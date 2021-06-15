@@ -13,7 +13,7 @@
 <!-- 初期状態 -->
 <p>ノートのアップロード</p>
 
-	<form method="POST" action="/ShareNote/Edit">
+	<form method="POST" name="form" action="/ShareNote/Edit">
 	<table border="1">
 	<tr>
 		<td>1.ファイル登録（いずれか必須）</td>
@@ -33,8 +33,7 @@
 		<td colspan="4">3.タグの選択（必須）</td>
 	</tr>
    	<tr>
-   		<td><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</td>
-
+		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()">HTML</td>
 		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()">CSS</td>
 		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()">JavaScript</td>
 		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()">Java</td>
@@ -50,7 +49,7 @@
 		<td><input type="file" name="datafile"></td>
 		<td><input type="checkbox" name="tag" value="linux9" onClick="DisChecked()">jQuery</td>
 		<td><input type="checkbox" name="tag" value="linux10" onClick="DisChecked()">その他</td>
-		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()">HTML</td>
+		<td><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</td>
 	</tr>
 	<tr>
 		<td>テキストファイル（.docx、.txt）はこちら</td>
