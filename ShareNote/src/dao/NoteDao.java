@@ -13,7 +13,6 @@ import model.Note;
 
 public class NoteDao {
 
-
 //マイページ画面
 	//マイページに最近アップロードしたノートを3件ほど表示する
 	public List<Note> selectLatestUpload(int user_id) {
@@ -36,23 +35,22 @@ public class NoteDao {
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			//System.out.println(rs);
+			System.out.println(rs);
+
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
 			while (rs.next()) {
-				Note note = new Note(
-						rs.getInt("note_id"),
-						rs.getInt("user_id"),
-						rs.getString("image_files"),
-						rs.getString("text_files"),
-						rs.getInt("year"),
-						rs.getString("title"),
-						rs.getInt("public_select"),
-						rs.getInt("favorites_num"),
-						rs.getString("tag")
-						);
+				Note note = new Note();
+				note.setNote_id(rs.getInt("note_id"));
+				note.setUser_id(rs.getInt("user_id"));
+				note.setImage_files(rs.getString("image_files"));
+				note.setText_files(rs.getString("text_files"));
+				note.setYear(rs.getInt("year"));
+				note.setTitle(rs.getString("title"));
+				note.setPublic_select(rs.getInt("public_select"));
+				note.setFavorites_num(rs.getInt("favorites_num"));
+				note.setTag(rs.getString("tag"));
 				noteList.add(note);
 			}
-			System.out.println(noteList);
 		}
 
 		//例外
@@ -107,17 +105,16 @@ public class NoteDao {
 			//System.out.println(rs);
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
 			while (rs.next()) {
-				Note note = new Note(
-						rs.getInt("note_id"),
-						rs.getInt("user_id"),
-						rs.getString("image_files"),
-						rs.getString("text_files"),
-						rs.getInt("year"),
-						rs.getString("title"),
-						rs.getInt("public_select"),
-						rs.getInt("favorites_num"),
-						rs.getString("tag")
-						);
+				Note note = new Note();
+				note.setNote_id(rs.getInt("note_id"));
+				note.setUser_id(rs.getInt("user_id"));
+				note.setImage_files(rs.getString("image_files"));
+				note.setText_files(rs.getString("text_files"));
+				note.setYear(rs.getInt("year"));
+				note.setTitle(rs.getString("title"));
+				note.setPublic_select(rs.getInt("public_select"));
+				note.setFavorites_num(rs.getInt("favorites_num"));
+				note.setTag(rs.getString("tag"));
 				mynoteList.add(note);
 			}
 		}
@@ -150,13 +147,12 @@ public class NoteDao {
 	}
 
 
+	//ノートをアップロードする
+	public void insertNote() {
 
-//ノートアップロード画面
-//ノートをアップロードする
+	}
 
 
-//マイノート一覧
-//マイノートを表示する
 
 
 //編集画面
@@ -168,7 +164,83 @@ public class NoteDao {
 
 //検索画面
 //検索内容にあった検索をする
+public List<Note> select(Note param) {
+		Connection conn = null;
+		List<Note> noteList = new ArrayList<Note>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select image_files, text_files, year, nickname, title public_select, favorites_num, tag from NOTE WHERE tag=? AND nickname LIKE ? AND title LIKE ? ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を完成させる
+			if (param.getTag() != null) {
+				pStmt.setString(1,  param.getTag());
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			if (param.getNickname() != null) {
+				pStmt.setString(2, "%" + param.getNickname() + "%");
+			}
+			else {
+				pStmt.setString(2, "%");
+			}
+			if (param.getTitle() != null) {
+				pStmt.setString(3, "%" + param.getTitle() + "%");
+			}
+			else {
+				pStmt.setString(3, "%");
+			}
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+
+			// 結果表をコレクションにコピーする
+			while (rs.next()) {
+				Note note = new Note(
+				rs.getString("image_files"),
+				rs.getString("text_files"),
+				rs.getInt("year"),
+				rs.getString("nickname"),
+				rs.getString("title"),
+				rs.getInt("public_select"),
+				rs.getInt("favorites_num"),
+				rs.getString("tag")
+				);
+				noteList.add(note);
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			noteList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			noteList = null;
+		}
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					noteList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return noteList;
+	}
 
 //ノート詳細
 //こちらもおススメを表示する
