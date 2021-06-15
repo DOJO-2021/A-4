@@ -6,12 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.User;
+
 
 public class UserDao {
 	// ログインできるならtrueを返す☆
-	public boolean isLoginOK(String nickname, String pw) {
+	public User isLoginOK(String nickname, String pw) {
 		Connection conn = null;
-		boolean loginResult = false;
+		User user = null;
 
 		try {
 			// JDBCドライバを読み込む
@@ -21,7 +23,7 @@ public class UserDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SELECT文を準備する☆
-			String sql = "select count(*) from USER where NICKNAME = ? and PASSWORD = ?";
+			String sql = "select * from USER where NICKNAME = ? and PASSWORD = ?";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, nickname);
 			pStmt.setString(2, pw);
@@ -30,18 +32,23 @@ public class UserDao {
 			ResultSet rs = pStmt.executeQuery();
 
 			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-			rs.next();
-			if (rs.getInt("count(*)") == 1) {
-				loginResult = true;
+//			rs.next();
+//			if (rs.getInt("count(*)") == 1) {
+//				loginResult = true;
+//			}
+			while(rs.next()) {
+				user = new User();
+				user.setUser_id(rs.getInt("user_id"));
+				user.setNickname(rs.getString("nickname"));
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			loginResult = false;
+
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			loginResult = false;
+
 		}
 		finally {
 			// データベースを切断
@@ -51,14 +58,14 @@ public class UserDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					loginResult = false;
+
 				}
 			}
 		}
 
 
 		// 結果を返す
-		return loginResult;
+		return user;
 	}
 
 	//確認用メソッド

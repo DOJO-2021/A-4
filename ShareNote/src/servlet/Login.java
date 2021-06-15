@@ -32,34 +32,52 @@ public class Login extends HttpServlet {
 
 		// ログイン処理
 		UserDao userDao = new UserDao();
-		// ログイン成功
-		if (userDao.isLoginOK(nickname, password)) {
-			// nicknameからuser_idを持ってくる
-			int user_id = userDao.selectUser_id(nickname);
 
-			// セッションスコープにuser_idとnicknameを格納する
-			User user = new User();
-			HttpSession session = request.getSession();
-			session.setAttribute("nickname", nickname);
-			session.setAttribute("user_id", user_id);
-
-			// マイページサーブレットにリダイレクト
+		User user =userDao.isLoginOK(nickname, password);
+		HttpSession session = request.getSession();
+		//ろぐいんok
+		if(user!=null) {
+			session.setAttribute("user",user);
+			User user2 = (User)session.getAttribute("user");
+			System.out.println(user2.getUser_id());
+			${sessionScope.user.user_id}
 			response.sendRedirect("/ShareNote/Mypage");
-		// ログイン失敗
-		} else {
-/*			if(nickname.equals("") || password.trim().equals("")) {
-				String errMsg = "入力箇所が抜けています";
-				request.setAttribute("errMsg", errMsg);
+		}else {
+			String errMsg = "ニックネームまたはパスワードが違います";
+			request.setAttribute("errMsg", errMsg);
 
-				this.doGet(request, response);
-			} else {
-*/
-				String errMsg = "ニックネームまたはパスワードが違います";
-				request.setAttribute("errMsg", errMsg);
-
-				this.doGet(request, response);
+			this.doGet(request, response);
 
 		}
+		// ログイン成功
+//		if (userDao.isLoginOK(nickname, password)) {
+//			// nicknameからuser_idを持ってくる
+//			int user_id = userDao.selectUser_id(nickname);
+//
+//			// セッションスコープにuser_idとnicknameを格納する
+//			User user = new User();
+//			HttpSession session = request.getSession();
+//			session.setAttribute("nickname", nickname);
+//			session.setAttribute("user_id", user_id);
+//			session.setAttribute("loginUser", user);
+//
+//			// マイページサーブレットにリダイレクト
+//			response.sendRedirect("/ShareNote/Mypage");
+//		// ログイン失敗
+//		} else {
+///*			if(nickname.equals("") || password.trim().equals("")) {
+//				String errMsg = "入力箇所が抜けています";
+//				request.setAttribute("errMsg", errMsg);
+//
+//				this.doGet(request, response);
+//			} else {
+//*/
+//				String errMsg = "ニックネームまたはパスワードが違います";
+//				request.setAttribute("errMsg", errMsg);
+//
+//				this.doGet(request, response);
+//
+//		}
 
 	}
 
