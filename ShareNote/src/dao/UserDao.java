@@ -31,11 +31,6 @@ public class UserDao {
 			// SELECT文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
-			// ユーザーIDとパスワードが一致するユーザーがいたかどうかをチェックする
-//			rs.next();
-//			if (rs.getInt("count(*)") == 1) {
-//				loginResult = true;
-//			}
 			while(rs.next()) {
 				user = new User();
 				user.setUser_id(rs.getInt("user_id"));
