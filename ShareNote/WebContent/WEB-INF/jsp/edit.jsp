@@ -58,6 +58,7 @@
 	</table>
 		<input type="submit" name="delte" value="ノート削除">
 		<input type="submit" name="edit" value="編集を完了">
+		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
 	</form>
 
 </body>

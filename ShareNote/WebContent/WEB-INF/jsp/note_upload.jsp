@@ -62,7 +62,7 @@
 	</table>
 		<input type="submit" name="upload" value="アップロード">
 	</form>
-<a href="/ShareNote/Edit">編集</a>
+
 
 <c:forEach var="e" items="${cardList}" >
  	<form method="POST" action="/ShareNote/Edit">
