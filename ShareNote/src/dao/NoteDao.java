@@ -164,7 +164,7 @@ public class NoteDao {
 
 //検索画面
 //検索内容にあった検索をする
-public List<Note> select(String nickname, String title, String tag) {
+public List<Note> search(String nickname, String title, String tag) {
 		Connection conn = null;
 		List<Note> noteList = new ArrayList<Note>();
 
@@ -176,7 +176,7 @@ public List<Note> select(String nickname, String title, String tag) {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select image_files, text_files, year, nickname, title public_select, favorites_num, tag from NOTE WHERE tag=? AND nickname LIKE ? AND title LIKE ? ";
+			String sql = "select  n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag=? AND nickname LIKE ? AND title LIKE ? ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
@@ -184,7 +184,7 @@ public List<Note> select(String nickname, String title, String tag) {
 				pStmt.setString(1, tag);
 			}
 			else {
-				pStmt.setString(1, "%");
+				pStmt.setString(1, "java");
 			}
 			if (nickname != null) {
 				pStmt.setString(2, "%" + nickname + "%");
@@ -205,8 +205,8 @@ public List<Note> select(String nickname, String title, String tag) {
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
 						Note note = new Note();
-						note.setNote_id(rs.getInt("note_id"));
-						note.setUser_id(rs.getInt("user_id"));
+				//		note.setNote_id(rs.getInt("n.note_id"));
+				//		note.setUser_id(rs.getInt("n.user_id"));
 						note.setImage_files(rs.getString("image_files"));
 						note.setText_files(rs.getString("text_files"));
 						note.setYear(rs.getInt("year"));
@@ -216,16 +216,13 @@ public List<Note> select(String nickname, String title, String tag) {
 						note.setFavorites_num(rs.getInt("favorites_num"));
 						note.setTag(rs.getString("tag"));
 						noteList.add(note);
-				noteList.add(note);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			noteList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			noteList = null;
 		}
 		finally {
 			// データベースを切断
@@ -235,7 +232,6 @@ public List<Note> select(String nickname, String title, String tag) {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					noteList = null;
 				}
 			}
 		}

@@ -56,13 +56,13 @@
 	<option value="新着順">新着順</option>
 	<option value="お気に入り順">お気に入り順</option>
 	</select>
-</form>ヒット数：〇件
-<c:forEach var ="e" items="${noteList} }">
+</form>ヒット数：
+<c:forEach var ="e" items="${noteList}">
 
 
 <table border="1">
 		<tr>
-			<td rowspan="3"><!--  ${e.image_files}-->ノート画像</td>
+			<td rowspan="3">${e.image_files }ノート画像</td>
 			<td>
 			${e.year}年度
 			</td>
@@ -84,15 +84,9 @@
 		<hr>
 
 </c:forEach>
-<table>
-</table>
 
 
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
-<script>
-'use strict';
 
- noteList.sort()
-</script>
 </html>

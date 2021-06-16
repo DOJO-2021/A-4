@@ -10,7 +10,8 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
+<a href="/ShareNote/Search_result">検索結果
+</a>
 <!-- サイドメニュー -->
 <h2>${sessionScope.nickname}さんのマイページ</h2>
 <form method="POST" action="/ShareNote/Mypage">
