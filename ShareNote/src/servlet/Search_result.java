@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.NoteDao;
 import model.Note;
@@ -21,11 +22,11 @@ public class Search_result extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-//				HttpSession session = request.getSession();
-//				if (session.getAttribute("user") == null) {
-//					response.sendRedirect("/ShareNote/Login");
-//					return;
-//				}
+				HttpSession session = request.getSession();
+				if (session.getAttribute("user") == null) {
+					response.sendRedirect("/ShareNote/Login");
+					return;
+				}
 
 		//list作成
 		request.setCharacterEncoding("UTF-8");
@@ -41,7 +42,7 @@ public class Search_result extends HttpServlet {
 
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
-		List<Note> noteList = nDao.select(nickname, title, tag);
+		List<Note> noteList = nDao.search(nickname, title, tag);
 
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
@@ -54,11 +55,11 @@ public class Search_result extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
-//		HttpSession session = request.getSession();
-//		if (session.getAttribute("user_id") == null) {
-//			response.sendRedirect("/ShareNote/Login");
-//			return;
-//		}
+		HttpSession session = request.getSession();
+		if (session.getAttribute("user") == null) {
+			response.sendRedirect("/ShareNote/Login");
+			return;
+		}
 
 		//list作成
 				request.setCharacterEncoding("UTF-8");
@@ -74,7 +75,7 @@ public class Search_result extends HttpServlet {
 
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();
-				List<Note> noteList = nDao.select( nickname,  title,  tag );
+				List<Note> noteList = nDao.search( nickname,  title,  tag );
 
 				// 検索結果をリクエストスコープに格納する
 				request.setAttribute("noteList", noteList);
@@ -83,7 +84,7 @@ public class Search_result extends HttpServlet {
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
 				dispatcher.forward(request, response);
-		doGet(request, response);
+		//doGet(request, response);
 
 
 	}
