@@ -164,7 +164,7 @@ public class NoteDao {
 
 //検索画面
 //検索内容にあった検索をする
-public List<Note> select(Note param) {
+public List<Note> select(String nickname, String title, String tag) {
 		Connection conn = null;
 		List<Note> noteList = new ArrayList<Note>();
 
@@ -180,20 +180,20 @@ public List<Note> select(Note param) {
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// SQL文を完成させる
-			if (param.getTag() != null) {
-				pStmt.setString(1,  param.getTag());
+			if (tag != null) {
+				pStmt.setString(1, tag);
 			}
 			else {
 				pStmt.setString(1, "%");
 			}
-			if (param.getNickname() != null) {
-				pStmt.setString(2, "%" + param.getNickname() + "%");
+			if (nickname != null) {
+				pStmt.setString(2, "%" + nickname + "%");
 			}
 			else {
 				pStmt.setString(2, "%");
 			}
-			if (param.getTitle() != null) {
-				pStmt.setString(3, "%" + param.getTitle() + "%");
+			if (title != null) {
+				pStmt.setString(3, "%" +title + "%");
 			}
 			else {
 				pStmt.setString(3, "%");

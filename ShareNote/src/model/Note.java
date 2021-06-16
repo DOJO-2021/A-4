@@ -49,14 +49,15 @@ public class Note implements Serializable {
 	public String getTitle() {
 		return title;
 	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public String getNickname() {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public int getPublic_select() {
 		return public_select;
