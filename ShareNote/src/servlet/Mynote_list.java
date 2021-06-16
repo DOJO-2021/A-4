@@ -2,6 +2,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.NoteDao;
+import model.Note;
 import model.User;
 
 @WebServlet("/Mynote_list")
@@ -26,14 +28,13 @@ public class Mynote_list extends HttpServlet {
 			return;
 		}
 
-
 		User user = (User) session.getAttribute("user");
 		// ログインしているユーザーのノート情報を検索する
 		NoteDao nDao = new NoteDao();
 
 		// NoteDaoのuser_idからノート情報を検索するメソッドを呼ぶ
-
-
+		List<Note> mynoteList = nDao.selectMynote(user.getUser_id());
+		request.setAttribute("noteList", mynoteList);
 
 		// マイノート一覧ページをインクルードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mynote_list.jsp");
