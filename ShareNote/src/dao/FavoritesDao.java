@@ -9,16 +9,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.SN;
+import model.Favorites;
+
 public class FavoritesDao {
 
 //ノート詳細
 //こちらもおススメを表示する
 
 //お気に入り登録してあるノートを引っ張てくる
-	public List<SN> select(SN param) {
+	public List<Favorites> select(Favorites param) {
 		Connection conn = null;
-		List<SN> cardList = new ArrayList<SN>();
+		List<Favorites> favoritesList = new ArrayList<Favorites>();
 
 		try {
 			// JDBCドライバを読み込む
@@ -28,62 +29,36 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select f. from favorites_flag WHERE ";
+			String sql = "select f.favorites_id, f.note_id, n.user_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag \r\n"
+					+ "from ( favorites as f inner join note as n on f.user_id=u.user_id)\r\n"
+					+ "inner join user as u on f.note_id=n.note_id\r\n"
+					+ " where n.public_select=1 order by favorites_id asc ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-
-			// SQL文を完成させる
-			if (param.getCompany() != null) {
-				pStmt.setString(1, "%" + param.getCompany() + "%");
-			}
-			else {
-				pStmt.setString(1, "%");
-			}
-			if (param.getName() != null) {
-				pStmt.setString(2, "%" + param.getName() + "%");
-			}
-			else {
-				pStmt.setString(2, "%");
-			}
-			if (param.getFurigana() != null) {
-				pStmt.setString(3, "%" + param.getFurigana() + "%");
-			}
-			else {
-				pStmt.setString(3, "%");
-			}
-			if (param.getAddress() != null) {
-				pStmt.setString(4, "%" + param.getAddress() + "%");
-			}
-			else {
-				pStmt.setString(4, "%");
-			}
-
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				SN card = new SN(
-				rs.getInt(""),
-				rs.getString(""),
-				rs.getString(""),
-				rs.getString("NICKNAME"),
-				rs.getString("IMAGE_FILES"),
-				rs.getString("TEXT_FILES"),
-				rs.getInt("YEAR"),
-				rs.getString("TITLE"),
-				rs.getString("TAG"),
-				rs.getInt("FAVORITES_FLAG")
-				);
-				cardList.add(card);
+				Favorites favorites = new Favorites();
+				favorites.setFavorites_id(rs.getInt("favorites_id"));
+				favorites.setNote_id(rs.getInt("note_id"));
+				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
+				favorites.setNickname(rs.getString("nickname"));
+				favorites.setImage_files(rs.getString("image_files"));
+				favorites.setText_files(rs.getString("text_files"));
+				favorites.setYear(rs.getInt("year"));
+				favorites.setTitle(rs.getString("title"));
+				favorites.setTag(rs.getString("tag"));
+				favoritesList.add(favorites);
 			}
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
-			cardList = null;
+			favoritesList = null;
 		}
 		catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			cardList = null;
+			favoritesList = null;
 		}
 		finally {
 			// データベースを切断
@@ -93,13 +68,13 @@ public class FavoritesDao {
 				}
 				catch (SQLException e) {
 					e.printStackTrace();
-					cardList = null;
+					favoritesList = null;
 				}
 			}
 		}
 
 		// 結果を返す
-		return cardList;
+		return favoritesList;
 	}
 
 //ノートをお気に入り登録する
