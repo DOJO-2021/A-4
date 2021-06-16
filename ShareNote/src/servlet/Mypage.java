@@ -70,15 +70,32 @@ public class Mypage extends HttpServlet {
 	}
 
 	// ノートをアップロードボタン・マイノート一覧ボタン・お気に入り一覧ボタンが押されたとき
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//リクエストパラメータを取得
-		request.setCharacterEncoding("UTF-8");
-
-//		// マイページにフォワードする
-//		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
-//		request.setAttribute("isInitial", isInitial);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-		dispatcher.forward(request, response);
-	}
-
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		//リクエストパラメータを取得
+//		request.setCharacterEncoding("UTF-8");
+//		String page_switch = request.getParameter("page_switch");
+//		// ノートのアップロードボタンが押された場合
+//		if (page_switch .equals("ノートのアップロード")) {
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_upload.jsp");
+//			dispatcher.forward(request, response);
+//
+//		// マイノート一覧ボタンが押された場合
+//		} else if (page_switch .equals("マイノート一覧")) {
+//			//Mynote_list.doGet(request, response);
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/Mynote_list");
+//			dispatcher.forward(request, response);
+//		// お気に入り一覧ボタンが押された場合
+//		} else {
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/Favorites_list");
+//			dispatcher.forward(request, response);
+//
+//		}
+//
+////		// マイページにフォワードする
+////		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+////		request.setAttribute("isInitial", isInitial);
+////		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+////		dispatcher.forward(request, response);
+//	}
+//
 }

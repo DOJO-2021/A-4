@@ -10,21 +10,27 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-<a href="/ShareNote/Search_result">検索結果
-</a>
+
 <!-- サイドメニュー -->
 <h2>${sessionScope.nickname}さんのマイページ</h2>
-<form method="POST" action="/ShareNote/Mypage">
+<form method="GET" action="/ShareNote/Note_upload">
 	<table>
 	<tr>
 		<td align="center"><input type="submit" name="page_switch" value="ノートのアップロード"></td>
 	</tr>
+</form>
+
+<form method="GET" action="/ShareNote/Mynote_list">
 	<tr>
 		<td align="center"><input type="submit" name="page_switch" value="マイノート一覧"></td>
 	</tr>
+</form>
+
+<form method="GET" action="/ShareNote/Favorites_list">
 	<tr>
 		<td align="center"><input type="submit" name="page_switch" value="お気に入り一覧"></td>
 	</tr>
+</form>
 	<tr></tr>
 	<tr>
 		<td align="center"><input type="submit" name="page_switch" value="ログアウト"></td>

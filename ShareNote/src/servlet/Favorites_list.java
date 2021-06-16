@@ -23,9 +23,10 @@ public class Favorites_list extends HttpServlet {
 			return;
 		}
 
-
+		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
 		// お気に入り一覧ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/favorites_list.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 
 	}
