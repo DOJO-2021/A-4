@@ -30,17 +30,16 @@
 		<td colspan="4">3.タグの変更</td>
 	</tr>
    	<tr>
-
-		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()" <c:if test="${param.tag == HTML}">checked</c:if>>HTML</td>
-		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()">CSS</td>
-		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()" >JavaScript</td>
-		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()" <c:if test="${param.tag == Java}">checked</c:if>>Java</td>
+		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()" <c:if test="${param.tag == 'HTML'}">checked</c:if>>HTML</td>
+		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()"<c:if test="${param.tag == 'CSS'}">checked</c:if>>CSS</td>
+		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()" <c:if test="${param.tag == 'JavaScript'}">checked</c:if>>JavaScript</td>
+		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()" <c:if test="${param.tag == 'Java'}">checked</c:if>>Java</td>
 	</tr>
 	<tr>
-		<td><input type="checkbox" name="tag" value="linux5" onClick="DisChecked()">SQL</td>
-		<td><input type="checkbox" name="tag" value="linux6" onClick="DisChecked()">jsp</td>
-		<td><input type="checkbox" name="tag" value="linux7" onClick="DisChecked()">Servlet</td>
-		<td><input type="checkbox" name="tag" value="linux8" onClick="DisChecked()">DAO</td>
+		<td><input type="checkbox" name="tag" value="linux5" onClick="DisChecked()" <c:if test="${param.tag == 'SQL'}">checked</c:if>>SQL</td>
+		<td><input type="checkbox" name="tag" value="linux6" onClick="DisChecked()" <c:if test="${param.tag == 'JSP'}">checked</c:if>>jsp</td>
+		<td><input type="checkbox" name="tag" value="linux7" onClick="DisChecked()"<c:if test="${param.tag == 'Servlet'}">checked</c:if>> Servlet</td>
+		<td><input type="checkbox" name="tag" value="linux8" onClick="DisChecked()"<c:if test="${param.tag == 'DAO'}">checked</c:if>>DAO</td>
 	</tr>
 
 	<tr>
