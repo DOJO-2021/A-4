@@ -12,10 +12,139 @@ import java.util.List;
 import model.Favorites;
 
 public class FavoritesDao {
+//マイページに最近お気に入り登録したノートを3件ほど表示する
+	public List<Favorites> selectLatestUpload(int user_id) {
+		//接続されるとConnectionオブジェクトが入る
+		Connection conn = null;
+		//検索結果を入れる配列を用意
+		List<Favorites> favoritesList = new ArrayList<Favorites>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from NOTE where USER_ID = ? order by NOTE_ID desc limit 3";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			System.out.println(rs);
+
+			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
+			while (rs.next()) {
+				Favorites favorites = new Favorites();
+				favorites.setFavorites_id(rs.getInt("favorites_id"));
+				favorites.setNote_id(rs.getInt("note_id"));
+				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
+				favorites.setNickname(rs.getString("nickname"));
+				favorites.setImage_files(rs.getString("image_files"));
+				favorites.setText_files(rs.getString("text_files"));
+				favorites.setYear(rs.getInt("year"));
+				favorites.setTitle(rs.getString("title"));
+				favorites.setTag(rs.getString("tag"));
+				favoritesList.add(favorites);
+			}
+		}
+
+		//例外
+		catch (SQLException e) {
+			e.printStackTrace();
+			favoritesList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			favoritesList = null;
+		}
+		//例外が起きてもどっちにしろ切断
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					favoritesList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return favoritesList;
+	}
+
+
 
 //ノート詳細
-//こちらもおススメを表示する
+//こちらもおススメを3件表示する
+	public List<Favorites> selectLatestUpload(Favorites param) {
+		//接続されるとConnectionオブジェクトが入る
+		Connection conn = null;
+		//検索結果を入れる配列を用意
+		List<Favorites> favoritesList = new ArrayList<Favorites>();
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			System.out.println(rs);
+
+			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
+			while (rs.next()) {
+				Favorites favorites = new Favorites();
+//				favorites.setFavorites_id(rs.getInt("favorites_id"));
+//				favorites.setNote_id(rs.getInt("note_id"));
+//				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
+				favorites.setNickname(rs.getString("nickname"));
+				favorites.setImage_files(rs.getString("image_files"));
+				favorites.setText_files(rs.getString("text_files"));
+				favorites.setYear(rs.getInt("year"));
+				favorites.setTitle(rs.getString("title"));
+				favorites.setTag(rs.getString("tag"));
+				favoritesList.add(favorites);
+			}
+		}
+
+		//例外
+		catch (SQLException e) {
+			e.printStackTrace();
+			favoritesList = null;
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			favoritesList = null;
+		}
+		//例外が起きてもどっちにしろ切断
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+					favoritesList = null;
+				}
+			}
+		}
+
+		// 結果を返す
+		return favoritesList;
+	}
 //お気に入り登録してあるノートを引っ張てくる
 	public List<Favorites> select(Favorites param) {
 		Connection conn = null;
