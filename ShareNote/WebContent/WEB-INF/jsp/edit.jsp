@@ -30,11 +30,11 @@
 		<td colspan="4">3.タグの変更</td>
 	</tr>
    	<tr>
-   		<c:if test="${param.tag == Java}">checked</c:if>
-		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()">HTML</td>
+
+		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()" <c:if test="${param.tag == HTML}">checked</c:if>>HTML</td>
 		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()">CSS</td>
-		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()">JavaScript</td>
-		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()">Java</td>
+		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()" >JavaScript</td>
+		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()" <c:if test="${param.tag == Java}">checked</c:if>>Java</td>
 	</tr>
 	<tr>
 		<td><input type="checkbox" name="tag" value="linux5" onClick="DisChecked()">SQL</td>
