@@ -1,6 +1,7 @@
 <!-- 編集画面jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 		<td colspan="1">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td rowspan="5" height="300em" width="600em">${param.image_files}ノート画像</td>
+		<td rowspan="5" height="300em" width="600em">${param.image_files}</td>
 		<td colspan="1">${param.year}</td>
 		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
 	</tr>
@@ -29,6 +30,7 @@
 		<td colspan="4">3.タグの変更</td>
 	</tr>
    	<tr>
+   		<c:if test="${param.tag == Java}">checked</c:if>
 		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()">HTML</td>
 		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()">CSS</td>
 		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()">JavaScript</td>
