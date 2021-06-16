@@ -34,8 +34,10 @@ public class Note_upload extends HttpServlet {
 			return;
 		}
 
-		// ノートのアップロードページをインクルードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_upload.jsp");
+		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
+		// ノートのアップロードページにフォワードする
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -58,7 +60,11 @@ public class Note_upload extends HttpServlet {
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 
 		//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
-		//if()
+		if(title == "") {
+			String errMsg = "未入力の項目があります";
+			request.setAttribute("errMsg", errMsg);
+			this.doGet(request, response);
+		}
 
 		//現在時刻から年だけを取得（できれば4月はじまりが良き！今のところ普通の年）
 		Date date = new Date();
@@ -79,8 +85,6 @@ public class Note_upload extends HttpServlet {
         //画像ファイル・テキストファイルの名前を"絶対パス+乱数"に変換
         image_files = "/ShareNote/image_files/"+ num + image_files;
         text_files = "/ShareNote/test_files/" + num + text_files;
-        System.out.println(image_files);
-        System.out.println(text_files);
 
         //画像ファイル・テキストファイルをローカルに保存
 

@@ -60,6 +60,7 @@
 			<label><input type="radio" name="public" value="0">非公開</label></td>
 	</tr>
 	</table>
+		<p>${errMsg}</p>
 		<input type="submit" name="upload" value="アップロード">
 	</form>
 
