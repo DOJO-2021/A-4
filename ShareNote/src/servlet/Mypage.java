@@ -74,9 +74,9 @@ public class Mypage extends HttpServlet {
 		//リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
 
-		// マイページにフォワードする
-		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
-		request.setAttribute("isInitial", isInitial);
+//		// マイページにフォワードする
+//		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+//		request.setAttribute("isInitial", isInitial);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 	}

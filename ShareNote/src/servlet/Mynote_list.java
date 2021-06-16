@@ -35,7 +35,9 @@ public class Mynote_list extends HttpServlet {
 		// NoteDaoのuser_idからノート情報を検索するメソッドを呼ぶ
 		List<Note> mynoteList = nDao.selectMynote(user.getUser_id());
 		request.setAttribute("noteList", mynoteList);
-
+		
+		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
 		// マイノート一覧ページをインクルードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mynote_list.jsp");
 		dispatcher.forward(request, response);
