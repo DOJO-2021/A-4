@@ -31,6 +31,7 @@
 		<td align="center"><input type="submit" name="page_switch" value="お気に入り一覧"></td>
 	</tr>
 </form>
+<form method="GET" action="/ShareNote/Logout">
 	<tr></tr>
 	<tr>
 		<td align="center"><input type="submit" name="page_switch" value="ログアウト"></td>
