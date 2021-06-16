@@ -118,15 +118,15 @@
 <!-- マイページ初期状態以外 -->
 <%} else if(request.getAttribute("isInitial").equals("no")) {%>
 	<!-- 「ノートをアップロード」が押されたとき -->
-	<% if(request.getParameter("page_switch").equals("ノートのアップロード")) { %>
+	<% if(request.getAttribute("page_switch").equals("ノートのアップロード")) { %>
 		<jsp:include page="/WEB-INF/jsp/note_upload.jsp"/>
 
 	<!-- 「マイノート一覧」が押されたとき -->
-	<%} else if(request.getParameter("page_switch").equals("マイノート一覧")) { %>
+	<%} else if(request.getAttribute("page_switch").equals("マイノート一覧")) { %>
 		<jsp:include page="/WEB-INF/jsp/mynote_list.jsp"/>
 
 	<!-- 「お気に入り一覧」が押されたとき -->
-	<%} else if(request.getParameter("page_switch").equals("お気に入り一覧")) { %>
+	<%} else if(request.getAttribute("page_switch").equals("お気に入り一覧")) { %>
 		<jsp:include page="/WEB-INF/jsp/favorites_list.jsp"/>
 	<%} %>
 <%} %>

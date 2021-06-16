@@ -38,6 +38,8 @@ public class Mynote_list extends HttpServlet {
 
 		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
 		request.setAttribute("isInitial", isInitial);
+		String page_switch = "マイノート一覧";
+		request.setAttribute("page_switch", page_switch);
 		// マイノート一覧ページをインクルードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);

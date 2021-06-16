@@ -12,7 +12,7 @@
 
 <p>ノートのアップロード</p>
 
-	<form method="POST" name="form" action="/ShareNote/Note_upload">
+	<form method="POST" name="form" action="/ShareNote/Note_upload" enctype="multipart/form-data">
 	<table border="1">
 	<tr>
 		<td>1.ファイル登録（いずれか必須）</td>
