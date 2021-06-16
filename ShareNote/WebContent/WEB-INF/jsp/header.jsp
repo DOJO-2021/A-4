@@ -8,6 +8,7 @@
     <ul>
 		<li><p><a href="/ShareNote/Mypage">マイページ</a></p></li>
 		<li><p><a href="/ShareNote/Search">検索</a></p></li>
-		<li><p><a href="/ShareNote/Logoutt">ログアウト</a></p></li>
+		<li><p><a href="/ShareNote/Logout">ログアウト</a></p></li>
+		<li><p><a href="/ShareNote/Mynote_list">マイノート一覧</a></p></li>
 	</ul>
 	</nav>

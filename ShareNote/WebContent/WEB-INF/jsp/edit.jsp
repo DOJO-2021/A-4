@@ -19,9 +19,9 @@
 		<td colspan="1">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td rowspan="5" height="300em" width="600em">${e.image_files}ノート画像</td>
-		<td colspan="1">年度</td>
-		<td rowspan="2" colspan="3" height="80em" width="500em">${e.title}タイトル</td>
+		<td rowspan="5" height="300em" width="600em">${param.image_files}ノート画像</td>
+		<td colspan="1">${param.year}</td>
+		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
 	</tr>
 	<tr>
 	</tr>
@@ -59,7 +59,7 @@
 		<input type="submit" name="delte" value="ノート削除">
 		<input type="submit" name="edit" value="編集を完了">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
-	</form>
+</form>
 
 </body>
 <script>
