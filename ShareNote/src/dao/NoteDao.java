@@ -204,16 +204,18 @@ public List<Note> select(Note param) {
 
 			// 結果表をコレクションにコピーする
 			while (rs.next()) {
-				Note note = new Note(
-				rs.getString("image_files"),
-				rs.getString("text_files"),
-				rs.getInt("year"),
-				rs.getString("nickname"),
-				rs.getString("title"),
-				rs.getInt("public_select"),
-				rs.getInt("favorites_num"),
-				rs.getString("tag")
-				);
+						Note note = new Note();
+						note.setNote_id(rs.getInt("note_id"));
+						note.setUser_id(rs.getInt("user_id"));
+						note.setImage_files(rs.getString("image_files"));
+						note.setText_files(rs.getString("text_files"));
+						note.setYear(rs.getInt("year"));
+						note.setNickname(rs.getString("nickname"));
+						note.setTitle(rs.getString("title"));
+						note.setPublic_select(rs.getInt("public_select"));
+						note.setFavorites_num(rs.getInt("favorites_num"));
+						note.setTag(rs.getString("tag"));
+						noteList.add(note);
 				noteList.add(note);
 			}
 		}

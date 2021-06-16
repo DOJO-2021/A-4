@@ -9,6 +9,7 @@ public class Note implements Serializable {
 	private String image_files;
 	private String text_files;
 	private int year;
+	private String nickname;
 	private String title;
 	private int public_select;
 	private int favorites_num;
@@ -47,6 +48,12 @@ public class Note implements Serializable {
 	}
 	public String getTitle() {
 		return title;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public void setTitle(String title) {
 		this.title = title;
