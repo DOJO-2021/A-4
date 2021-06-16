@@ -10,7 +10,7 @@ primary key (user_id)
 insert into user values(
 null,
 'カメ',
-'pass',
+'password,
 'question',
 'answer'
 )
