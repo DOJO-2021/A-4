@@ -51,6 +51,8 @@
 		<td><input type="submit" name="download" value="ダウンロード"></td>
 	</tr>
 	</table>
+	<input type="hidden" name="public_select" value="${e.public_select}">
+	<input type="hidden" name="text_files" value="${e.text_files}">
 
 	</form>
 

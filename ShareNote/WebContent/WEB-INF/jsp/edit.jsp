@@ -44,7 +44,7 @@
 
 	<tr>
 		<td><input type="file" name="datafile" accept="image/jpeg, image/png"></td>
-		<td><input type="checkbox" name="tag" value="linux9" onClick="DisChecked()">jQuery</td>
+		<td><input type="checkbox" name="tag" value="linux9" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</td>
 		<td><input type="checkbox" name="tag" value="linux10" onClick="DisChecked()">その他</td>
 		<td><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</td>
 	</tr>
@@ -53,8 +53,8 @@
 		<td>4.公開設定の変更</td>
 	</tr>
 	<tr>
-		<td><input type="file" name="datafile" accept=" .docx, .txt"></td>
-		<td><input type="radio" name="public" value="open"> 公開<input type="radio" name="public" value="close"> 非公開</td>
+		<td><input type="file" name="datafile" accept=" .docx, .txt">${param.text_files}</td>
+		<td><input type="radio" name="public" value="open"<c:if test="${param.public_select == 1}">checked</c:if>> 公開<input type="radio" name="public" value="close"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</td>
 	</tr>
 	</table>
 		<input type="submit" name="delte" value="ノート削除">
