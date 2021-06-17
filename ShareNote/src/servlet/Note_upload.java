@@ -57,14 +57,15 @@ public class Note_upload extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		User user = (User)session.getAttribute("user");
 		int user_id = (int)(user.getUser_id());
-		String image_files = request.getParameter("image_files");
-		String text_files = request.getParameter("text_files");
+		//String image_files = request.getParameter("image_files"); //ファイルはパラメータで持ってこれない
+		//String text_files = request.getParameter("text_files");
 		String title = request.getParameter("title");
 		int public_select = Integer.parseInt(request.getParameter("public_select"));
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+		String nullTag = request.getParameter("tag"); //タグが空欄かどうか判別するための変数
 
 		//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
-		if(title == "") {
+		if(title.equals("") || nullTag == null) {
 			String errMsg = "未入力の項目があります";
 			request.setAttribute("errMsg", errMsg);
 			this.doGet(request, response);
@@ -86,31 +87,45 @@ public class Note_upload extends HttpServlet {
         Random rand = new Random();
         Long num = rand.nextLong();
 
-        //画像ファイル・テキストファイルの名前を"絶対パス+乱数"に変換
-        image_files = "/ShareNote/image_files/"+ num + image_files;
-        text_files = "/ShareNote/test_files/" + num + text_files;
+        //画像ファイルを、名前に乱数を付加してローカルに保存
+		Part image_part = request.getPart("image_files"); // getPartでファイルの色んな情報を取得
+											//↑jspの"name"部分
+		System.out.println(image_part);
+		String image_files = null;
+        if((image_part != null)) {
+			image_files = this.getFileName(image_part); //file名だけ取得
+			image_files = num + image_files;
+			request.setAttribute("image_files", image_files);
+			//サーバの指定のファイルパスへファイルを保存
+	        //場所はクラス名の上(25行目)に指定してある
+			image_part.write(image_files);
+        }
 
-        //画像ファイル・テキストファイルをローカルに保存
-		Part part = request.getPart("image_files"); // getPartでファイルの色んな情報を取得
-									//↑jspの"name"部分
-		String image = this.getFileName(part); //file名だけ取得
-		request.setAttribute("image", image);
-		//サーバの指定のファイルパスへファイルを保存
-        //場所はクラス名の上(25行目)に指定してある
-		part.write(image);
+        //テキストファイルを、名前に乱数を付加してローカルに保存
+		Part text_part = request.getPart("text_files");
+		String text_files = null;
+        if(!(text_part == null)) {
+			text_files = this.getFileName(text_part);
+			text_files = num + text_files;
+			request.setAttribute("test_files", text_files);
+			text_part.write(text_files);
+        }
 
         //DB登録をdaoにお任せ
 		NoteDao nDao = new NoteDao();
-		//nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag);
-
-        //マイページにフォワード
-		String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数
-		request.setAttribute("isInitial", isInitial);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
-		dispatcher.forward(request, response);
+		//成功したら、マイページにリダイレクト
+		if(nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag)) {
+			response.sendRedirect("/ShareNote/Mypage");
+		}
+		//失敗したら、エラーメッセージを持って帰ってもらう
+		else {
+			String dbErrMsg = "ノートのアップロードに失敗しました。";
+			request.setAttribute("dbEerrMsg", dbErrMsg);
+			this.doGet(request, response);
+		}
 	}
 
-	//ファイルの名前を取得してくる
+	//ファイルの名前を取得してくるクラス
 	private String getFileName(Part part) {
         String name = null;
         for (String dispotion : part.getHeader("Content-Disposition").split(";")) {

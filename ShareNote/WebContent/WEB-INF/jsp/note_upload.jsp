@@ -10,7 +10,7 @@
 <body>
 
 
-<p>ノートのアップロード</p>
+<p>ノートのアップロード ${dbEerrMsg}</p>
 
 	<form method="POST" name="form" action="/ShareNote/Note_upload" enctype="multipart/form-data">
 	<table border="1">
@@ -22,7 +22,7 @@
 		<td colspan="4">2.タイトルの記入（必須）</td>
 	</tr>
 	<tr>
-		<td rowspan="5">${e.image_files}ノート画像</td>
+		<td rowspan="5"><canvas id="preview" style="max-width:200px;"></canvas></td>
 
 		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title"></td>
 	</tr>
@@ -45,7 +45,7 @@
 	</tr>
 
 	<tr>
-		<td><input type="file" name="image_files" accept="image/jpeg, image/png"></td>
+		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);"></td>
 		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()">jQuery</label></td>
 		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
@@ -99,5 +99,30 @@
     }
   }
 
+	//画像のプレビューを表示する
+	function previewImage(obj){
+
+		var fileReader = new FileReader();
+
+		// 読み込み後に実行する処理
+		fileReader.onload = (function() {
+
+			// canvas にプレビュー画像を表示
+			var canvas = document.getElementById('preview');
+			var ctx = canvas.getContext('2d');
+			var image = new Image();
+			image.src = fileReader.result;
+			console.log(fileReader.result) // ← (確認用)
+
+			image.onload = (function () {
+				canvas.width = image.width;
+				canvas.height = image.height;
+				ctx.drawImage(image, 0, 0);
+			});
+		});
+		// 画像読み込み
+		fileReader.readAsDataURL(obj.files[0]);
+		console.log(fileReader.result) // ← (確認用)null
+	}
 </script>
 </html>

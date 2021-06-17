@@ -41,8 +41,8 @@ public class FavoritesDao {
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
 			while (rs.next()) {
 				Favorites favorites = new Favorites();
-				favorites.setFavorites_id(rs.getInt("favorites_id"));
-				favorites.setNote_id(rs.getInt("note_id"));
+				//favorites.setFavorites_id(rs.getInt("favorites_id"));
+				//favorites.setNote_id(rs.getInt("note_id"));
 				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
 				favorites.setNickname(rs.getString("nickname"));
 				favorites.setImage_files(rs.getString("image_files"));

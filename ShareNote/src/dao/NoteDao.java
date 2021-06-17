@@ -35,7 +35,6 @@ public class NoteDao {
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			System.out.println(rs);
 
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
 			while (rs.next()) {
@@ -147,12 +146,59 @@ public class NoteDao {
 	}
 
 
-	//ノートをアップロードする
-	public void insertNote() {
+	//ノートをアップロードする(成功でtrue,失敗でfalseを返す)
+	public boolean insertNote(int user_id, String image_files, String text_files, int year, String title, int public_select, String tag) {
+		//戻り値を設定
+		boolean result = false;
+		//接続されるとConnectionオブジェクトが入る
+		Connection conn = null;
 
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "insert into NOTE values(null, ?, ?, ?, ?, ?, ?, default, ?)";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+			pStmt.setString(2, image_files);
+			pStmt.setString(3, text_files);
+			pStmt.setInt(4, year);
+			pStmt.setString(5, title);
+			pStmt.setInt(6, public_select);
+			pStmt.setString(7, tag);
+
+			// SQL文を実行し、結果表を取得する
+			if(pStmt.executeUpdate() == 1) {
+				result = true;
+			}
+		}
+
+		//例外
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//例外が起きてもどっちにしろ切断
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		// 結果を返す
+		return result;
 	}
-
-
 
 
 //編集画面
