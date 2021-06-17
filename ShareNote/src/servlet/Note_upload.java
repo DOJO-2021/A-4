@@ -57,15 +57,24 @@ public class Note_upload extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		User user = (User)session.getAttribute("user");
 		int user_id = (int)(user.getUser_id());
+
 		//String image_files = request.getParameter("image_files"); //ファイルはパラメータで持ってこれない
+		Part image_part = request.getPart("image_files"); // getPartでファイルの色んな情報を取得
+											//↑jspの"name"部分
+		String image_files = this.getFileName(image_part); //file名だけ取得
 		//String text_files = request.getParameter("text_files");
+		Part text_part = request.getPart("text_files");
+		String text_files =this.getFileName(text_part);
+
 		String title = request.getParameter("title");
 		int public_select = Integer.parseInt(request.getParameter("public_select"));
+
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 		String nullTag = request.getParameter("tag"); //タグが空欄かどうか判別するための変数
 
 		//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
-		if(title.equals("") || nullTag == null) {
+		//(タイトルが空欄 or タグが空欄 or 画像ファイルが空欄かつテキストファイルが空欄)
+		if(title.equals("") || nullTag == null || (image_files.equals("")&&text_files.equals(""))) {
 			String errMsg = "未入力の項目があります";
 			request.setAttribute("errMsg", errMsg);
 			this.doGet(request, response);
@@ -88,26 +97,16 @@ public class Note_upload extends HttpServlet {
         Long num = rand.nextLong();
 
         //画像ファイルを、名前に乱数を付加してローカルに保存
-		Part image_part = request.getPart("image_files"); // getPartでファイルの色んな情報を取得
-											//↑jspの"name"部分
-		System.out.println(image_part);
-		String image_files = null;
-        if((image_part != null)) {
-			image_files = this.getFileName(image_part); //file名だけ取得
+        if(!(image_files.equals(""))) {
 			image_files = num + image_files;
-			request.setAttribute("image_files", image_files);
 			//サーバの指定のファイルパスへファイルを保存
 	        //場所はクラス名の上(25行目)に指定してある
 			image_part.write(image_files);
         }
 
         //テキストファイルを、名前に乱数を付加してローカルに保存
-		Part text_part = request.getPart("text_files");
-		String text_files = null;
-        if(!(text_part == null)) {
-			text_files = this.getFileName(text_part);
+        if(!(text_files.equals(""))) {
 			text_files = num + text_files;
-			request.setAttribute("test_files", text_files);
 			text_part.write(text_files);
         }
 

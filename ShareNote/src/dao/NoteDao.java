@@ -202,10 +202,14 @@ public class NoteDao {
 
 
 //編集画面
-//ノートの編集をする
+	//ノートの編集をする
+	public boolean updateNote() {
+		
+		
+	}
 
 
-//ノートの削除をする
+	//ノートの削除をする
 
 
 //検索画面
