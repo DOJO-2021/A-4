@@ -20,24 +20,24 @@
 				<td><input type="checkbox" name="matching" value="matching">完全一致<td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag_search" value="HTML">HTML</td>
-				<td><input type="checkbox" name="tag_search" value="CSS">CSS</td>
-				<td><input type="checkbox" name="tag_search" value="JavaScript">JavaScript</td>
-				<td><input type="checkbox" name="tag_search" value="Java">Java</td>
+				<td><input type="checkbox" name="tag" value="HTML">HTML</td>
+				<td><input type="checkbox" name="tag" value="CSS">CSS</td>
+				<td><input type="checkbox" name="tag" value="JavaScript">JavaScript</td>
+				<td><input type="checkbox" name="tag" value="Java">Java</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag_search" value="SQL">SQL</td>
-				<td><input type="checkbox" name="tag_search" value="jsp">jsp</td>
-				<td><input type="checkbox" name="tag_search" value="Servlet">Servlet</td>
-				<td><input type="checkbox" name="tag_search" value="DAO">DAO</td>
+				<td><input type="checkbox" name="tag" value="SQL">SQL</td>
+				<td><input type="checkbox" name="tag" value="jsp">jsp</td>
+				<td><input type="checkbox" name="tag" value="Servlet">Servlet</td>
+				<td><input type="checkbox" name="tag" value="DAO">DAO</td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag_search" value="jQuery">jQuery</td>
-				<td><input type="checkbox" name="tag_search" value="other">その他</td>
+				<td><input type="checkbox" name="tag" value="jQuery">jQuery</td>
+				<td><input type="checkbox" name="tag" value="other">その他</td>
 				<td><input type="checkbox" name="all_select" value="all_select">全て選択</td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><input type="text" name="keyword_search" placeholder="キーワード（タイトル・ニックネーム）検索" required></td>
+				<td colspan="4" align="center"><input type="text" name="title" placeholder="キーワード（タイトル・ニックネーム）検索" ></td>
 			</tr>
 			<tr>
 			 	<td colspan="4" align="center"><select name="sort">

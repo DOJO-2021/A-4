@@ -43,15 +43,17 @@ public class Search extends HttpServlet {
 
 		//list作成
 				request.setCharacterEncoding("UTF-8");
-				//String image_files = request.getParameter("IMAGE_FILES");
-				//String text_files = request.getParameter("TEXT_FILES");
-				//int year =Integer.parseInt(request.getParameter("YEAR"));
+				;
 				String nickname = request.getParameter("NICKNAME");
 				String title = request.getParameter("TITLE");
-				//int public_select = Integer.parseInt(request.getParameter("PUBLIC_SELECT"));
-				String tag = request.getParameter("TAG");
-				//int favorites_num = Integer.parseInt(request.getParameter("FAVORITES_NUM"));
 
+	//			String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+				String tag = request.getParameter("tag");
+
+//				String tag = "";
+//		        for (String values : arrayTag) {
+//		        	tag += values + ",";
+//		        }
 
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();

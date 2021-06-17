@@ -25,6 +25,8 @@ public class Favorites_list extends HttpServlet {
 
 		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
 		request.setAttribute("isInitial", isInitial);
+		String page_switch = "お気に入り一覧";
+		request.setAttribute("page_switch", page_switch);
 		// お気に入り一覧ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);

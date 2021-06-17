@@ -15,13 +15,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import dao.NoteDao;
 import model.User;
 
 @WebServlet("/Note_upload")
 //↓これ絶対入れてね！！
-@MultipartConfig(location = "C:\\pleiades\\workspace\\Nyample\\WebContent\\images") // アップロードファイルの一時的な保存先
+						   //C:\\pleiades\\workspace\\A-4\\ShareNote\\WebContent\\upload_files
+@MultipartConfig(location = "C:\\pleiades\\workspace\\A-4\\ShareNote\\WebContent\\upload_files") // アップロードファイルの一時的な保存先
 
 public class Note_upload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +38,9 @@ public class Note_upload extends HttpServlet {
 
 		String isInitial = "no"; //マイページが初期状態かどうか判別するための変数
 		request.setAttribute("isInitial", isInitial);
-		// ノートのアップロードページにフォワードする
+		String page_switch = "ノートのアップロード";
+		request.setAttribute("page_switch", page_switch);
+		// マイページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -87,13 +91,36 @@ public class Note_upload extends HttpServlet {
         text_files = "/ShareNote/test_files/" + num + text_files;
 
         //画像ファイル・テキストファイルをローカルに保存
-
+		Part part = request.getPart("image_files"); // getPartでファイルの色んな情報を取得
+									//↑jspの"name"部分
+		String image = this.getFileName(part); //file名だけ取得
+		request.setAttribute("image", image);
+		//サーバの指定のファイルパスへファイルを保存
+        //場所はクラス名の上(25行目)に指定してある
+		part.write(image);
 
         //DB登録をdaoにお任せ
 		NoteDao nDao = new NoteDao();
-		nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag);
+		//nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag);
 
-
-
+        //マイページにフォワード
+		String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数
+		request.setAttribute("isInitial", isInitial);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
+		dispatcher.forward(request, response);
 	}
+
+	//ファイルの名前を取得してくる
+	private String getFileName(Part part) {
+        String name = null;
+        for (String dispotion : part.getHeader("Content-Disposition").split(";")) {
+            if (dispotion.trim().startsWith("filename")) {
+                name = dispotion.substring(dispotion.indexOf("=") + 1).replace("\"", "").trim();
+                name = name.substring(name.lastIndexOf("\\") + 1);
+                break;
+            }
+        }
+		return name;
+	}
+
 }
