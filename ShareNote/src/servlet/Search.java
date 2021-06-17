@@ -42,30 +42,39 @@ public class Search extends HttpServlet {
 		}
 
 		//list作成
-				request.setCharacterEncoding("UTF-8");
-				;
-				String nickname = request.getParameter("NICKNAME");
-				String title = request.getParameter("TITLE");
+		request.setCharacterEncoding("UTF-8");
 
-	//			String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
-				String tag = request.getParameter("tag");
+		String nickname = request.getParameter("NICKNAME");
+		String title = request.getParameter("TITLE");
 
-//				String tag = "";
-//		        for (String values : arrayTag) {
-//		        	tag += values + ",";
-//		        }
+//		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+		String tag = request.getParameter("tag");
 
-				// 検索処理を行う
-				NoteDao nDao = new NoteDao();
-				List<Note> noteList = nDao.search( nickname,  title,  tag );
+//		String tag = "";
+//	    for (String values : arrayTag) {
+//	 		tag += values + ",";
+//		 }
 
-				// 検索結果をリクエストスコープに格納する
-				request.setAttribute("noteList", noteList);
+		// 検索処理を行う
+		NoteDao nDao = new NoteDao();
+		List<Note> noteList;
+
+		// タグ検索が完全一致だった場合
+		if (request.getParameter("matching").equals("matching")) {
+			noteList = nDao.searchMatching(nickname, title, tag );
+
+		// タグ検索が完全一致ではなかった場合
+		} else {
+			System.out.print(request.getParameter("matching"));
+			noteList = nDao.search(nickname, title, tag );
+		}
+
+		// 検索結果をリクエストスコープに格納する
+		request.setAttribute("noteList", noteList);
+
 		//検索結果ページにフォワード
-
-
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
-				dispatcher.forward(request, response);
+	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");
+		dispatcher.forward(request, response);
 		//doGet(request, response);
 
 
