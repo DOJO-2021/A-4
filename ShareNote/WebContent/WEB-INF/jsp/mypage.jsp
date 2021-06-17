@@ -60,13 +60,18 @@
 				<td>${favorites_num}</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">${e.tag}</td>
+				<td colspan="2" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 				<td><input type="submit" name="download" value="ダウンロード"></td>
 			</tr>
 			</table>
+			<input type="hidden" name="public_select" value="${e.public_select}">
+			<input type="hidden" name="text_files" value="${e.text_files}">
 			</form>
 		</c:forEach>
 	<% }%>
+
+
+
 
 	<p>最近お気に入りしたノート</p>
 	<!-- お気に入りしたノートが0件のとき -->
@@ -78,9 +83,9 @@
 		<form method="POST" action="/ShareNote/Note_detail">
 		<table border="1">
 		<tr>
-			<td rowspan="3">${e.image_files}ノート画像</td>
-			<td>${e.year}年度</td>
-			<td rowspan="2">${e.title}タイトル</td>
+			<td rowspan="3">${e.image_files}</td>
+			<td>${e.year}</td>
+			<td rowspan="2">${e.title}</td>
 			<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 		</tr>
 		<tr>
@@ -92,15 +97,19 @@
 		</tr>
 		</table>
 		</form>
+
+
 		<!-- 試しにforの外に書いてみるここまで -->
+
+
 
 	<c:forEach var="e" items="${cardList}" >
 		<form method="POST" action="/ShareNote/Edit">
 		<table>
 		<tr>
-			<td rowspan="3">${e.image_files}ノート画像</td>
-			<td>${e.year}年度</td>
-			<td rowspan="2">${e.title}タイトル</td>
+			<td rowspan="3">${e.image_files}</td>
+			<td>${e.year}</td>
+			<td rowspan="2">${e.title}</td>
 			<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 		</tr>
 		<tr>
