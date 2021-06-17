@@ -48,7 +48,10 @@
 	</tr>
 	<tr>
 		<td colspan="2" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
-		<td><input type="submit" name="download" value="ダウンロード"></td>
+		<!-- <td><input type="submit" name="download" value="ダウンロード"></td> -->
+		<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
+					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+				</c:choose>
 	</tr>
 	</table>
 	<input type="hidden" name="public_select" value="${e.public_select}">
