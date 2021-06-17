@@ -96,17 +96,18 @@ public class Note_upload extends HttpServlet {
         Random rand = new Random();
         Long num = rand.nextLong();
 
-        //画像ファイルを、名前に乱数を付加してローカルに保存
+        //画像ファイルを、ローカルに保存して名前にパスと乱数を付加
         if(!(image_files.equals(""))) {
-			image_files = num + image_files;
 			//サーバの指定のファイルパスへファイルを保存
 	        //場所はクラス名の上(25行目)に指定してある
 			image_part.write(image_files);
+			//パスと乱数付加
+			image_files = "ShareNote/upload_files/" + num + image_files;
         }
 
-        //テキストファイルを、名前に乱数を付加してローカルに保存
+        //テキストファイルを、名前にパスと乱数を付加してローカルに保存
         if(!(text_files.equals(""))) {
-			text_files = num + text_files;
+			text_files ="ShareNote/upload_files/" +  num + text_files;
 			text_part.write(text_files);
         }
 

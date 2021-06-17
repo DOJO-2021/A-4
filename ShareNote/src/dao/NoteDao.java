@@ -203,10 +203,6 @@ public class NoteDao {
 
 //編集画面
 	//ノートの編集をする
-	public boolean updateNote() {
-		
-		
-	}
 
 
 	//ノートの削除をする
