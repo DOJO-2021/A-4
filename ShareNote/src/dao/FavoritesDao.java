@@ -27,7 +27,10 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select * from NOTE where USER_ID = ? order by NOTE_ID desc limit 3";
+			String sql = "\r\n"
+					+ "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id\r\n"
+					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id)\r\n"
+					+ "where u.user_id = ? and public_select=1 order by favorites_id desc limit 3";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, user_id);
 
@@ -82,7 +85,7 @@ public class FavoritesDao {
 
 //ノート詳細
 //こちらもおススメを3件表示する
-	public List<Favorites> selectLatestUpload(Favorites param) {
+	public List<Favorites> selectLatestUpload(String tag) {
 		//接続されるとConnectionオブジェクトが入る
 		Connection conn = null;
 		//検索結果を入れる配列を用意
@@ -96,8 +99,11 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "";
+			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id\r\n"
+					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id)\r\n"
+					+ "where tag = ? and public_select=1 order by favorites_num asc limit 3";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, tag);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
@@ -108,7 +114,7 @@ public class FavoritesDao {
 				Favorites favorites = new Favorites();
 //				favorites.setFavorites_id(rs.getInt("favorites_id"));
 //				favorites.setNote_id(rs.getInt("note_id"));
-//				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
+				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
 				favorites.setNickname(rs.getString("nickname"));
 				favorites.setImage_files(rs.getString("image_files"));
 				favorites.setText_files(rs.getString("text_files"));
@@ -146,7 +152,7 @@ public class FavoritesDao {
 		return favoritesList;
 	}
 //お気に入り登録してあるノートを引っ張てくる
-	public List<Favorites> select(Favorites param) {
+	public List<Favorites> select(int user_id) {
 		Connection conn = null;
 		List<Favorites> favoritesList = new ArrayList<Favorites>();
 
@@ -161,8 +167,9 @@ public class FavoritesDao {
 			String sql = "select f.favorites_id, f.note_id, n.user_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag \r\n"
 					+ "from ( favorites as f inner join note as n on f.user_id=u.user_id)\r\n"
 					+ "inner join user as u on f.note_id=n.note_id\r\n"
-					+ " where n.public_select=1 order by favorites_id asc ";
+					+ " where user_id = ? and n.public_select=1 order by favorites_id asc ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 
@@ -208,7 +215,7 @@ public class FavoritesDao {
 
 //ノートをお気に入り登録する
 	// お気に入り登録したらtrueを返す
-	public boolean isFavoriteRegist(int user_id , int note_id , int favorites_flag) {
+	public boolean isFavoriteRegist(int user_id , int note_id) {
 		Connection conn = null;
 		boolean favoritesRegist = false;
 try {
@@ -248,7 +255,7 @@ try {
 
 	//お気に入り解除する
 //お気に入り解除したらtrueを返す
-	public boolean isFavoriteRelease(int user_id , int note_id , int favorites_flag) {
+	public boolean isFavoriteRelease(int note_id) {
 		Connection conn = null;
 		boolean favoritesRelease = false;
 try {
