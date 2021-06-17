@@ -266,7 +266,7 @@ try {
 	conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 		// SQL文を準備する
-		String sql = "update favorites set favorites_flag = 0 where note_id = ?)";
+		String sql = "delete from favorites where note_id = ?)";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, note_id);
 		// SELECT文を実行し、結果表を取得する
