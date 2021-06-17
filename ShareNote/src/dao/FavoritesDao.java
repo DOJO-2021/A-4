@@ -13,7 +13,7 @@ import model.Favorites;
 
 public class FavoritesDao {
 //マイページに最近お気に入り登録したノートを3件ほど表示する
-	public List<Favorites> selectLatestUpload(int user_id) {
+	public List<Favorites> selectLatestFavorites(int user_id) {
 		//接続されるとConnectionオブジェクトが入る
 		Connection conn = null;
 		//検索結果を入れる配列を用意

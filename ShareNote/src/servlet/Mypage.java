@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.FavoritesDao;
 import dao.NoteDao;
+import model.Favorites;
 import model.Note;
 import model.User;
 
@@ -49,16 +50,16 @@ public class Mypage extends HttpServlet {
 		request.setAttribute("latestUploadNoteList", latestUploadNoteList);
 
 		// 最近お気に入りしたノートを持ってくる
-		/*List<Note> latestFavoritesNoteList = fDao.selectLatestFavorites(user_id);
+		List<Favorites> latestFavoritesList = fDao.selectLatestFavorites(user_id);
 
 		String favoritesMsg = null;
 
-		// latestFavoritesNoteListが空の場合、メッセージも追加してListを持って帰る
-		if(latestFavoritesNoteList.size() == 0) {
+		// latestFavoritesFavoritesListが空の場合、メッセージも追加してListを持って帰る
+		if(latestFavoritesList.size() == 0) {
 			favoritesMsg = "登録されているノートはありません。";
 		}
 		request.setAttribute("favoritesMsg", favoritesMsg);
-		request.setAttribute("latestFavoritesNoteList", latestFavoritesNoteList);*/
+		request.setAttribute("latestFavoritesNoteList", latestFavoritesList);
 
 
 		// メニューページにフォワードする
