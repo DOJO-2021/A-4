@@ -54,6 +54,7 @@ public class Mypage extends HttpServlet {
 
 		//String favoritesMsg = null;
 
+
 		// latestFavoritesFavoritesListが空の場合、メッセージも追加してListを持って帰る
 		if(latestFavoritesList.size() == 0) {
 			String favoritesMsg = "登録されているノートはありません。";
@@ -61,7 +62,7 @@ public class Mypage extends HttpServlet {
 		}
 
 
-		request.setAttribute("latestFavoritesNoteList", latestFavoritesList);
+		request.setAttribute("latestFavoritesList", latestFavoritesList);
 
 
 		// メニューページにフォワードする

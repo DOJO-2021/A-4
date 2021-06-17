@@ -72,6 +72,7 @@
 
 	<p>最近お気に入りしたノート</p>
 		<p>${favoritesMsg}</p>
+
 		<!-- 試しにforの外に書いてみる -->
 		<form method="POST" action="/ShareNote/Note_detail">
 		<table border="1">
@@ -90,14 +91,12 @@
 		</tr>
 		</table>
 		</form>
-
-
 		<!-- 試しにforの外に書いてみるここまで -->
 
-
 	<p>${favoritesMsg}</p>
-	<c:forEach var="e" items="${Favorites}"  >
+	<c:forEach var="e" items="${latestFavoritesList}" >
 		<form method="POST" action="/ShareNote/Note_detail">
+
 		<table>
 		<tr>
 			<td rowspan="3">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
@@ -118,6 +117,7 @@
 		</table>
 		</form>
 	</c:forEach>
+
 
 <!-- マイページ初期状態以外 -->
 <%} else if(request.getAttribute("isInitial").equals("no")) {%>
