@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 <h2>ノート詳細</h2>
-<form>
+<form method="POST" name="form" action="/ShareNote/Note_detail">
 	<table align="center" border="1">
 	<tr>
 		<td rowspan="3">${param.image_files}ノート画像</td>
