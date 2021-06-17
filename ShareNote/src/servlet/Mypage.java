@@ -52,13 +52,15 @@ public class Mypage extends HttpServlet {
 		// 最近お気に入りしたノートを持ってくる
 		List<Favorites> latestFavoritesList = fDao.selectLatestFavorites(user_id);
 
-		String favoritesMsg = null;
+		//String favoritesMsg = null;
 
 		// latestFavoritesFavoritesListが空の場合、メッセージも追加してListを持って帰る
 		if(latestFavoritesList.size() == 0) {
-			favoritesMsg = "登録されているノートはありません。";
+			String favoritesMsg = "登録されているノートはありません。";
+			request.setAttribute("favoritesMsg", favoritesMsg);
 		}
-		request.setAttribute("favoritesMsg", favoritesMsg);
+
+
 		request.setAttribute("latestFavoritesNoteList", latestFavoritesList);
 
 

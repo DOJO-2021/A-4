@@ -57,7 +57,7 @@
 	<tr>
 		<td><input type="file" name="text_files" accept=" .docx, .txt"></td>
 		<td><label><input type="radio" name="public_select" value="1" checked>公開</label>
-			<label><input type="radio" name="public" value="0">非公開</label></td>
+			<label><input type="radio" name="public_select" value="0">非公開</label></td>
 	</tr>
 	</table>
 		<p>${errMsg}</p>
