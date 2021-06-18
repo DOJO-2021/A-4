@@ -33,6 +33,8 @@ public class Mypage extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		User user = (User)session.getAttribute("user");
 		int user_id = user.getUser_id();
+		String nickname = user.getNickname();
+		session.setAttribute("nickname", nickname);
 
 		NoteDao nDao = new NoteDao();
 		FavoritesDao fDao = new FavoritesDao();
@@ -46,26 +48,19 @@ public class Mypage extends HttpServlet {
 		// latestUploadNoteListが空の場合、メッセージも追加してListを持って帰る
 		if(latestUploadNoteList.size() == 0) {
 			uploadMsg = "登録されているノートはありません。";
+			request.setAttribute("uploadMsg", uploadMsg);
 		}
-		request.setAttribute("uploadMsg", uploadMsg);
 		request.setAttribute("latestUploadNoteList", latestUploadNoteList);
 
 		// 最近お気に入りしたノートを持ってくる
 		List<Favorites> latestFavoritesList = fDao.selectLatestFavorites(user_id);
 
-		//String favoritesMsg = null;
-		System.out.println(latestFavoritesList.size()+"←サイズだよ");
-
 		// latestFavoritesFavoritesListが空の場合、メッセージも追加してListを持って帰る
 		if(latestFavoritesList.size() == 0) {
 			String favoritesMsg = "登録されているノートはありません。";
-
 			request.setAttribute("favoritesMsg", favoritesMsg);
 		}
-
-
 		request.setAttribute("latestFavoritesList", latestFavoritesList);
-
 
 		// メニューページにフォワードする
 		String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数

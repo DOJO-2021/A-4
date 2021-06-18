@@ -161,6 +161,14 @@ public class NoteDao {
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
+			//ファイル名にパスを追加
+			if(!(image_files.equals(""))) {
+				image_files = "/ShareNote/upload_files/" + image_files;
+			}
+			if(!(text_files.equals(""))) {
+				text_files = "/ShareNote/upload_files/" + text_files;
+			}
+
 			// SQL文を準備する
 			String sql = "insert into NOTE values(null, ?, ?, ?, ?, ?, ?, default, ?)";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -217,6 +225,14 @@ public class NoteDao {
 
 			// データベースに接続する
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			//ファイル名にパスを追加
+			if(!(image_files.equals(""))) {
+				image_files = "/ShareNote/upload_files/" + image_files;
+			}
+			if(!(text_files.equals(""))) {
+				text_files = "/ShareNote/upload_files/" + text_files;
+			}
 
 			// SQL文を準備する
 			String sql = "UPDATE note SET image_files = ?, text_files = ?, year = ?, title = ?, public_select = ?, tag = ? WHERE note_id=?";
@@ -462,7 +478,7 @@ public class NoteDao {
 			return noteList;
 		}
 	//検索内容にあった検索をする  何も選択されていないとき
-	
+
 
 //ノート詳細
 //こちらもおススメを表示する

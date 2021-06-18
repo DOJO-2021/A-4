@@ -19,11 +19,11 @@
 		<td>1.ファイルの変更</td>
 	</tr>
 	<tr>
-		<td>  画像ファイル（.jpg、.png）はこちら</td>
+		<td>画像ファイル（.jpg、.png）はこちら</td>
 		<td colspan="1">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td rowspan="5" height="300em" width="600em">${param.image_files}</td>
+		<td rowspan="5" height="300em" width="600em"><img src="${param.image_files}"></td>
 		<td colspan="1">${param.year}</td>
 		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
 	</tr>
@@ -46,7 +46,7 @@
 	</tr>
 
 	<tr>
-		<td><label><input type="file" name="image_files" accept="image/jpeg, image/png"></label></td>
+		<td><input type="file" name="image" accept="image/jpeg, image/png"></td>
 		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</label></td>
 		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
@@ -64,6 +64,9 @@
 		<input type="submit" name="edit" value="ノート削除" onclick="return onDelete()">
 		<input type="submit" name="edit" value="編集を完了">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
+		<input type="hidden" name="image_files" value="${param.image_files}">
+		<input type="hidden" name="text_files" value="${param.image_files}">
+
 </form>
 
 </body>

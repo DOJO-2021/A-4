@@ -86,29 +86,29 @@ public class Note_upload extends HttpServlet {
         LocalDate getLocalDate = date.toInstant().atZone(timeZone).toLocalDate();
         int year = getLocalDate.getYear();
 
-		//タグをカンマ区切りで収納
+		//タグをスペース区切りで収納
         String tag = "";
         for (String values : arrayTag) {
-        	tag += values + ",";
+        	tag += values + " ";
         }
 
         //乱数生成(同名ファイル対策)
         Random rand = new Random();
         Long num = rand.nextLong();
 
-        //画像ファイルを、ローカルに保存して名前にパスと乱数を付加
+        //画像ファイルを、乱数を付加してローカルに保存
         if(!(image_files.equals(""))) {
+			//パスと乱数付加
+			image_files = num + image_files;
 			//サーバの指定のファイルパスへファイルを保存
 	        //場所はクラス名の上(25行目)に指定してある
 			image_part.write(image_files);
-			//パスと乱数付加
-			image_files = "ShareNote/upload_files/" + num + image_files;
         }
 
-        //テキストファイルを、名前にパスと乱数を付加してローカルに保存
+        //テキストファイルを、乱数を付加してローカルに保存
         if(!(text_files.equals(""))) {
+			text_files = num + text_files;
 			text_part.write(text_files);
-			text_files ="ShareNote/upload_files/" +  num + text_files;
         }
 
         //DB登録をdaoにお任せ
