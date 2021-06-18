@@ -323,10 +323,9 @@ public class NoteDao {
 				// SQL文を準備する
 				String sql = "select  n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? AND nickname LIKE ? AND title LIKE ? ";
 				PreparedStatement pStmt = conn.prepareStatement(sql);
-
 				// SQL文を完成させる
 				if (tag != null) {
-					pStmt.setString(1, tag);
+					pStmt.setString(1, "%" + tag + "%");
 				}
 				else {
 					pStmt.setString(1, "%");
