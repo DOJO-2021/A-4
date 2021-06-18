@@ -107,14 +107,16 @@ public class Note_upload extends HttpServlet {
 
         //テキストファイルを、名前にパスと乱数を付加してローカルに保存
         if(!(text_files.equals(""))) {
-			text_files ="ShareNote/upload_files/" +  num + text_files;
 			text_part.write(text_files);
+			text_files ="ShareNote/upload_files/" +  num + text_files;
         }
 
         //DB登録をdaoにお任せ
 		NoteDao nDao = new NoteDao();
 		//成功したら、マイページにリダイレクト
 		if(nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag)) {
+			String msg = "ノートをアップロードしました";
+			request.setAttribute("msg", msg);
 			response.sendRedirect("/ShareNote/Mypage");
 		}
 		//失敗したら、エラーメッセージを持って帰ってもらう

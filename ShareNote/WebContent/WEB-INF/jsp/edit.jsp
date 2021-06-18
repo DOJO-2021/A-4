@@ -9,8 +9,11 @@
 <title>mynote++</title>
 </head>
 <body>
-<form method="POST" name="form" action="/ShareNote/Edit">
-<p>ノートの編集</p>
+<jsp:include page="/WEB-INF/jsp/header.jsp"/>
+
+<form method="POST" name="form" action="/ShareNote/Edit" enctype="multipart/form-data">
+<p>ノートの編集 ${msg} ${dbErrMsg}</p>
+	<input type="hidden" name="note_id" value="${param.note_id}">
 	<table border="1">
 	<tr>
 		<td>1.ファイルの変更</td>
@@ -30,31 +33,32 @@
 		<td colspan="4">3.タグの変更</td>
 	</tr>
    	<tr>
-		<td><input type="checkbox" name="tag" value="linux1" onClick="DisChecked()" <c:if test="${param.tag == 'HTML'}">checked</c:if>>HTML</td>
-		<td><input type="checkbox" name="tag" value="linux2" onClick="DisChecked()"<c:if test="${param.tag == 'CSS'}">checked</c:if>>CSS</td>
-		<td><input type="checkbox" name="tag" value="linux3" onClick="DisChecked()" <c:if test="${param.tag == 'JavaScript'}">checked</c:if>>JavaScript</td>
-		<td><input type="checkbox" name="tag" value="linux4" onClick="DisChecked()" <c:if test="${param.tag == 'Java'}">checked</c:if>>Java</td>
+		<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()" <c:if test="${param.tag == 'HTML'}">checked</c:if>>HTML</label></td>
+		<td><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()"<c:if test="${param.tag == 'CSS'}">checked</c:if>>CSS</label></td>
+		<td><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()" <c:if test="${param.tag == 'JavaScript'}">checked</c:if>>JavaScript</label></td>
+		<td><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()" <c:if test="${param.tag == 'Java'}">checked</c:if>>Java</label></td>
 	</tr>
 	<tr>
-		<td><input type="checkbox" name="tag" value="linux5" onClick="DisChecked()" <c:if test="${param.tag == 'SQL'}">checked</c:if>>SQL</td>
-		<td><input type="checkbox" name="tag" value="linux6" onClick="DisChecked()" <c:if test="${param.tag == 'JSP'}">checked</c:if>>jsp</td>
-		<td><input type="checkbox" name="tag" value="linux7" onClick="DisChecked()"<c:if test="${param.tag == 'Servlet'}">checked</c:if>> Servlet</td>
-		<td><input type="checkbox" name="tag" value="linux8" onClick="DisChecked()"<c:if test="${param.tag == 'DAO'}">checked</c:if>>DAO</td>
+		<td><label><input type="checkbox" name="tag" value="SQL" onClick="DisChecked()" <c:if test="${param.tag == 'SQL'}">checked</c:if>>SQL</label></td>
+		<td><label><input type="checkbox" name="tag" value="jsp" onClick="DisChecked()" <c:if test="${param.tag == 'JSP'}">checked</c:if>>jsp</label></td>
+		<td><label><input type="checkbox" name="tag" value="Servlet" onClick="DisChecked()"<c:if test="${param.tag == 'Servlet'}">checked</c:if>> Servlet</label></td>
+		<td><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"<c:if test="${param.tag == 'DAO'}">checked</c:if>>DAO</label></td>
 	</tr>
 
 	<tr>
-		<td><input type="file" name="datafile" accept="image/jpeg, image/png"></td>
-		<td><input type="checkbox" name="tag" value="linux9" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</td>
-		<td><input type="checkbox" name="tag" value="linux10" onClick="DisChecked()">その他</td>
-		<td><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</td>
+		<td><label><input type="file" name="image_files" accept="image/jpeg, image/png"></label></td>
+		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</label></td>
+		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
+		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
 		<td>テキストファイル（.docx、.txt）はこちら</td>
 		<td>4.公開設定の変更</td>
 	</tr>
 	<tr>
-		<td><input type="file" name="datafile" accept=" .docx, .txt">${param.text_files}</td>
-		<td><input type="radio" name="public" value="open"<c:if test="${param.public_select == 1}">checked</c:if>> 公開<input type="radio" name="public" value="close"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</td>
+		<td><input type="file" name="text_files" accept=" .docx, .txt">${param.text_files}</td>
+		<td><label><input type="radio" name="public_select" value="1"<c:if test="${param.public_select == 1}">checked</c:if>> 公開</label>
+		<label><input type="radio" name="public_select" value="0"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</label></td>
 	</tr>
 	</table>
 		<input type="submit" name="edit" value="ノート削除">
