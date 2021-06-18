@@ -11,21 +11,21 @@
 ${errMsg6}
 
 <h2>ユーザー登録</h2>
-<form method="POST" action="/ShareNote/New_regist">
+<form method="POST" action="/ShareNote/New_regist" id='form' name="inform">
 	<table align="center">
 	    <tr>
 			<th>ニックネーム</th>
-			<td><input type="text" name="nickname" placeholder="重複不可"></td>
+			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname"></td>
 			<td>${errMsg1}</td>
 		</tr>
 		<tr>
 			<th>パスワード</th>
-			<td><input type="password" name="password" placeholder="5文字以上16文字以内"></td>
+			<td><input type="password" name="password" placeholder="5文字以上16文字以内" id="password"></td>
 			<td>※半角英数字と記号のみ使用可</td>
 		</tr>
 		<tr>
 			<th>パスワード(確認)</th>
-			<td><input type="password" name="password_check"></td>
+			<td><input type="password" name="password_check" id="passconf"></td>
 			<td>${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
 		</tr>
 		<tr>
@@ -40,13 +40,13 @@ ${errMsg6}
 		</tr>
 		<tr>
 			<th>答え</th>
-			<td><input type="text" name="answer"></td>
+			<td><input type="text" name="answer" id="answer"></td>
 		</tr>
 		<tr>
-			<td colspan="2">${errMsg5}</td>
+			<td><div style = "color:#ff0000" id = "errMsg"></div></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="submit" name="login" value="登録" ></td>
+			<td colspan="2" align="center"><input type="submit" name="login" value="登録" onclick="return onRegist()"  ></td>
 		</tr>
 		<tr>
 			<td><a href="Login">ログイン画面に戻る</a></td>
@@ -54,5 +54,6 @@ ${errMsg6}
 	</table>
 </form>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+<script src="script/common.js"></script>
 </body>
 </html>
