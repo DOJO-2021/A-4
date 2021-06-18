@@ -210,7 +210,6 @@ public class FavoritesDao {
 				}
 			}
 		}
-
 		// 結果を返す
 		return favoritesList;
 	}

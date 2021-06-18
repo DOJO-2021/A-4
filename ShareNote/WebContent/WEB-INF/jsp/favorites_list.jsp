@@ -40,7 +40,6 @@
 <!-- 試しにforの外に書いてみるここまで -->
 
 
-
 <c:forEach var="e" items="${latestFavoritesList}">
 <form method="POST" action="/ShareNote/Note_detail">
 	<table border="1">

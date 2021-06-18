@@ -51,7 +51,6 @@ public class Favorites_list extends HttpServlet {
 
 	//	RequestDispatcher dispatcher = request.getRequestDispatcher("/ShareNote/Edit");
 	//	dispatcher.forward(request, response);
-
 	}
 }
 
