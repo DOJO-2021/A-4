@@ -28,10 +28,9 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id "
-					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) "
-					+ "where u.user_id = ? and public_select=1 order by favorites_id desc limit 3";
-			System.out.println(sql);
+			String sql = "select f.favorites_id, f.note_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag "
+					+ "from ((note as n right join user as u on n.user_id=u.user_id) left join favorites as f on f.note_id=n.note_id ) "
+					+ "where f.user_id = ? and n.public_select=1 order by favorites_id desc limit 3";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, user_id);
 
@@ -166,10 +165,10 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select f.favorites_id, f.note_id, n.user_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag "
-					+ "from ( favorites as f inner join note as n on f.user_id=u.user_id) "
-					+ "inner join user as u on f.note_id=n.note_id "
-					+ " where u.user_id = ? and n.public_select=1 order by favorites_id asc ";
+			String sql = "select f.favorites_id, f.note_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag "
+					+ "from ((note as n right join user as u on n.user_id=u.user_id) left join favorites as f on f.note_id=n.note_id ) "
+					+ "where f.user_id = ? and n.public_select=1 order by favorites_id asc ";
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, user_id);
 			// SQL文を実行し、結果表を取得する
