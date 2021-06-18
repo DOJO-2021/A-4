@@ -47,28 +47,28 @@ public class Search extends HttpServlet {
 		String nickname = request.getParameter("NICKNAME");
 		String title = request.getParameter("TITLE");
 
-//		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 		String tag = request.getParameter("tag");
 		String matching = request.getParameter("matching");
 //		String tag = "";
-//	    for (String values : arrayTag) {
-//	 		tag += values + ",";
-//		 }
+	    for (String values : arrayTag) {
+	 		tag += values + ",";
+		 }
 
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
 		List<Note> noteList;
 
-		System.out.println(matching);
+		System.out.println(tag);
 		try {
 			// タグ検索が完全一致だった場合
-		
+
 			if (matching.equals("matching")) {
 				noteList = nDao.searchMatching(nickname, title, tag );
-				
+
 		// タグ検索が完全一致ではなかった場合
 				} else {
-					System.out.print(request.getParameter("matching"));
+
 					noteList = nDao.search(nickname, title, tag );
 				}
 		}
