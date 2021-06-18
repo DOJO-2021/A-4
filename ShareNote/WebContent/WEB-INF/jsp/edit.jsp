@@ -61,7 +61,7 @@
 		<label><input type="radio" name="public_select" value="0"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</label></td>
 	</tr>
 	</table>
-		<input type="submit" name="edit" value="ノート削除">
+		<input type="submit" name="edit" value="ノート削除" onclick="return onDelete()">
 		<input type="submit" name="edit" value="編集を完了">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
 </form>

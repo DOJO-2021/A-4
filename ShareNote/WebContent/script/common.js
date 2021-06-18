@@ -1,7 +1,7 @@
 'use strict';
 
 
-
+//新規登録画面
 
 function onRegist(){
 
@@ -27,6 +27,25 @@ function onRegist(){
 				return false;
 			}
 		}
+
+
+};
+
+
+//編集削除
+
+function onDelete(){
+
+
+			if(window.confirm("本当に削除しますか？")){
+
+				//OKのときの処理
+				return true;
+
+			}else{
+				//キャンセルの時の処理
+				return false;
+			}
 
 
 };
