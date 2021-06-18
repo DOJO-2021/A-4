@@ -35,10 +35,13 @@ public class Search_result extends HttpServlet {
 //		int year = Integer.parseInt(request.getParameter("YEAR"));
 		String nickname = request.getParameter("NICKNAME");
 		String title = request.getParameter("TITLE");
-		String matching = request.getParameter("matching");
-		String tag = request.getParameter("TAG");
-	//	int favorites_num = Integer.parseInt(request.getParameter("FAVORITES_NUM"));
+		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 
+		String matching = request.getParameter("matching");
+		String tag = "";
+	    for (String values : arrayTag) {
+	 		tag += values + ",";
+		 }
 
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
@@ -82,8 +85,13 @@ public class Search_result extends HttpServlet {
 				//int year =Integer.parseInt(request.getParameter("YEAR"));
 				String nickname = request.getParameter("NICKNAME");
 				String title = request.getParameter("TITLE");
+				String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+
 				String matching = request.getParameter("matching");
-				String tag = request.getParameter("TAG");
+				String tag = "";
+			    for (String values : arrayTag) {
+			 		tag += values + ",";
+				 }
 				//int favorites_num = Integer.parseInt(request.getParameter("FAVORITES_NUM"));
 
 
