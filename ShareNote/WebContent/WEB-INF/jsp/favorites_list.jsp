@@ -35,11 +35,9 @@
 
 </form>
 	</tr>
-
 	</table>
 -->
 <!-- 試しにforの外に書いてみるここまで -->
-
 
 
 <c:forEach var="e" items="${latestFavoritesList}">
