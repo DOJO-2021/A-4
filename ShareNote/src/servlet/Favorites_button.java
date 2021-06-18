@@ -26,7 +26,7 @@ public class Favorites_button extends HttpServlet {
 		//お気に入り登録する
 		FavoritesDao fDao = new FavoritesDao();
 		if (request.getParameter("submit").equals("☆")) {
-			if (ボタンに色がついていなかったら) {	// 登録成功
+			if (画像が0なら) {	// 登録成功
 				fDao.isFavoriteRegist(user_id, note_id);
 			}
 			//お気に入りボタンを押してお気に入り解除するとき

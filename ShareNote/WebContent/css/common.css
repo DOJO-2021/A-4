@@ -1,1 +1,18 @@
 @charset "UTF-8";
+.toggle {
+  width: 300px;
+  height: 50px;
+}
+
+.title-on {
+  display: none;
+  width: 300px;
+  height: 50px;
+  background-image: url(".png");
+}
+
+.title-off {
+  width: 300px;
+  height: 50px;
+  background-image: url("https://placehold.jp/dddddd/333333/300x50.png");
+}

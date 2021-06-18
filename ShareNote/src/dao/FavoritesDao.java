@@ -27,20 +27,21 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "\r\n"
-					+ "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id\r\n"
-					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id)\r\n"
+			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id "
+					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) "
 					+ "where u.user_id = ? and public_select=1 order by favorites_id desc limit 3";
+			System.out.println(sql);
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, user_id);
 
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
-			System.out.println(rs);
+		//	System.out.println(rs);
 
 			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
 			while (rs.next()) {
 				Favorites favorites = new Favorites();
+				//System.out.println(rs);
 				//favorites.setFavorites_id(rs.getInt("favorites_id"));
 				//favorites.setNote_id(rs.getInt("note_id"));
 				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
