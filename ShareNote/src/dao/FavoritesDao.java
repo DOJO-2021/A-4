@@ -169,7 +169,7 @@ public class FavoritesDao {
 			String sql = "select f.favorites_id, f.note_id, n.user_id, f.favorites_flag, u.nickname, n.image_files, n.text_files, n.year, n.title, n.tag "
 					+ "from ( favorites as f inner join note as n on f.user_id=u.user_id) "
 					+ "inner join user as u on f.note_id=n.note_id "
-					+ " where user_id = ? and n.public_select=1 order by favorites_id asc ";
+					+ " where u.user_id = ? and n.public_select=1 order by favorites_id asc ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setInt(1, user_id);
 			// SQL文を実行し、結果表を取得する
