@@ -36,13 +36,19 @@ public class Search_result extends HttpServlet {
 		String nickname = request.getParameter("NICKNAME");
 		String title = request.getParameter("TITLE");
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
-
+		String order=request.getParameter("sort");
 		String matching = request.getParameter("matching");
 		String tag = "";
-	    for (String values : arrayTag) {
-	 		tag += values + ",";
-		 }
-
+		if(arrayTag!=null) {
+		    for (String values : arrayTag) {
+		 		tag += values + " ";
+			 }
+			}
+	    if(order.equals("新着順")) {
+	    	order="n.note_id ASC";
+	    }if(order.equals("お気に入り順")){
+	    	order="n.favorites_num DESC";
+	    }
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
 		List<Note> noteList;
@@ -50,16 +56,16 @@ public class Search_result extends HttpServlet {
 			// タグ検索が完全一致だった場合
 
 			if (matching.equals("matching")) {
-				noteList = nDao.searchMatching(nickname, title, tag );
+				noteList = nDao.searchMatching(nickname, title, tag, order );
 
 		// タグ検索が完全一致ではなかった場合
 				} else {
 					System.out.print(request.getParameter("matching"));
-					noteList = nDao.search(nickname, title, tag );
+					noteList = nDao.search(nickname, title, tag , order);
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag );
+			noteList = nDao.search(nickname, title, tag ,order);
 		}
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
@@ -86,32 +92,40 @@ public class Search_result extends HttpServlet {
 				String nickname = request.getParameter("NICKNAME");
 				String title = request.getParameter("TITLE");
 				String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
-
+				String order=request.getParameter("sort");
 				String matching = request.getParameter("matching");
 				String tag = "";
-			    for (String values : arrayTag) {
-			 		tag += values + ",";
-				 }
+				System.out.println(tag);
+				if(arrayTag!=null) {
+				    for (String values : arrayTag) {
+				 		tag += values + " ";
+					 }
+					}
+			    if(order.equals("新着順")) {
+			    	order="n.note_id ASC";
+			    }if(order.equals("お気に入り順")){
+			    	order="n.favorites_num DESC";
+			    }
 				//int favorites_num = Integer.parseInt(request.getParameter("FAVORITES_NUM"));
 
 
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();
-				List<Note> noteList = nDao.search( nickname,  title,  tag );
+				List<Note> noteList = nDao.search( nickname,  title,  tag ,order);
 				try {
 					// タグ検索が完全一致だった場合
 
 					if (matching.equals("matching")) {
-						noteList = nDao.searchMatching(nickname, title, tag );
+						noteList = nDao.searchMatching(nickname, title, tag ,order);
 
 				// タグ検索が完全一致ではなかった場合
 						} else {
 							System.out.print(request.getParameter("matching"));
-							noteList = nDao.search(nickname, title, tag );
+							noteList = nDao.search(nickname, title, tag ,order);
 						}
 				}
 				catch(NullPointerException e){
-					noteList = nDao.search(nickname, title, tag );
+					noteList = nDao.search(nickname, title, tag ,order);
 				}
 				// 検索結果をリクエストスコープに格納する
 				request.setAttribute("noteList", noteList);

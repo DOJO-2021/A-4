@@ -50,13 +50,25 @@ public class Search extends HttpServlet {
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 
 		String matching = request.getParameter("matching");
-		String tag = "";
+		String tag = " ";
+		System.out.println(tag);
+		if(arrayTag!=null) {
 	    for (String values : arrayTag) {
-	 		tag += values + ",";
+	 		tag += values + " ";
 		 }
+		}
+
+
+
+	    String order=request.getParameter("sort");
+	    if(order.equals("新着順")) {
+	    	order="n.note_id ASC";
+	    }if(order.equals("お気に入り順")){
+	    	order="n.favorites_num DESC";
+	    }
 
 		// 検索処理を行う
-		NoteDao nDao = new NoteDao();
+	    NoteDao nDao= new NoteDao();
 		List<Note> noteList;
 
 
@@ -64,17 +76,19 @@ public class Search extends HttpServlet {
 			// タグ検索が完全一致だった場合
 
 			if (matching.equals("matching")) {
-				noteList = nDao.searchMatching(nickname, title, tag );
+				noteList = nDao.searchMatching(nickname, title, tag , order);
 
 		// タグ検索が完全一致ではなかった場合
 				} else {
 
-					noteList = nDao.search(nickname, title, tag );
+					noteList = nDao.search(nickname, title, tag , order);
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag );
+			noteList = nDao.search(nickname, title, tag ,order);
 		}
+
+
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
 

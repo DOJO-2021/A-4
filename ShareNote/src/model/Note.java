@@ -14,6 +14,8 @@ public class Note implements Serializable {
 	private int public_select;
 	private int favorites_num;
 	private String tag;
+	private String order;
+
 
 	//getter・setter
 	public int getNote_id() {
@@ -76,5 +78,11 @@ public class Note implements Serializable {
 	}
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	public String getOrder() {
+		return order;
+	}
+	public void setOrder(String order) {
+		this.order = order;
 	}
 }
