@@ -16,7 +16,7 @@
 	<table border="1">
 		<form method="POST" action="/ShareNote/Edit">
 			<tr>
-				<td rowspan="3">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files}"></td>
+				<td rowspan="3"><img src="${e.image_files}" width="100em" height="100em"><input type="hidden" name="image_files" value="${e.image_files}"></td>
 				<td>${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
 				<td rowspan="2">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 				<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
