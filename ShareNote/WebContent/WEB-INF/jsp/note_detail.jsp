@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <title>mynote++</title>
 </head>
 <body>
@@ -26,7 +27,9 @@
 		<td>${param.tag}タグ</td>
 </form>
 
-		<td><input type="image" id="gazo" name="favorite" onclick="valueChange(event)" src="/ShareNote/images/0.png" alt=""></td>
+		<td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
+		<input type="hidden" name="count" value="${param.count}" id="count">
+		<img src="/ShareNote/images/0.png" id="gazo"></a></td>
 		<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 		<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
@@ -46,24 +49,6 @@
 <hr>
 
 <h3>こちらもおすすめ</h3>
-
-	<!-- 試しにforの外に書いてみる -->
-	<!--
-	<form method="POST" action="/ShareNote/Note_detail">
-		<table align="center" border="1">
-		<tr>
-			<td rowspan="2">${e.note_files}ノート画像</td>
-			<td>${e.title}タイトル</td>
-			<td><input type="submit" name="detail" value="詳細"></td>
-		</tr>
-		<tr>
-			<td>${e.tag}タグ</td>
-			<td><input type="submit" name="download" value="ダウンロード"></td>
-		</tr>
-		</table>
-	</form>
-	-->
-	<!-- 試しにforの外に書いてみる -->
 
 <c:forEach var="e" items="${RecommendedList}">
 	<table border="1">
@@ -93,47 +78,17 @@
 
 </body>
 <script>
-<!--
-//画像を配列に格納する
-var img = new Array();
-
-img[0] = new Image();
-img[0].src = "/ShareNote/images/0.png";
-img[1] = new Image();
-img[1].src = "/ShareNote/images/1.png";
-
-
-//画像番号用のグローバル変数
 var cnt = 0;
+function valueChange(event){
+	//画像を配列に格納する
+ 	var pics_src = new Array("images/0.png","images/1.png");
 
-
-//画像切り替え関数
-function changeIMG(){
-//画像番号を進める
-if (cnt == 1) {
-	  cnt = 0;
-}
-else if (cnt == 0) {
-	  cnt = 1;
-}
-//画像を切り替える
-document.getElementById("gazo").src=img[cnt].src;
-}
--->
-//ajax
-function valueChange(event) {
-	var img = new Array();
-
-	img[0] = new Image();
-	img[0].src = "/ShareNote/images/0.png";
-	img[1] = new Image();
-	img[1].src = "/ShareNote/images/1.png";
 
 
 	//画像番号用のグローバル変数
-	var cnt = 0;
+//	var cnt = document.getElementById("count");
 
-	  //画像番号を進める
+	//画像番号を進める
 	  if (cnt == 1) {
 		  cnt = 0;
 	  }
@@ -141,18 +96,18 @@ function valueChange(event) {
 		  cnt = 1;
 	  }
 	  //画像を切り替える
-	  document.getElementById("gazo").src=img[cnt].src;
-	  $.ajax({
-			type:'post',
-			url: '/ShareNote/Favorites_button',
-			data: {	str: 1}
-		});
-		alert("bbb");
+	  document.getElementById("gazo").src=pics_src[cnt];
+
+	$.ajax({
+		type:'post',
+		url: '/ShareNote/Favorites_button',
+		data: {	str: 1}
+	});
+
 }
 
-	let gazo = document.getElementById('gazo');
-	gazo.addEventListener('change', valueChange);
-<!--	let msg = document.getElementById('msg');-->
-
+let saveCheckbox = document.getElementById('saveCheckbox');
+saveCheckbox.addEventListener('change', valueChange);
+let msg = document.getElementById('msg');
 </script>
 </html>

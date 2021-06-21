@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.FavoritesDao;
+
 @WebServlet("/Favorites_button")
 public class Favorites_button extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,7 +21,7 @@ public class Favorites_button extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*		//お気に入りボタンを押してお気に入りするとき
+		//お気に入りボタンを押してお気に入りするとき
 				// リクエストパラメータを取得する☆
 				request.setCharacterEncoding("UTF-8");
 //				int favorites_id = Integer.parseInt(request.getParameter("favorites_id"));
@@ -30,7 +32,7 @@ public class Favorites_button extends HttpServlet {
 				System.out.println(request.getParameter("image"));
 				//お気に入り登録する
 				FavoritesDao fDao = new FavoritesDao();
-				if (request.getParameter("image").equals("0.png")) {
+				if (request.getParameter("count").equals("0")) {
 					//if (画像が0なら) {	// 登録成功
 					fDao.isFavoriteRegist(user_id, note_id);
 				}
@@ -39,10 +41,11 @@ public class Favorites_button extends HttpServlet {
 					fDao.isFavoriteRelease(note_id);
 
 				}
+/*
+			String str = request.getParameter("str");
+			int num = Integer.parseInt(str);
+			System.out.println(num);
 */
-				String str = request.getParameter("str");
-				int num = Integer.parseInt(str);
-				System.out.println(num);
-	}
+		}
 
-}
+	}
