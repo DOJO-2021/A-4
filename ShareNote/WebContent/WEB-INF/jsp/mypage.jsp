@@ -97,11 +97,11 @@
 				<tr>
 					<td rowspan="3">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
 					<td>${e.year}<input type="hidden" name="year" value="${e.year} "></td>
-					<td rowspan="2">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
+					<td>${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
 					<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 				</tr>
 				<tr>
-					<td>${favorites_num}</td>
+					<td colspan="2">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag} "></td>

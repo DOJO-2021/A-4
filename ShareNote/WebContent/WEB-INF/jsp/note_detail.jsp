@@ -70,9 +70,14 @@
 		<form method="POST" action="/ShareNote/Note_detail">
 
 		<tr>
-			<td rowspan="2">${e.image_files}ノート画像</td>
+			<td rowspan="3">${e.image_files}</td>
+			<td>${e.year}年度</td>
+			<td align="center" colspan="2">${e.nickname}</td>
+			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
+		</tr>
+
+		<tr>
 			<td>${e.title}</td>
-			<td><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 		<tr>
 			<td>${e.tag}</td>
