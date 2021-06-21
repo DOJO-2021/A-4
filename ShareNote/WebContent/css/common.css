@@ -88,14 +88,42 @@ a:hover{
 
 /*マイページのCSS*/
 .whole{
-		display:flex;
+	display:flex;
 }
 
+.latest{
+	margin-left:60px;
+	margin-top:20px;
+}
 
+.menu{
+	margin-right:40px;
+}
 
+.inf-img{
+	height:120px;
+	width:200px;
+}
 
+.inf-year{
+	height:1em;
+	width:4em;
+}
 
+.inf-nn{
+	height:1em;
+	width:20em;
+}
 
+.inf-title{
+	height:2em;
+	width:20em;
+}
 
+.inf-tag{
+	height:2em;
+}
 
-
+.fav-num{
+	height:1em;
+}

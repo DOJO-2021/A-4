@@ -20,7 +20,7 @@
 	<table>
 	<tr>
 		<td align="center">
-			<input type="image" src="images/button1.png" width="328" height="80"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
+			<input type="image" src="images/button1.png" height="60"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
 			<input type="hidden"  name="para" value="">
 		</td>
 	</tr>
@@ -29,7 +29,7 @@
 <form method="GET" action="/ShareNote/Mynote_list" name="inform2">
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button2.png" width="328" height="80" name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
+		<input type="image" src="images/button2.png"  height="60" name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
 		<input type="hidden"  name="para" value="">
 		</td>
 	</tr>
@@ -38,17 +38,16 @@
 <form method="GET" action="/ShareNote/Favorites_list" name="inform3">
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button3.png" width="328" height="80" name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
+		<input type="image" src="images/button3.png" height="60" name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
 		<input type="hidden"  name="para" value="">
 		</td>
 	</tr>
 </form>
 
 <form method="GET" action="/ShareNote/Logout" name="inform4">
-
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button4.png" width="328" height="80" name="page_switch" value="ログアウト" onclick="document.inform4.para.value='ログアウト'">
+		<input type="image" src="images/button4.png" height="60" name="page_switch" value="ログアウト" onclick="document.inform4.para.value='ログアウト'">
 		<input type="hidden"  name="para" value="">
 		</td>
 	</tr>
@@ -63,19 +62,19 @@
 	<p>最近アップロードしたノート</p>
 	<p>${uploadMsg}</p>
 	<c:forEach var="e" items="${latestUploadNoteList}">
-		<table border="1">
+		<table border="1" class="latest">
 			<form method="POST" action="/ShareNote/Edit">
 				<tr>
-					<td rowspan="3"><img src="${e.image_files}"><input type="hidden" name="image_files" value="${e.image_files}"></td>
-					<td>${e.year}<input type="hidden" name="year" value="${e.year}"></td>
-					<td rowspan="2">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
+					<td rowspan="3" class="inf-img"><img src="${e.image_files}"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year}"></td>
+					<td rowspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 					<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 				</tr>
 				<tr>
-					<td>${favorites_num}</td>
+					<td class="fav-num">${favorites_num}</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 					<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 					<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 							  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
@@ -92,19 +91,19 @@
 	<p>最近お気に入りしたノート</p>
 	<p>${favoritesMsg}</p>
 	<c:forEach var="e" items="${latestFavoritesList}" >
-		<table border="1">
+		<table border="1" class="latest">
 			<form method="POST" action="/ShareNote/Note_detail">
 				<tr>
-					<td rowspan="3">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
-					<td>${e.year}<input type="hidden" name="year" value="${e.year} "></td>
-					<td>${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
+					<td rowspan="3" class="inf-img">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
+					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year} "></td>
+					<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
 					<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 				</tr>
 				<tr>
-					<td colspan="2">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
+					<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag} "></td>
+					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag} "></td>
 					<!-- <td><input type="submit" name="download" value="ダウンロード"></td> -->
 					<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					 	 <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
