@@ -15,37 +15,38 @@
 <form method="POST" action="/ShareNote/Search">
 	<table align="center">
 			<tr>
-				<td><input type="checkbox" name="matching" value="matching">完全一致<td>
+				<td><label><input type="checkbox" name="matching" value="matching">完全一致</label><td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag" value="HTML">HTML</td>
-				<td><input type="checkbox" name="tag" value="CSS">CSS</td>
-				<td><input type="checkbox" name="tag" value="JavaScript">JavaScript</td>
-				<td><input type="checkbox" name="tag" value="Java">Java</td>
+				<td><label><input type="checkbox" name="tag" value="HTML">HTML</label></td>
+				<td><label><input type="checkbox" name="tag" value="CSS">CSS</label></td>
+				<td><label><input type="checkbox" name="tag" value="JavaScript">JavaScript</label></td>
+				<td><label><input type="checkbox" name="tag" value="Java">Java</label></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag" value="SQL">SQL</td>
-				<td><input type="checkbox" name="tag" value="jsp">jsp</td>
-				<td><input type="checkbox" name="tag" value="Servlet">Servlet</td>
-				<td><input type="checkbox" name="tag" value="DAO">DAO</td>
+				<td><label><input type="checkbox" name="tag" value="SQL">SQL</label></td>
+				<td><label><input type="checkbox" name="tag" value="jsp">jsp</label></td>
+				<td><label><input type="checkbox" name="tag" value="Servlet">Servlet</label></td>
+				<td><label><input type="checkbox" name="tag" value="DAO">DAO</label></td>
 			</tr>
 			<tr>
-				<td><input type="checkbox" name="tag" value="jQuery">jQuery</td>
-				<td><input type="checkbox" name="tag" value="other">その他</td>
-				<td><input type="checkbox" name="all_select" value="all_select">全て選択</td>
+				<td><label><input type="checkbox" name="tag" value="jQuery">jQuery</label></td>
+				<td><label><input type="checkbox" name="tag" value="other">その他</label></td>
+				<td><label><input type="checkbox" name="all_select" value="all_select">全て選択</label></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><input type="text" name="title" placeholder="キーワード（タイトル・ニックネーム）検索"></td>
+				<td colspan="4" align="center"><label><input type="text" name="keyword" placeholder="キーワード（タイトル・ニックネーム）検索"></label></td>
 			</tr>
 			<tr>
-			 	<td colspan="4" align="center"><select name="sort">
+			 	<td colspan="4" align="center"><label><select name="sort">
 						<option  selected value ="新着順">新着順</option>
 						<option  value ="お気に入り順">お気に入り数順</option>
 					</select>
+					</label>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><input type="submit" name="search" value="検索" ></td>
+				<td colspan="4" align="center"><label><input type="submit" name="search" value="検索" ></label></td>
 			</tr>
 	</table>
 </form>

@@ -89,13 +89,13 @@ public class Search_result extends HttpServlet {
 				//String image_files = request.getParameter("IMAGE_FILES");
 				//String text_files = request.getParameter("TEXT_FILES");
 				//int year =Integer.parseInt(request.getParameter("YEAR"));
-				String nickname = request.getParameter("NICKNAME");
-				String title = request.getParameter("TITLE");
+				String nickname = request.getParameter("keyword");
+				String title = request.getParameter("keyword");
 				String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 				String order=request.getParameter("sort");
 				String matching = request.getParameter("matching");
 				String tag = "";
-				System.out.println(tag);
+
 				if(arrayTag!=null) {
 				    for (String values : arrayTag) {
 				 		tag += values + " ";

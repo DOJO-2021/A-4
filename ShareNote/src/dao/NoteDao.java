@@ -227,12 +227,12 @@ public class NoteDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			//ファイル名にパスを追加
-			if(!(image_files.equals(""))) {
-				image_files = "/ShareNote/upload_files/" + image_files;
-			}
-			if(!(text_files.equals(""))) {
-				text_files = "/ShareNote/upload_files/" + text_files;
-			}
+//			if(!(image_files.equals(""))) {
+//				image_files = "/ShareNote/upload_files/" + image_files;
+//			}
+//			if(!(text_files.equals(""))) {
+//				text_files = "/ShareNote/upload_files/" + text_files;
+//			}
 
 			// SQL文を準備する
 			String sql = "UPDATE note SET image_files = ?, text_files = ?, year = ?, title = ?, public_select = ?, tag = ? WHERE note_id=?";
@@ -337,28 +337,31 @@ public class NoteDao {
 				// データベースに接続する
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
+
 				// SQL文を準備する
-				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? AND nickname LIKE ? AND title LIKE ? ORDER BY "+order;
+				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? AND(nickname LIKE ? OR title LIKE ?) AND public_select = 1 ORDER BY "+order;
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
+
 				if (tag != null) {
 					pStmt.setString(1, "%" + tag + "%");
 				}
 				else {
 					pStmt.setString(1, "%");
 				}
-				if (nickname != null) {
+				if (nickname != "") {
 					pStmt.setString(2, "%" + nickname + "%");
 				}
 				else {
 					pStmt.setString(2, "%");
 				}
-				if (title != null) {
+				if (title != "") {
 					pStmt.setString(3, "%" +title + "%");
 				}
 				else {
 					pStmt.setString(3, "%");
 				}
+
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
@@ -367,7 +370,7 @@ public class NoteDao {
 				while (rs.next()) {
 							Note note = new Note();
 							note.setNote_id(rs.getInt("note_id"));
-					//		note.setUser_id(rs.getInt("n.user_id"));
+
 							note.setImage_files(rs.getString("image_files"));
 							note.setText_files(rs.getString("text_files"));
 							note.setYear(rs.getInt("year"));
@@ -415,7 +418,7 @@ public class NoteDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 				// SQL文を準備する
-				String sql = "select  n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag = ? AND nickname LIKE ? AND title LIKE ? ORDER BY "+order;
+				String sql = "select  n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag = ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ORDER BY "+order;
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -425,13 +428,13 @@ public class NoteDao {
 				else {
 					pStmt.setString(1, "%");
 				}
-				if (nickname != null) {
+				if (nickname != "") {
 					pStmt.setString(2, "%" + nickname + "%");
 				}
 				else {
 					pStmt.setString(2, "%");
 				}
-				if (title != null) {
+				if (title != "") {
 					pStmt.setString(3, "%" +title + "%");
 				}
 				else {

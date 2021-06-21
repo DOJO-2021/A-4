@@ -44,16 +44,16 @@ public class Search extends HttpServlet {
 		//list作成
 		request.setCharacterEncoding("UTF-8");
 
-		String nickname = request.getParameter("NICKNAME");
-		String title = request.getParameter("TITLE");
+		String nickname = request.getParameter("keyword");
+		String title = request.getParameter("keyword");
 
 		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
 
 		String matching = request.getParameter("matching");
-		String tag = " ";
-		System.out.println(tag);
+		String tag = "";
 		if(arrayTag!=null) {
 	    for (String values : arrayTag) {
+
 	 		tag += values + " ";
 		 }
 		}
