@@ -62,8 +62,9 @@
 
 
 <table border="1">
+	<form method="POST" action="/ShareNote/Note_detail">
 		<tr>
-			<td rowspan="3">${e.image_files }</td>
+			<td rowspan="3"><img src="${e.image_files }"></td>
 			<td>
 			${e.year}年度
 			</td>
@@ -84,6 +85,7 @@
 				</c:choose>
 			<td align="center"><input type="submit" name="favorite" value="★"></td>
 		</tr>
+		</form>
 		</table>
 		<hr>
 
