@@ -41,9 +41,8 @@ public class Note_detail extends HttpServlet {
 	    FavoritesDao fDao = new FavoritesDao();
 	    request.setCharacterEncoding("UTF-8");
 	    String tag = request.getParameter("tag");
-	    String nickname = request.getParameter("nickname");
 
-	    System.out.println(nickname);
+
 
 	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
 	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
