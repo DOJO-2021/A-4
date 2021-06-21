@@ -23,7 +23,7 @@
 		<td colspan="1">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td rowspan="5" height="300em" width="600em"><img src="${param.image_files}"></td>
+		<td rowspan="5"><img src="${param.image_files}" width="300em" height="300em"><canvas id="preview" style="max-width:200px;"></canvas></td>
 		<td colspan="1">${param.year}</td>
 		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
 	</tr>
@@ -46,7 +46,7 @@
 	</tr>
 
 	<tr>
-		<td><input type="file" name="image" accept="image/jpeg, image/png"></td>
+		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${param.image_files}</td>
 		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</label></td>
 		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
@@ -64,36 +64,62 @@
 		<input type="submit" name="edit" value="ノート削除" onclick="return onDelete()">
 		<input type="submit" name="edit" value="編集を完了">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
-		<input type="hidden" name="image_files" value="${param.image_files}">
-		<input type="hidden" name="text_files" value="${param.image_files}">
+		<input type="hidden" name="pre_image_files" value="${param.image_files}">
+		<input type="hidden" name="pre_text_files" value="${param.image_files}">
 
 </form>
 
 </body>
 <script>
-  // 「全て選択」チェックで全てにチェック付く
-  function AllChecked(){
-    var all = document.form.all.checked;
-    for (var i=0; i<document.form.tag.length; i++){
-      document.form.tag[i].checked = all;
-    }
-  }
+	 // 「全て選択」チェックで全てにチェック付く
+	 function AllChecked(){
+	   var all = document.form.all.checked;
+	   for (var i=0; i<document.form.tag.length; i++){
+	     document.form.tag[i].checked = all;
+	   }
+	 }
 
-  // 一つでもチェックを外すと「全て選択」のチェック外れる
-  function DisChecked(){
-    var checks = document.form.test;
-    var checksCount = 0;
-    for (var i=0; i<checks.length; i++){
-      if(checks[i].checked == false){
-        document.form.all.checked = false;
-      }else{
-        checksCount += 1;
-        if(checksCount == checks.length){
-          document.form.all.checked = true;
-        }
-      }
-    }
-  }
+	 // 一つでもチェックを外すと「全て選択」のチェック外れる
+	 function DisChecked(){
+	   var checks = document.form.test;
+	   var checksCount = 0;
+	   for (var i=0; i<checks.length; i++){
+	     if(checks[i].checked == false){
+	       document.form.all.checked = false;
+	     }else{
+	       checksCount += 1;
+	       if(checksCount == checks.length){
+	         document.form.all.checked = true;
+	       }
+	     }
+	   }
+	 }
+
+	//画像のプレビューを表示する
+	function previewImage(obj){
+
+		var fileReader = new FileReader();
+
+		// 読み込み後に実行する処理
+		fileReader.onload = (function() {
+
+			// canvas にプレビュー画像を表示
+			var canvas = document.getElementById('preview');
+			var ctx = canvas.getContext('2d');
+			var image = new Image();
+			image.src = fileReader.result;
+			console.log(fileReader.result) // ← (確認用)
+
+			image.onload = (function () {
+				canvas.width = image.width;
+				canvas.height = image.height;
+				ctx.drawImage(image, 0, 0);
+			});
+		});
+		// 画像読み込み
+		fileReader.readAsDataURL(obj.files[0]);
+		console.log(fileReader.result) // ← (確認用)null
+	}
 
 </script>
 </html>

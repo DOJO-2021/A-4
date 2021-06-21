@@ -89,8 +89,10 @@ public class Edit extends HttpServlet {
 				text_files =this.getFileName(text_part);
 				String[] arrayTag = request.getParameterValues("tag");
 				String nullTag = request.getParameter("tag");
-				System.out.println(request.getParameter("image_files"));
-				System.out.println(request.getParameter("text_files"));
+				System.out.println(request.getParameter("pre_image_files"));
+				System.out.println(image_files);
+				System.out.println(request.getParameter("pre_text_files"));
+				System.out.println(text_files);
 
 				//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
 				if(title.equals("") || nullTag == null || (image_files.equals("")&&text_files.equals(""))) {

@@ -64,14 +64,6 @@
 		<input type="submit" name="upload" value="アップロード">
 	</form>
 
-
-<c:forEach var="e" items="${cardList}" >
- 	<form method="POST" action="/ShareNote/Edit">
-
-	</form>
-
-</c:forEach>
-
 </body>
 
 <script>
