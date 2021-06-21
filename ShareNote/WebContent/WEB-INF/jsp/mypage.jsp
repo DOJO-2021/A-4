@@ -62,7 +62,7 @@
 	<p>最近アップロードしたノート</p>
 	<p>${uploadMsg}</p>
 	<c:forEach var="e" items="${latestUploadNoteList}">
-		<table border="1" class="latest">
+		<table border="1" class="notes">
 			<form method="POST" action="/ShareNote/Edit">
 				<tr>
 					<td rowspan="3" class="inf-img"><img src="${e.image_files}"><input type="hidden" name="image_files" value="${e.image_files}"></td>
@@ -91,7 +91,7 @@
 	<p>最近お気に入りしたノート</p>
 	<p>${favoritesMsg}</p>
 	<c:forEach var="e" items="${latestFavoritesList}" >
-		<table border="1" class="latest">
+		<table border="1" class="notes">
 			<form method="POST" action="/ShareNote/Note_detail">
 				<tr>
 					<td rowspan="3" class="inf-img">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>

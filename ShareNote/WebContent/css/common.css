@@ -91,7 +91,7 @@ a:hover{
 	display:flex;
 }
 
-.latest{
+.notes{
 	margin-left:60px;
 	margin-top:20px;
 }
@@ -107,7 +107,7 @@ a:hover{
 
 .inf-year{
 	height:1em;
-	width:4em;
+	width:6em;
 }
 
 .inf-nn{
