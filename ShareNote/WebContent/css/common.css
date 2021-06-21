@@ -19,15 +19,44 @@
   background-image: url("https://placehold.jp/dddddd/333333/300x50.png");
 }
 
+html{
+
+	margin:0;
+	padding:0;
+
+}
+
 /*ヘッダーCSS*/
 
-.list{
+ul{
+
+	margin-top:33px;
+
+}
+
+li{
 
 
 	list-style-type:none;
 	display:inline;
+	font-size:18px;
 
 }
+
+
+.list1{
+
+	margin-left:50px;
+	margin-right:70px;
+
+}
+
+.list2{
+
+	margin-right:140px;
+
+}
+
 
 .box{
 
@@ -35,11 +64,65 @@
 }
 
 
+li a{
+
+	text-decoration:none;
+}
+
+
+a:link{
+
+	color:#5D99FF;
+
+}
+
+a:visited{
+
+	color:#5D99FF;
+
+}
+
+a:hover{
+
+ 	text-decoration:underline;
+
+}
+
+
+
+/*フッターCSS*/
+
+.footer{
+
+
+	display:flex;
+	margin-top:30px;
+
+
+
+}
+
+.copyright{
+
+	margin-left:30px;
+
+}
+
+.footerLogo{
+
+	margin-left:480px;
+
+}
+
+
+
 /*マイページのCSS*/
 .whole{
 
 		display:flex;
 }
+
+
 
 
 
