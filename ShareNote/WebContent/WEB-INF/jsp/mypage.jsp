@@ -16,28 +16,41 @@
 <div class="menu">
 <!-- サイドメニュー -->
 <h2>${nickname}さんのマイページ</h2>
-<form method="GET" action="/ShareNote/Note_upload">
+<form method="GET" action="/ShareNote/Note_upload" name="inform1">
 	<table>
 	<tr>
-		<td align="center"><input type="submit" name="page_switch" value="ノートのアップロード"></td>
+		<td align="center">
+			<input type="image" src="images/button1.png" width="328" height="80"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
+			<input type="hidden"  name="para" value="">
+		</td>
 	</tr>
 </form>
 
-<form method="GET" action="/ShareNote/Mynote_list">
+<form method="GET" action="/ShareNote/Mynote_list" name="inform2">
 	<tr>
-		<td align="center"><input type="submit" name="page_switch" value="マイノート一覧"></td>
+		<td align="center">
+		<input type="image" src="images/button2.png" width="328" height="80" name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
+		<input type="hidden"  name="para" value="">
+		</td>
 	</tr>
 </form>
 
-<form method="GET" action="/ShareNote/Favorites_list">
+<form method="GET" action="/ShareNote/Favorites_list" name="inform3">
 	<tr>
-		<td align="center"><input type="submit" name="page_switch" value="お気に入り一覧"></td>
+		<td align="center">
+		<input type="image" src="images/button3.png" width="328" height="80" name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
+		<input type="hidden"  name="para" value="">
+		</td>
 	</tr>
 </form>
-<form method="GET" action="/ShareNote/Logout">
-	<tr></tr>
+
+<form method="GET" action="/ShareNote/Logout" name="inform4">
+
 	<tr>
-		<td align="center"><input type="submit" name="page_switch" value="ログアウト"></td>
+		<td align="center">
+		<input type="image" src="images/button4.png" width="328" height="80" name="page_switch" value="ログアウト" onclick="document.inform4.para.value='ログアウト'">
+		<input type="hidden"  name="para" value="">
+		</td>
 	</tr>
 	</table>
 </form>
