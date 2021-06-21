@@ -10,7 +10,7 @@
 <body>
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 ${msg}
-<h2>ログイン</h2>
+<h2 align="center">ログイン</h2>
 <form method="POST" action="/ShareNote/Login">
 	<table align="center">
 		<tr>

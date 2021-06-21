@@ -10,7 +10,7 @@
 <body>
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 ${msg}
-<h2>パスワードの再設定</h2>
+<h2 align="center">パスワードの再設定</h2>
 <form method="POST" action="/ShareNote/Re_regist">
 	<table align="center">
 		<tr>

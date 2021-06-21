@@ -10,7 +10,7 @@
 <body>
 ${errMsg6}
 
-<h2>ユーザー登録</h2>
+<h2 align="center">ユーザー登録</h2>
 <form method="POST" action="/ShareNote/New_regist" id='form' name="inform">
 	<table align="center">
 	    <tr>
@@ -30,7 +30,7 @@ ${errMsg6}
 		</tr>
 		<tr>
 			<th>秘密の質問</th>
-			<td>
+			<td>style="text-align:center;"
 				<select name="question">
 					<option value="好きな食べ物は？">好きな食べ物は？</option>
 					<option value="初めて飼ったペットの名前は？">初めて飼ったペットの名前は？</option>
