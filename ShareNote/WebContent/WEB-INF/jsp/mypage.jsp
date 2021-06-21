@@ -7,10 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>mynote++</title>
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+<div class="whole">
 
+<div class="menu">
 <!-- サイドメニュー -->
 <h2>${nickname}さんのマイページ</h2>
 <form method="GET" action="/ShareNote/Note_upload">
@@ -38,8 +41,11 @@
 	</tr>
 	</table>
 </form>
-
+</div>
 <!-- マイページ初期状態 -->
+
+
+<div class="information">
 <%if(request.getAttribute("isInitial").equals("yes")) { %>
 	<p>最近アップロードしたノート</p>
 	<p>${uploadMsg}</p>
@@ -111,7 +117,8 @@
 		<jsp:include page="/WEB-INF/jsp/favorites_list.jsp"/>
 	<%} %>
 <%} %>
-
+</div>
+</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 </html>
