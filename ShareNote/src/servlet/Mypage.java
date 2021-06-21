@@ -44,7 +44,6 @@ public class Mypage extends HttpServlet {
 
 		String uploadMsg = null;
 
-
 		// latestUploadNoteListが空の場合、メッセージも追加してListを持って帰る
 		if(latestUploadNoteList.size() == 0) {
 			uploadMsg = "登録されているノートはありません。";

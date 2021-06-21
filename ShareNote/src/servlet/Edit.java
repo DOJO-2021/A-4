@@ -56,6 +56,8 @@ public class Edit extends HttpServlet {
 
 		//マイページで編集ボタンが押されたとき
 		if(edit.equals("編集")) {
+			request.setAttribute("image_files",image_files);
+			request.setAttribute("text_files", text_files);
 			this.doGet(request, response);
 		}
 
@@ -84,18 +86,28 @@ public class Edit extends HttpServlet {
 			//編集ボタンが押されたとき
 			else if(edit.equals("編集を完了")) {
 				Part image_part = request.getPart("image_files");
-				image_files = this.getFileName(image_part);
+				image_files = this.getFileName(image_part);      //編集後の画像ファイル
 				Part text_part = request.getPart("text_files");
-				text_files =this.getFileName(text_part);
+				text_files =this.getFileName(text_part);         //編集後のテキストファイル
 				String[] arrayTag = request.getParameterValues("tag");
 				String nullTag = request.getParameter("tag");
-				System.out.println(request.getParameter("pre_image_files"));
-				System.out.println(image_files);
-				System.out.println(request.getParameter("pre_text_files"));
-				System.out.println(text_files);
+				String pre_image_files = request.getParameter("pre_image_files");//編集前の画像ファイル
+				String pre_text_files = request.getParameter("pre_text_files");  //編集前のテキストファイル
+				System.out.println(pre_text_files);
 
-				//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
-				if(title.equals("") || nullTag == null || (image_files.equals("")&&text_files.equals(""))) {
+				//必須項目が空欄のときのエラー処理
+				//編集前後の画像ファイル・テキストファイルすべてが空欄だったら何もせず帰ってもらう
+				if(image_files.equals("")&&text_files.equals("")&&pre_image_files.equals("")&&pre_text_files.equals("")) {
+					String errMsg = "未入力の項目があります";
+					request.setAttribute("errMsg", errMsg);
+					this.doGet(request, response);
+				}
+				//タイトルかタグが空欄だったら編集前のファイルを持って帰ってもらう
+				else if(title.equals("") || nullTag == null) {
+					image_files = pre_image_files;
+					text_files = pre_text_files;
+					request.setAttribute("image_files", image_files);
+					request.setAttribute("text_files", text_files);
 					String errMsg = "未入力の項目があります";
 					request.setAttribute("errMsg", errMsg);
 					this.doGet(request, response);
@@ -113,26 +125,37 @@ public class Edit extends HttpServlet {
 		        	tag += values + " ";
 		        }
 
+	        //ファイルの処理
 		        //乱数生成(同名ファイル対策)
 		        Random rand = new Random();
 		        Long num = rand.nextLong();
 
-		        //画像ファイルを、乱数を付加してローカルに保存
-		        if(!(image_files.equals(""))) {
+		        //編集後の画像ファイルが空欄だったら、編集前の画像ファイルをDBに送る
+		        if(image_files.equals("")) {
+		        	image_files = pre_image_files;
+		        } else {
+			        //画像ファイルを、乱数を付加してローカルに保存してパス追加
 					image_files = num + image_files;
 					image_part.write(image_files);
+					image_files = "/ShareNote/upload_files/" + image_files;
 		        }
-
-		        //テキストファイルを、乱数を付加してローカルに保存
-		        if(!(text_files.equals(""))) {
+				//編集後のテキストファイルが空欄だったら、編集前のテキストファイルをDBに送る
+		        if(text_files.equals("")) {
+		        	text_files = pre_text_files;
+		        } else {
+			        //テキストファイルを、乱数を付加してローカルに保存パス追加
 					text_files = num + text_files;
 					text_part.write(text_files);
+					text_files = "/ShareNote/upload_files/" + text_files;
 		        }
+	        //ファイルの処理ここまで
 
 		        //DB更新をdaoにお任せ
 				NoteDao nDao = new NoteDao();
-				//成功したら、編集画面にリダイレクト
+				//成功したら、編集画面にフォワード
 				if(nDao.updateNote(note_id, image_files, text_files,year, title, public_select, tag)) {
+					request.setAttribute("image_files", image_files);
+					request.setAttribute("text_files", text_files);
 					String msg = "編集が完了しました";
 					request.setAttribute("msg", msg);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/edit.jsp");
