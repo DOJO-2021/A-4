@@ -2,6 +2,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.FavoritesDao;
+import model.Favorites;
 
 @WebServlet("/Note_detail")
 public class Note_detail extends HttpServlet {
@@ -22,14 +26,42 @@ public class Note_detail extends HttpServlet {
 			response.sendRedirect("/ShareNote/Login");
 			return;
 				}
-		// ノート詳細ページにフォワードする
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");
-		dispatcher.forward(request, response);
+//	    // 詳細を表示しているノートと同じタグの「こちらもおすすめ」ノートを検索する
+//	    FavoritesDao fDao = new FavoritesDao();
+//	    String tag =
+//
+//	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
+//	    List<Favorites> favoritesList = new ArrayList<Favorites>();
+//	    favoritesList = fDao.selectLatestUpload(tag);
+//	    request.setAttribute("RecommendedList", favoritesList);
+//
+//		// ノート詳細ページにフォワードする
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");
+//		dispatcher.forward(request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
+		// もしもログインしていなかったらログインサーブレットにリダイレクトする
+		HttpSession session = request.getSession();
+	    if (session.getAttribute("user") == null) {
+	    	response.sendRedirect("/ShareNote/Login");
+			return;
+		}
+
+		// 詳細を表示しているノートと同じタグの「こちらもおすすめ」ノートを検索する
+	    FavoritesDao fDao = new FavoritesDao();
+	    request.setCharacterEncoding("UTF-8");
+	    String tag = request.getParameter("tag");
+
+	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
+	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
+	    request.setAttribute("RecommendedList", favoritesList);
+
+	 // ノート詳細ページにフォワードする
+	 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");
+	 	dispatcher.forward(request, response);
+
 	}
 
 }
