@@ -26,7 +26,7 @@
 		<td>${param.tag}タグ</td>
 </form>
 
-		<td><input type="image" id="gazo" name="favorite" onclick="changeIMG()" src="/ShareNote/images/0.png" alt=""></td>
+		<td><input type="image" id="gazo" name="favorite" onclick="valueChange(event)" src="/ShareNote/images/0.png" alt=""></td>
 		<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 		<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
@@ -88,7 +88,7 @@
 
 </body>
 <script>
-
+<!--
 //画像を配列に格納する
 var img = new Array();
 
@@ -104,16 +104,50 @@ var cnt = 0;
 
 //画像切り替え関数
 function changeIMG(){
-  //画像番号を進める
-  if (cnt == 1) {
+//画像番号を進める
+if (cnt == 1) {
 	  cnt = 0;
-  }
-  else if (cnt == 0) {
-	  cnt = 1;
-  }
-  //画像を切り替える
-  document.getElementById("gazo").src=img[cnt].src;
 }
+else if (cnt == 0) {
+	  cnt = 1;
+}
+//画像を切り替える
+document.getElementById("gazo").src=img[cnt].src;
+}
+-->
+//ajax
+function valueChange(event) {
+	var img = new Array();
+
+	img[0] = new Image();
+	img[0].src = "/ShareNote/images/0.png";
+	img[1] = new Image();
+	img[1].src = "/ShareNote/images/1.png";
+
+
+	//画像番号用のグローバル変数
+	var cnt = 0;
+
+	  //画像番号を進める
+	  if (cnt == 1) {
+		  cnt = 0;
+	  }
+	  else if (cnt == 0) {
+		  cnt = 1;
+	  }
+	  //画像を切り替える
+	  document.getElementById("gazo").src=img[cnt].src;
+	  $.ajax({
+			type:'post',
+			url: '/ShareNote/Favorites_button',
+			data: {	str: 1}
+		});
+		alert("bbb");
+}
+
+	let gazo = document.getElementById('gazo');
+	gazo.addEventListener('change', valueChange);
+<!--	let msg = document.getElementById('msg');-->
 
 </script>
 </html>
