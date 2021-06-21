@@ -98,6 +98,8 @@ public class FavoritesDao {
 			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id "
 					+ "from (( note as n left join user as u on n.note_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) "
 					+ "where tag = ? and public_select=1 order by favorites_num asc limit 3";
+			System.out.println(sql+"←sql文");
+			System.out.println(tag+"←タグ");
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, tag);
 
@@ -119,6 +121,7 @@ public class FavoritesDao {
 				favorites.setTag(rs.getString("tag"));
 				favoritesList.add(favorites);
 			}
+			System.out.println(favoritesList.size()+"←取ってきたリストの要素数だよ");
 		}
 
 		//例外

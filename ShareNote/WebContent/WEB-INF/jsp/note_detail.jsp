@@ -47,6 +47,7 @@
 <hr>
 <h3>こちらもおすすめ</h3>
 <!-- 試しにforの外に書いてみる -->
+<!--
 	<form method="POST" action="/ShareNote/Note_detail">
 		<table align="center" border="1">
 		<tr>
@@ -60,22 +61,31 @@
 		</tr>
 		</table>
 	</form>
+-->
 	<!-- 試しにforの外に書いてみる -->
 
-<c:forEach var="e" items="${cardList}">
-	<form method="POST" action="/ShareNote/Note_detail">
-		<table width="10px">
+<c:forEach var="e" items="${RecommendedList}">
+	<table border="1">
+		<form method="POST" action="/ShareNote/Note_detail">
+
 		<tr>
-			<td rowspan="2">${e.note_files}ノート画像</td>
+			<td rowspan="3">${e.image_files}</td>
+			<td>${e.year}年度</td>
+			<td align="center" colspan="2">${e.nickname}</td>
+			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
+		</tr>
+
+		<tr>
 			<td>${e.title}</td>
-			<td><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 		<tr>
 			<td>${e.tag}</td>
-			<td><input type="submit" name="download" value="ダウンロード"></td>
+			<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
+				<c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+			</c:choose>
 		</tr>
-		</table>
-	</form>
+		</form>
+	</table>
 </c:forEach>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 
