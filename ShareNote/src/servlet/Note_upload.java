@@ -104,6 +104,10 @@ public class Note_upload extends HttpServlet {
 	        //場所はクラス名の上(25行目)に指定してある
 			image_part.write(image_files);
         }
+        //空欄だったらnoImageを設定
+        else {
+        	image_files = "noImage.jpg";
+        }
 
         //テキストファイルを、乱数を付加してローカルに保存
         if(!(text_files.equals(""))) {
@@ -115,8 +119,8 @@ public class Note_upload extends HttpServlet {
 		NoteDao nDao = new NoteDao();
 		//成功したら、マイページにリダイレクト
 		if(nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag)) {
-			String msg = "ノートをアップロードしました";
-			request.setAttribute("msg", msg);
+			String uploadMsg = "ノートをアップロードしました";
+			request.setAttribute("msg", uploadMsg);
 			response.sendRedirect("/ShareNote/Mypage");
 		}
 		//失敗したら、エラーメッセージを持って帰ってもらう

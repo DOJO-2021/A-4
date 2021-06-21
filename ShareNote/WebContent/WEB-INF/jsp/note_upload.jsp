@@ -24,7 +24,7 @@
 	<tr>
 		<td rowspan="5"><canvas id="preview" style="max-width:200px;"></canvas></td>
 
-		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title"></td>
+		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title" maxlength="50"></td>
 	</tr>
 	<tr>
 	</tr>

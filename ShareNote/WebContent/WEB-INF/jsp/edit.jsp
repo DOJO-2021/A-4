@@ -11,6 +11,53 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
+<!-- タグのチェックボックスのための処理 -->
+<!-- 各タグの名前で、初期値0の変数を用意 -->
+<c:set var="HTML" value="0"/>
+<c:set var="CSS" value="0"/>
+<c:set var="JavaScript" value="0"/>
+<c:set var="Java" value="0"/>
+<c:set var="SQL" value="0"/>
+<c:set var="jsp" value="0"/>
+<c:set var="Servlet" value="0"/>
+<c:set var="DAO" value="0"/>
+<c:set var="jQuery" value="0"/>
+<c:set var="その他" value="0"/>
+
+<!-- タグの配列を回し、一致したら上の変数を1に上書き -->
+<c:forEach var="tag" items="${tags}">
+	<c:if test="${tag == 'HTML'}">
+		<c:set var="HTML" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'CSS'}">
+		<c:set var="CSS" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'JavaScript'}">
+		<c:set var="JavaScript" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'Java'}">
+		<c:set var="Java" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'SQL'}">
+		<c:set var="SQL" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'jsp'}">
+		<c:set var="jsp" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'Servlet'}">
+		<c:set var="Servlet" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'DAO'}">
+		<c:set var="DAO" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'jQuery'}">
+		<c:set var="jQuery" value="1"/>
+	</c:if>
+	<c:if test="${tag == 'その他'}">
+		<c:set var="その他" value="1"/>
+	</c:if>
+</c:forEach>
+
 <form method="POST" name="form" action="/ShareNote/Edit" enctype="multipart/form-data">
 <p>ノートの編集 ${msg} ${dbErrMsg} ${errMsg}</p>
 	<input type="hidden" name="note_id" value="${param.note_id}">
@@ -25,30 +72,39 @@
 	<tr>
 		<td rowspan="5" valign="middle">編集前<img src="${image_files}" width="200em" height="200em">編集後<canvas id="preview" style="max-width:300px;"></canvas></td>
 		<td colspan="1">${param.year}</td>
-		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
+		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}" maxlength="50"></td>
 	</tr>
 	<tr>
 	</tr>
 	<tr>
 		<td colspan="4">3.タグの変更</td>
 	</tr>
-   	<tr>
-		<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()" <c:if test="${param.tag == 'HTML'}">checked</c:if>>HTML</label></td>
-		<td><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()"<c:if test="${param.tag == 'CSS'}">checked</c:if>>CSS</label></td>
-		<td><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()" <c:if test="${param.tag == 'JavaScript'}">checked</c:if>>JavaScript</label></td>
-		<td><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()" <c:if test="${param.tag == 'Java'}">checked</c:if>>Java</label></td>
+	<tr>
+		<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()"
+			<c:if test="${HTML == '1'}">checked</c:if>>HTML</label></td>
+		<td><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()"
+			<c:if test="${CSS == '1'}">checked</c:if>>CSS</label></td>
+		<td><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()"
+			<c:if test="${JavaScript == '1'}">checked</c:if>>JavaScript</label></td>
+		<td><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()"
+			<c:if test="${Java == '1'}">checked</c:if>>Java</label></td>
 	</tr>
 	<tr>
-		<td><label><input type="checkbox" name="tag" value="SQL" onClick="DisChecked()" <c:if test="${param.tag == 'SQL'}">checked</c:if>>SQL</label></td>
-		<td><label><input type="checkbox" name="tag" value="jsp" onClick="DisChecked()" <c:if test="${param.tag == 'JSP'}">checked</c:if>>jsp</label></td>
-		<td><label><input type="checkbox" name="tag" value="Servlet" onClick="DisChecked()"<c:if test="${param.tag == 'Servlet'}">checked</c:if>> Servlet</label></td>
-		<td><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"<c:if test="${param.tag == 'DAO'}">checked</c:if>>DAO</label></td>
+		<td><label><input type="checkbox" name="tag" value="SQL" onClick="DisChecked()"
+			<c:if test="${SQL == '1'}">checked</c:if>>SQL</label></td>
+		<td><label><input type="checkbox" name="tag" value="jsp" onClick="DisChecked()"
+			<c:if test="${jsp == '1'}">checked</c:if>>jsp</label></td>
+		<td><label><input type="checkbox" name="tag" value="Servlet" onClick="DisChecked()"
+			<c:if test="${Servlet == '1'}">checked</c:if>>Servlet</label></td>
+		<td><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"
+			<c:if test="${DAO == '1'}">checked</c:if>>DAO</label></td>
 	</tr>
-
 	<tr>
 		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${image_files}</td>
-		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</label></td>
-		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
+		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()"
+			<c:if test="${jQuery == '1'}">checked</c:if>>jQuery</label></td>
+		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()"
+			<c:if test="${その他 == '1'}">checked</c:if>>その他</label></td>
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
@@ -66,9 +122,7 @@
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
 		<input type="hidden" name="pre_image_files" value="${image_files}">
 		<input type="hidden" name="pre_text_files" value="${text_files}">
-
 </form>
-
 </body>
 <script>
 	 // 「全て選択」チェックで全てにチェック付く

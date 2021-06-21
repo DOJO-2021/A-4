@@ -53,9 +53,12 @@ public class Edit extends HttpServlet {
 		int public_select = Integer.parseInt(request.getParameter("public_select"));
 		String edit = request.getParameter("edit");
 
-
 		//マイページで編集ボタンが押されたとき
 		if(edit.equals("編集")) {
+			String tag = request.getParameter("tag");
+			String[] tags = tag.split(" "); //タグを分割して配列に格納
+			int tagLen = tags.length;
+			request.setAttribute("tags", tags);
 			request.setAttribute("image_files",image_files);
 			request.setAttribute("text_files", text_files);
 			this.doGet(request, response);
