@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 
 <form method="POST" name="form" action="/ShareNote/Edit" enctype="multipart/form-data">
-<p>ノートの編集 ${msg} ${dbErrMsg}</p>
+<p>ノートの編集 ${msg} ${dbErrMsg} ${errMsg}</p>
 	<input type="hidden" name="note_id" value="${param.note_id}">
 	<table border="1">
 	<tr>
@@ -23,7 +23,7 @@
 		<td colspan="1">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td rowspan="5"><img src="${param.image_files}" width="300em" height="300em"><canvas id="preview" style="max-width:200px;"></canvas></td>
+		<td rowspan="5" valign="middle">編集前<img src="${image_files}" width="200em" height="200em">編集後<canvas id="preview" style="max-width:300px;"></canvas></td>
 		<td colspan="1">${param.year}</td>
 		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}"></td>
 	</tr>
@@ -46,26 +46,26 @@
 	</tr>
 
 	<tr>
-		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${param.image_files}</td>
+		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${image_files}</td>
 		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()" <c:if test="${param.tag == ''}">checked</c:if>>jQuery</label></td>
 		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()">その他</label></td>
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
 		<td>テキストファイル（.docx、.txt）はこちら</td>
-		<td>4.公開設定の変更</td>
+		<td colspan="4">4.公開設定の変更</td>
 	</tr>
 	<tr>
-		<td><input type="file" name="text_files" accept=" .docx, .txt">${param.text_files}</td>
-		<td><label><input type="radio" name="public_select" value="1"<c:if test="${param.public_select == 1}">checked</c:if>> 公開</label>
+		<td><input type="file" name="text_files" accept=" .docx, .txt">${text_files}</td>
+		<td colspan="4"><label><input type="radio" name="public_select" value="1"<c:if test="${param.public_select == 1}">checked</c:if>> 公開</label>
 		<label><input type="radio" name="public_select" value="0"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</label></td>
 	</tr>
 	</table>
 		<input type="submit" name="edit" value="ノート削除" onclick="return onDelete()">
 		<input type="submit" name="edit" value="編集を完了">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
-		<input type="hidden" name="pre_image_files" value="${param.image_files}">
-		<input type="hidden" name="pre_text_files" value="${param.image_files}">
+		<input type="hidden" name="pre_image_files" value="${image_files}">
+		<input type="hidden" name="pre_text_files" value="${text_files}">
 
 </form>
 
