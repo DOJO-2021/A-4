@@ -26,18 +26,6 @@ public class Note_detail extends HttpServlet {
 			response.sendRedirect("/ShareNote/Login");
 			return;
 				}
-//	    // 詳細を表示しているノートと同じタグの「こちらもおすすめ」ノートを検索する
-//	    FavoritesDao fDao = new FavoritesDao();
-//	    String tag =
-//
-//	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
-//	    List<Favorites> favoritesList = new ArrayList<Favorites>();
-//	    favoritesList = fDao.selectLatestUpload(tag);
-//	    request.setAttribute("RecommendedList", favoritesList);
-//
-//		// ノート詳細ページにフォワードする
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");
-//		dispatcher.forward(request, response);
 
 	}
 
@@ -53,6 +41,9 @@ public class Note_detail extends HttpServlet {
 	    FavoritesDao fDao = new FavoritesDao();
 	    request.setCharacterEncoding("UTF-8");
 	    String tag = request.getParameter("tag");
+	    String nickname = request.getParameter("nickname");
+
+	    System.out.println(nickname);
 
 	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
 	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
