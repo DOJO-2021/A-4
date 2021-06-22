@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>mynote++</title>
 </head>
+
 <body>
 
 <p>マイノート一覧  ${msg}</p>
