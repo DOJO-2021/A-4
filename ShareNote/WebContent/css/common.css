@@ -28,12 +28,21 @@ body{
 	background-color:#f8f8ff
 }
 
+.errMsg{
+	color:red;
+}
+
 
 
 /*ヘッダーCSS*/
 
+.logo{
+	margin-top:10px;
+	margin-left:40px;
+}
+
 ul{
-	margin-top:33px;
+	margin-top:40px;
 }
 
 li{
@@ -88,13 +97,67 @@ a:hover{
 	margin-left:480px;
 }
 
+/*ログイン画面CSS*/
+
+/*新規登録画面CSS*/
+
+/*PW再設定画面CSS*/
 
 
 /*マイページのCSS*/
 
+
 .whole{
 	display:flex;
+
 }
+
+h2{
+	margin-top:70px;
+	margin-left:80px;
+
+}
+
+.subfavorite{
+	margin-top:70px;
+}
+
+.title2{
+	font-size:21px;
+	margin-bottom:40px;
+}
+
+.image2,.image3,.image4{
+	width:328px;
+	height:80px;
+}
+
+.information{
+	margin-top:20px;
+	margin-left:110px;
+}
+
+
+
+/*ノートアップロードボタン*/
+
+.image1{
+	margin-top:20px;
+	margin-left:23px;
+}
+
+/*お気に入り一覧ボタン*/
+
+.image3{
+	margin-left:3px;
+}
+
+/*ログアウトボタン*/
+.image4{
+	margin-top:70px;
+	margin-right:9px;
+}
+
 
 
 
@@ -102,7 +165,7 @@ a:hover{
 /*情報 = infomation、ということでノート情報については「inf-○○」でクラス名つけてます*/
 
 .notes{
-	margin-left:60px;
+	/*margin-left:60px;*/
 	margin-top:20px;
 	background-color:white;
 	border-collapse:collapse;

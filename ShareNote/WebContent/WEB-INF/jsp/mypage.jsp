@@ -20,8 +20,10 @@
 	<table>
 	<tr>
 		<td align="center">
-			<input type="image" src="images/button1.png" height="60"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
+			<div class="image1">
+			<input type="image" src="images/button1.png"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
 			<input type="hidden"  name="para" value="">
+			</div>
 		</td>
 	</tr>
 </form>
@@ -29,8 +31,10 @@
 <form method="GET" action="/ShareNote/Mynote_list" name="inform2">
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button2.png"  height="60" name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
+		<div class="image2">
+		<input type="image" src="images/button2.png"   name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
 		<input type="hidden"  name="para" value="">
+		</div>
 		</td>
 	</tr>
 </form>
@@ -38,18 +42,22 @@
 <form method="GET" action="/ShareNote/Favorites_list" name="inform3">
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button3.png" height="60" name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
+		<div class="image3">
+		<input type="image" src="images/button3.png"  name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
 		<input type="hidden"  name="para" value="">
 		</td>
+		</div>
 	</tr>
 </form>
 
 <form method="GET" action="/ShareNote/Logout" name="inform4">
 	<tr>
 		<td align="center">
-		<input type="image" src="images/button4.png" height="60" name="page_switch" value="ログアウト" onclick="document.inform4.para.value='ログアウト'">
+		<div class="image4">
+		<input type="image" src="images/button4.png"  name="page_switch" value="ログアウト" onclick="document.inform4.para.value='ログアウト'">
 		<input type="hidden"  name="para" value="">
 		</td>
+		</div>
 	</tr>
 	</table>
 </form>
@@ -59,7 +67,9 @@
 
 <div class="information">
 <%if(request.getAttribute("isInitial").equals("yes")) { %>
+	<div class="title2">
 	<p>最近アップロードしたノート</p>
+	</div>
 	<p>${uploadMsg}</p>
 	<c:forEach var="e" items="${latestUploadNoteList}">
 		<table border="1" class="notes">
@@ -88,7 +98,11 @@
 		<br>
 	</c:forEach>
 
-	<p>最近お気に入りしたノート</p>
+<div class="subfavorite">
+<div class="title2">
+<p>最近お気に入りしたノート</p>
+</div>
+</div>
 	<p>${favoritesMsg}</p>
 	<c:forEach var="e" items="${latestFavoritesList}" >
 		<table border="1" class="notes">
