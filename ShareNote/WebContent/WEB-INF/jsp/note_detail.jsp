@@ -68,6 +68,7 @@
 			<td rowspan="3">${e.image_files}</td>
 			<td>${e.year}年度</td>
 			<td align="center" colspan="2">${e.nickname}</td>
+			<input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 
@@ -108,11 +109,11 @@ function valueChange(event){
 	  }
 	  //画像を切り替える
 	  document.getElementById("gazo").src=pics_src[cnt];
-
+	  let note_id = document.getElementById("note_id");
 	$.ajax({
 		type:'post',
 		url: '/ShareNote/Favorites_button',
-		data: {	str: 1}
+		data: {note_id : note_id}
 	});
 
 }
