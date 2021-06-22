@@ -71,7 +71,7 @@
 					<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 				</tr>
 				<tr>
-					<td class="fav-num">${favorites_num}</td>
+					<td class="fav-num">お気に入り数${e.favorites_num}</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
@@ -94,13 +94,13 @@
 		<table border="1" class="notes">
 			<form method="POST" action="/ShareNote/Note_detail">
 				<tr>
-					<td rowspan="3" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files} "></td>
-					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year} "></td>
+					<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year}"></td>
 					<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
 					<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 				</tr>
 				<tr>
-					<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
+					<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
