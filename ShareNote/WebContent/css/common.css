@@ -25,7 +25,7 @@ html{
 }
 
 body{
-	background-color:#fffafa
+	background-color:#f8f8ff
 }
 
 
@@ -137,6 +137,11 @@ a:hover{
 .fav-num{
 	height:1em;
 		background-color:#b0c4de;
+}
+
+/*お気に入り数表示欄の★を黄色にするためだけのやつ*/
+.fav{
+	color:yellow;
 }
 
 

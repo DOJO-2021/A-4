@@ -71,10 +71,10 @@
 					<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 				</tr>
 				<tr>
-					<td class="fav-num">お気に入り数${e.favorites_num}</td>
+					<td class="fav-num"><span class="fav">★</span>${e.favorites_num}</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+					<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 					<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 					<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 							  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
@@ -103,7 +103,7 @@
 					<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+					<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 					<!-- <td><input type="submit" name="download" value="ダウンロード"></td> -->
 					<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					 	 <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
