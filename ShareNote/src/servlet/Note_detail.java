@@ -40,7 +40,7 @@ public class Note_detail extends HttpServlet {
 		// 詳細を表示しているノートと同じタグの「こちらもおすすめ」ノートを検索する
 	    FavoritesDao fDao = new FavoritesDao();
 	    request.setCharacterEncoding("UTF-8");
-	    String tag = request.getParameter("tag");
+	    String tag = request.getParameter("tag").trim();
 
 
 
