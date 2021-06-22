@@ -24,6 +24,7 @@ import dao.NoteDao;
 
 public class Edit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -69,13 +70,12 @@ public class Edit extends HttpServlet {
 			if(edit.equals("ノート削除")) {
 				//DB削除をDAOにお任せ
 				NoteDao nDao = new NoteDao();
-				//成功したら、マイページにリダイレクト
+				//成功したら、マイノート一覧にフォワード
 				if(nDao.deleteNote(note_id)) {
 					String msg = "削除が完了しました";
 					request.setAttribute("msg", msg);
-					String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数
-					request.setAttribute("isInitial", isInitial);
-					response.sendRedirect("/ShareNote/Mypage");
+					RequestDispatcher dispatcher = request.getRequestDispatcher("Mynote_list");
+					dispatcher.forward(request, response);
 				}
 				//失敗したら、エラーメッセージを持って帰ってもらう
 				else {

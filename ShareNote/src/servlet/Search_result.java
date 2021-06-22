@@ -52,6 +52,8 @@ public class Search_result extends HttpServlet {
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
 		List<Note> noteList;
+		List<Note> hitList =nDao.searchHit(nickname, title, tag);
+
 		try {
 			// タグ検索が完全一致だった場合
 
@@ -69,6 +71,7 @@ public class Search_result extends HttpServlet {
 		}
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
+		request.setAttribute("hitList",hitList);
 		//検索結果ページにフォワード
 
 
@@ -112,23 +115,28 @@ public class Search_result extends HttpServlet {
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();
 				List<Note> noteList = nDao.search( nickname,  title,  tag ,order);
+				List<Note> hitList =nDao.searchHit(nickname, title, tag);
 				try {
 					// タグ検索が完全一致だった場合
 
 					if (matching.equals("matching")) {
 						noteList = nDao.searchMatching(nickname, title, tag ,order);
+						hitList=nDao.searchHitMatching(nickname, title, tag);
 
 				// タグ検索が完全一致ではなかった場合
 						} else {
 							System.out.print(request.getParameter("matching"));
 							noteList = nDao.search(nickname, title, tag ,order);
+							hitList=nDao.searchHit(nickname, title, tag);
 						}
 				}
 				catch(NullPointerException e){
 					noteList = nDao.search(nickname, title, tag ,order);
+					hitList=nDao.searchHit(nickname, title, tag);
 				}
 				// 検索結果をリクエストスコープに格納する
 				request.setAttribute("noteList", noteList);
+				request.setAttribute("hitList",hitList);
 		//検索結果ページにフォワード
 
 

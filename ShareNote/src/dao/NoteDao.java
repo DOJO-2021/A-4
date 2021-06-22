@@ -329,6 +329,7 @@ public class NoteDao {
 	public List<Note> search(String nickname, String title, String tag, String order) {
 			Connection conn = null;
 			List<Note> noteList = new ArrayList<Note>();
+			int noteCount;
 
 			try {
 				// JDBCドライバを読み込む
@@ -366,6 +367,8 @@ public class NoteDao {
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
 
+
+
 				// 結果表をコレクションにコピーする
 				while (rs.next()) {
 							Note note = new Note();
@@ -379,6 +382,7 @@ public class NoteDao {
 							note.setPublic_select(rs.getInt("public_select"));
 							note.setFavorites_num(rs.getInt("favorites_num"));
 							note.setTag(rs.getString("tag"));
+
 							noteList.add(note);
 				}
 			}
@@ -479,8 +483,142 @@ public class NoteDao {
 
 			// 結果を返す
 			return noteList;
+	}
+	//検索件数表示
+	public List<Note> searchHit(String nickname, String title, String tag) {
+		Connection conn = null;
+		List<Note> hitList = new ArrayList<Note>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag like ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			if (tag != null) {
+				pStmt.setString(1, "%"+tag+"%");
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			if (nickname != "") {
+				pStmt.setString(2, "%" + nickname + "%");
+			}
+			else {
+				pStmt.setString(2, "%");
+			}
+			if (title != "") {
+				pStmt.setString(3, "%" +title + "%");
+			}
+			else {
+				pStmt.setString(3, "%");
+			}
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				Note note = new Note();
+				 note.setNoteCount(rs.getInt("count"));
+				hitList.add(note);
+			}
+
+
+
 		}
-	//検索内容にあった検索をする  何も選択されていないとき
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+
+
+		return hitList;
+	}
+	public List<Note> searchHitMatching(String nickname, String title, String tag) {
+		Connection conn = null;
+		List<Note> hitList = new ArrayList<Note>();
+
+		try {
+			// JDBCドライバを読み込む
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag = ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			if (tag != null) {
+				pStmt.setString(1, tag);
+			}
+			else {
+				pStmt.setString(1, "%");
+			}
+			if (nickname != "") {
+				pStmt.setString(2, "%" + nickname + "%");
+			}
+			else {
+				pStmt.setString(2, "%");
+			}
+			if (title != "") {
+				pStmt.setString(3, "%" +title + "%");
+			}
+			else {
+				pStmt.setString(3, "%");
+			}
+
+
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				Note note = new Note();
+				 note.setNoteCount(rs.getInt("count"));
+				hitList.add(note);
+			}
+
+
+
+		}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+
+
+
+		return hitList;
+	}
 
 
 //ノート詳細

@@ -8,9 +8,10 @@
 <meta charset="UTF-8">
 <title>mynote++</title>
 </head>
+
 <body>
 
-<p>マイノート一覧</p>
+<p>マイノート一覧  ${msg}</p>
 
 <c:forEach var="e" items="${noteList}" >
 	<table border="1" class="notes">
