@@ -69,7 +69,7 @@ public class Note_upload extends HttpServlet {
 		String title = request.getParameter("title");
 		int public_select = Integer.parseInt(request.getParameter("public_select"));
 
-		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+		String[] tags = request.getParameterValues("tag"); //タグは配列で取得
 		String nullTag = request.getParameter("tag"); //タグが空欄かどうか判別するための変数
 
 		//必須項目が空欄だったらエラーメッセージを持って帰ってもらう
@@ -77,57 +77,62 @@ public class Note_upload extends HttpServlet {
 		if(title.equals("") || nullTag == null || (image_files.equals("")&&text_files.equals(""))) {
 			String errMsg = "未入力の項目があります";
 			request.setAttribute("errMsg", errMsg);
+			request.setAttribute("tags", tags);
 			this.doGet(request, response);
+			//これより下は実行してほしくないのでreturnで終わらせる
+			return;
 		}
-
-		//現在時刻から年だけを取得（できれば4月はじまりが良き！今のところ普通の年）
-		Date date = new Date();
-        ZoneId timeZone = ZoneId.systemDefault();
-        LocalDate getLocalDate = date.toInstant().atZone(timeZone).toLocalDate();
-        int year = getLocalDate.getYear();
-
-		//タグをスペース区切りで収納
-        String tag = "";
-        for (String values : arrayTag) {
-        	tag += values + " ";
-        }
-
-        //乱数生成(同名ファイル対策)
-        Random rand = new Random();
-        Long num = rand.nextLong();
-
-        //画像ファイルを、乱数を付加してローカルに保存
-        if(!(image_files.equals(""))) {
-			//パスと乱数付加
-			image_files = num + image_files;
-			//サーバの指定のファイルパスへファイルを保存
-	        //場所はクラス名の上(25行目)に指定してある
-			image_part.write(image_files);
-        }
-        //空欄だったらnoImageを設定
-        else {
-        	image_files = "noImage.jpg";
-        }
-
-        //テキストファイルを、乱数を付加してローカルに保存
-        if(!(text_files.equals(""))) {
-			text_files = num + text_files;
-			text_part.write(text_files);
-        }
-
-        //DB登録をdaoにお任せ
-		NoteDao nDao = new NoteDao();
-		//成功したら、マイページにリダイレクト
-		if(nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag)) {
-			String uploadMsg = "ノートをアップロードしました";
-			request.setAttribute("msg", uploadMsg);
-			response.sendRedirect("/ShareNote/Mypage");
-		}
-		//失敗したら、エラーメッセージを持って帰ってもらう
+		//空欄がないとき
 		else {
-			String dbErrMsg = "ノートのアップロードに失敗しました。";
-			request.setAttribute("dbEerrMsg", dbErrMsg);
-			this.doGet(request, response);
+			//現在時刻から年だけを取得（できれば4月はじまりが良き！今のところ普通の年）
+			Date date = new Date();
+	        ZoneId timeZone = ZoneId.systemDefault();
+	        LocalDate getLocalDate = date.toInstant().atZone(timeZone).toLocalDate();
+	        int year = getLocalDate.getYear();
+
+			//タグをスペース区切りで収納
+	        String tag = "";
+	        for (String values : tags) {
+	        	tag += values + " ";
+	        }
+
+	        //乱数生成(同名ファイル対策)
+	        Random rand = new Random();
+	        Long num = rand.nextLong();
+
+	        //画像ファイルを、乱数を付加してローカルに保存
+	        if(!(image_files.equals(""))) {
+				//パスと乱数付加
+				image_files = num + image_files;
+				//サーバの指定のファイルパスへファイルを保存
+		        //場所はクラス名の上(25行目)に指定してある
+				image_part.write(image_files);
+	        }
+	        //空欄だったらnoImageを設定
+	        else {
+	        	image_files = "noImage.jpg";
+	        }
+
+	        //テキストファイルを、乱数を付加してローカルに保存
+	        if(!(text_files.equals(""))) {
+				text_files = num + text_files;
+				text_part.write(text_files);
+	        }
+
+	        //DB登録をdaoにお任せ
+			NoteDao nDao = new NoteDao();
+			//成功したら、マイページにリダイレクト
+			if(nDao.insertNote(user_id, image_files, text_files, year, title, public_select, tag)) {
+				String uploadMsg = "ノートをアップロードしました";
+				request.setAttribute("uploadMsg", uploadMsg);
+				response.sendRedirect("/ShareNote/Mypage");
+			}
+			//失敗したら、エラーメッセージを持って帰ってもらう
+			else {
+				String dbErrMsg = "ノートのアップロードに失敗しました。";
+				request.setAttribute("dbEerrMsg", dbErrMsg);
+				this.doGet(request, response);
+			}
 		}
 	}
 
