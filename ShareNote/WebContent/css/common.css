@@ -91,12 +91,15 @@ a:hover{
 
 
 /*マイページのCSS*/
+
 .whole{
 	display:flex;
 }
 
 
+
 /*ノート表示（マイノート、お気に入り等々）の共通CSS*/
+/*情報 = infomation、ということでノート情報については「inf-○○」でクラス名つけてます*/
 
 .notes{
 	margin-left:60px;
@@ -104,7 +107,6 @@ a:hover{
 	background-color:white;
 	border-collapse:collapse;
 }
-
 
 .menu{
 	margin-right:40px;
@@ -116,9 +118,11 @@ a:hover{
 	background-color:#b0c4de;
 }
 
+/* nn = nickname */
 .inf-nn{
 	height:1em;
 	width:20em;
+	background-color:#b0c4de;
 }
 
 .inf-title{
@@ -132,4 +136,22 @@ a:hover{
 
 .fav-num{
 	height:1em;
+		background-color:#b0c4de;
 }
+
+
+
+/*ノートアップロード画面のCSS*/
+
+.guide{
+	height:2em;
+	width:30em;
+}
+
+.file-guide{
+	font-size:13px;
+}
+
+
+
+

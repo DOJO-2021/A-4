@@ -13,13 +13,13 @@
 <p>ノートのアップロード ${dbEerrMsg}</p>
 
 	<form method="POST" name="form" action="/ShareNote/Note_upload" enctype="multipart/form-data">
-	<table border="1">
+	<table border="1" class="notes">
 	<tr>
-		<td>1.ファイル登録（いずれか必須）</td>
+		<td class="guide">1.ファイル登録（いずれか必須）</td>
 	</tr>
 	<tr>
-		<td>  画像ファイル（.jpg、.png）はこちら</td>
-		<td colspan="4">2.タイトルの記入（必須）</td>
+		<td class="file-guide">  画像ファイル（.jpg、.png）はこちら</td>
+		<td colspan="4" class="guide">2.タイトルの記入（必須）</td>
 	</tr>
 	<tr>
 		<td rowspan="5"><canvas id="preview" style="max-width:200px;"></canvas></td>
@@ -29,10 +29,10 @@
 	<tr>
 	</tr>
 	<tr>
-		<td colspan="4">3.タグの選択（必須）</td>
+		<td colspan="4" class="guide">3.タグの選択（必須）</td>
 	</tr>
    	<tr>
-		<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()">HTML</label></td>
+		<td class=""><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()">HTML</label></td>
 		<td><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()">CSS</label></td>
 		<td><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()">JavaScript</label></td>
 		<td><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()">Java</label></td>
@@ -51,8 +51,8 @@
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
-		<td>テキストファイル（.docx、.txt）はこちら</td>
-		<td>4.公開設定</td>
+		<td class="file-guide">テキストファイル（.docx、.txt）はこちら</td>
+		<td class="guide">4.公開設定</td>
 	</tr>
 	<tr>
 		<td><input type="file" name="text_files" accept=" .docx, .txt"></td>
