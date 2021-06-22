@@ -52,15 +52,18 @@
 			</tr>
 	</table>
 </form>
+<!--
 <form action ="POST"  >
 	<select name=sort>
 	<option value="新着順">新着順</option>
 	<option value="お気に入り順">お気に入り順</option>
 	</select>
-</form>ヒット数：
+-->
+<c:forEach var ="c" items="${hitList}">
+ヒット数：${c.noteCount}
+</c:forEach>
+
 <c:forEach var ="e" items="${noteList}">
-
-
 <table border="1">
 	<form method="POST" action="/ShareNote/Note_detail">
 		<tr>
@@ -80,8 +83,8 @@
 		<tr>
 			<td>${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
-			<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
-					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
+					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
 			<td align="center"><input type="submit" name="favorite" value="★"></td>
 		</tr>
