@@ -5,11 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 <title>mynote++</title>
 </head>
 <body>
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
-${errMsg6}
+<p class="errMsg">${errMsg6}</p>
 
 <h2 align="center">ユーザー登録</h2>
 <form method="POST" action="/ShareNote/New_regist" id='form' name="inform">
@@ -17,7 +18,7 @@ ${errMsg6}
 	    <tr>
 			<th>ニックネーム</th>
 			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname" value="${param.nickname}"></td>
-			<td>${errMsg1}</td>
+			<td class="errMsg">${errMsg1}</td>
 		</tr>
 		<tr>
 			<th>パスワード</th>
@@ -27,7 +28,7 @@ ${errMsg6}
 		<tr>
 			<th>パスワード(確認)</th>
 			<td><input type="password" name="password_check" id="passconf"></td>
-			<td>${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
+			<td class="errMsg">${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
 		</tr>
 		<tr>
 			<th>秘密の質問</th>
