@@ -47,12 +47,13 @@ public class Search extends HttpServlet {
 		String nickname = request.getParameter("keyword");
 		String title = request.getParameter("keyword");
 
-		String[] arrayTag = request.getParameterValues("tag"); //タグは配列で取得
+		String[] tags = request.getParameterValues("tag"); //タグは配列で取得
+		request.setAttribute("tags", tags);
 
 		String matching = request.getParameter("matching");
 		String tag = "";
-		if(arrayTag!=null) {
-	    for (String values : arrayTag) {
+		if(tags!=null) {
+	    for (String values : tags) {
 
 	 		tag += values + " ";
 		 }
