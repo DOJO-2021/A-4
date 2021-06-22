@@ -92,7 +92,7 @@ public class Edit extends HttpServlet {
 				image_files = this.getFileName(image_part);      //編集後の画像ファイル
 				Part text_part = request.getPart("text_files");
 				text_files =this.getFileName(text_part);         //編集後のテキストファイル
-				String[] arrayTag = request.getParameterValues("tag");
+				String[] tags = request.getParameterValues("tag");
 				String nullTag = request.getParameter("tag");
 				String pre_image_files = request.getParameter("pre_image_files");//編集前の画像ファイル
 				String pre_text_files = request.getParameter("pre_text_files");  //編集前のテキストファイル
@@ -109,6 +109,7 @@ public class Edit extends HttpServlet {
 				else if(title.equals("") || nullTag == null) {
 					image_files = pre_image_files;
 					text_files = pre_text_files;
+					request.setAttribute("tags", tags);
 					request.setAttribute("image_files", image_files);
 					request.setAttribute("text_files", text_files);
 					String errMsg = "未入力の項目があります";
@@ -124,7 +125,7 @@ public class Edit extends HttpServlet {
 
 				//タグをスペース区切りで収納
 		        String tag = "";
-		        for (String values : arrayTag) {
+		        for (String values : tags) {
 		        	tag += values + " ";
 		        }
 
@@ -159,6 +160,7 @@ public class Edit extends HttpServlet {
 				if(nDao.updateNote(note_id, image_files, text_files,year, title, public_select, tag)) {
 					request.setAttribute("image_files", image_files);
 					request.setAttribute("text_files", text_files);
+					request.setAttribute("tags", tags);
 					String msg = "編集が完了しました";
 					request.setAttribute("msg", msg);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/edit.jsp");
