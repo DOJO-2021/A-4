@@ -24,12 +24,14 @@ public class Favorites_button extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//お気に入りボタンを押してお気に入りするとき
-		// リクエストパラメータを取得する☆
+		// リクエストパラメータを取得する
 		HttpSession session = request.getSession();
 		request.setCharacterEncoding("UTF-8");
 		User user = (User)session.getAttribute("user");
 		int user_id = user.getUser_id();
+		System.out.println("user_id");
 		int note_id = Integer.parseInt(request.getParameter("note_id"));
+		System.out.println(note_id);
 		//お気に入り登録する
 		FavoritesDao fDao = new FavoritesDao();
 			if (request.getParameter("count").equals("0")) {

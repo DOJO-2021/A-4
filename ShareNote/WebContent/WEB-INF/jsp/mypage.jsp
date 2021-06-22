@@ -110,7 +110,10 @@
 				<tr>
 					<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
 					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year}"></td>
-					<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
+					<td class="inf-nn">
+					${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} ">
+					<input type="hidden" name="note_id" value="${e.note_id }">
+					</td>
 					<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 				</tr>
 				<tr>
