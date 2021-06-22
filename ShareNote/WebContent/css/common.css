@@ -22,10 +22,13 @@
 html{
 	margin:0;
 	padding:0;
+	height:100%;
 }
 
 body{
-	background-color:#f8f8ff
+	background-color:#f8f8ff;
+	height:100%;
+	margin:0;
 }
 
 .errMsg{
@@ -86,7 +89,11 @@ a:hover{
 
 .footer{
 	display:flex;
-	margin-top:30px;
+	height:100px;
+	background-color:#99CCFF;
+	margin-bottom:0;
+
+
 }
 
 .copyright{
@@ -101,6 +108,10 @@ a:hover{
 .image{
 	margin-top:20px;
 	margin-left:40px;
+}
+
+.wrapper{
+	height:570px;
 }
 
 /*新規登録画面CSS*/

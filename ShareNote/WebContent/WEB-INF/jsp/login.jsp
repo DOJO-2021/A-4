@@ -7,8 +7,20 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ShareNote/css/common.css">
 <title>mynote++</title>
+<!--
+<style>
+
+*{
+
+outline: 1px solid #ff0000;
+
+}
+ -->
+
+</style>
 </head>
 <body>
+<div class="wrapper">
 <div class="image">
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 </div>
@@ -36,6 +48,8 @@ ${msg}
 		</tr>
 	</table>
 </form>
+</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+
 </body>
 </html>
