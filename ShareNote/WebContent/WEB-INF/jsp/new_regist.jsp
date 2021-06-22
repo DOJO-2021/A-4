@@ -15,7 +15,7 @@ ${errMsg6}
 	<table align="center">
 	    <tr>
 			<th>ニックネーム</th>
-			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname"></td>
+			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname" value="${param.nickname}"></td>
 			<td>${errMsg1}</td>
 		</tr>
 		<tr>
@@ -30,7 +30,7 @@ ${errMsg6}
 		</tr>
 		<tr>
 			<th>秘密の質問</th>
-			<td>style="text-align:center;"
+			<td style="text-align:center;">
 				<select name="question">
 					<option value="好きな食べ物は？">好きな食べ物は？</option>
 					<option value="初めて飼ったペットの名前は？">初めて飼ったペットの名前は？</option>
