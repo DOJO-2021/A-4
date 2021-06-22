@@ -8,6 +8,7 @@
 <title>mynote++</title>
 </head>
 <body>
+<img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 ${errMsg6}
 
 <h2 align="center">ユーザー登録</h2>
