@@ -29,20 +29,21 @@ public class Favorites_button extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		User user = (User)session.getAttribute("user");
 		int user_id = user.getUser_id();
-		System.out.println("user_id");
+		System.out.println(user_id+"←ゆーざーあいでー");
 		int note_id = Integer.parseInt(request.getParameter("note_id"));
-		System.out.println(note_id);
-		String count = request.getParameter("count");
-		int num = Integer.parseInt(count);
+		System.out.println(note_id+"←のーとあいでー");
+		String cnt = request.getParameter("cnt");
+		int num = Integer.parseInt(cnt);
+		System.out.println(num+"←if文判定");
 		//お気に入り登録する
 		FavoritesDao fDao = new FavoritesDao();
 			if (num == 0) {
 			//if (画像が0なら) {	// 登録成功
-				fDao.isFavoriteRegist(user_id, note_id);
+				fDao.isFavoriteRegist(user_id,note_id);
 			}
 			//お気に入りボタンを押してお気に入り解除するとき
 			else {
-				fDao.isFavoriteRelease(note_id);
+				fDao.isFavoriteRelease(note_id, note_id);
 
 			}
 	}
