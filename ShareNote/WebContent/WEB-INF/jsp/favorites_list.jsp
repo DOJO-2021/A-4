@@ -42,15 +42,15 @@
 
 <c:forEach var="e" items="${latestFavoritesList}">
 <form method="POST" action="/ShareNote/Note_detail">
-	<table border="1">
+	<table border="1" class="notes">
 	<tr>
-		<td rowspan="3">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
-		<td>${e.year}年度<input type="hidden" name="year" value="${e.year} "></td>
-		<td align="center" colspan="2">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
+		<td rowspan="3" class="inf-img" width="200px" height="120px">${e.image_files}<input type="hidden" name="image_files" value="${e.image_files} "></td>
+		<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year} "></td>
+		<td align="center" colspan="2" class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} "></td>
 		<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 	</tr>
 	<tr>
-		<td align="center" colspan="3">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
+		<td align="center" colspan="3" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
 <!--
 </form>
 		<td><id="gazo"><input type="image" name="favorite" onclick="changeIMG()" src="0.png"></id></td>
@@ -58,7 +58,7 @@
 <form method="POST" action="/ShareNote/Note_detail">
 -->
 	<tr>
-		<td colspan="3" align="center">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+		<td colspan="3" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 		<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
