@@ -32,9 +32,11 @@ public class Favorites_button extends HttpServlet {
 		System.out.println("user_id");
 		int note_id = Integer.parseInt(request.getParameter("note_id"));
 		System.out.println(note_id);
+		String count = request.getParameter("count");
+		int num = Integer.parseInt(count);
 		//お気に入り登録する
 		FavoritesDao fDao = new FavoritesDao();
-			if (request.getParameter("count").equals("0")) {
+			if (num == 0) {
 			//if (画像が0なら) {	// 登録成功
 				fDao.isFavoriteRegist(user_id, note_id);
 			}
