@@ -57,7 +57,6 @@ public class Edit extends HttpServlet {
 		if(edit.equals("編集")) {
 			String tag = request.getParameter("tag");
 			String[] tags = tag.split(" "); //タグを分割して配列に格納
-			int tagLen = tags.length;
 			request.setAttribute("tags", tags);
 			request.setAttribute("image_files",image_files);
 			request.setAttribute("text_files", text_files);
@@ -83,6 +82,7 @@ public class Edit extends HttpServlet {
 					String dbErrMsg = "削除に失敗しました。";
 					request.setAttribute("dbErrMsg", dbErrMsg);
 					this.doGet(request, response);
+					return;
 				}
 			}
 
@@ -104,6 +104,7 @@ public class Edit extends HttpServlet {
 					String errMsg = "未入力の項目があります";
 					request.setAttribute("errMsg", errMsg);
 					this.doGet(request, response);
+					return;
 				}
 				//タイトルかタグが空欄だったら編集前のファイルを持って帰ってもらう
 				else if(title.equals("") || nullTag == null) {
@@ -115,6 +116,7 @@ public class Edit extends HttpServlet {
 					String errMsg = "未入力の項目があります";
 					request.setAttribute("errMsg", errMsg);
 					this.doGet(request, response);
+					return;
 				}
 
 				//現在時刻から年だけを取得（できれば4月はじまりが良き！今のところ普通の年）
@@ -171,6 +173,7 @@ public class Edit extends HttpServlet {
 					String dbErrMsg = "編集に失敗しました。";
 					request.setAttribute("dbEerrMsg", dbErrMsg);
 					this.doGet(request, response);
+					return;
 				}
 			}
 		}

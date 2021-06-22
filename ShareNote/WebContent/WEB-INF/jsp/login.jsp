@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 <title>mynote++</title>
 </head>
 <body>
@@ -22,7 +23,7 @@ ${msg}
 			<td><input type="password" name="password" placeholder="5文字以上16文字以内"></td>
 		</tr>
 		<tr>
-			<td colspan="2">${errMsg}</td>
+			<td colspan="2" class="errMsg">${errMsg}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" name="login" value="ログイン" ></td>

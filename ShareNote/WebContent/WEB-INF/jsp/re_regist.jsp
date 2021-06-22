@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 <title>mynote++</title>
 </head>
 <body>
@@ -32,7 +33,7 @@ ${msg}
 			<td><input type="text" name="answer"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center">${errMsg}</td>
+			<td colspan="2" align="center" class="errMsg">${errMsg}</td>
 		</tr>
 		<tr>
 			<th>新しいパスワード</th>
@@ -42,7 +43,7 @@ ${msg}
 		<tr>
 			<th>新しいパスワード(確認)</th>
 			<td><input type="password" name="password2"></td>
-			<td>${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
+			<td class="errMsg">${errMsg2}<br>${errMsg3}<br>${errMsg4}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit" name="re_regist" value="登録"></td>
