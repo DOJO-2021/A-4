@@ -29,6 +29,14 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String nickname = request.getParameter("nickname");
 		String password = request.getParameter("password");
+		System.out.println(nickname);
+
+		//もしどちらかが空欄だったらエラーメッセージを持って帰ってもらう
+		if(nickname.equals("") || password.equals("")) {
+			String errMsg = "ニックネームまたはパスワードが違います";
+			request.setAttribute("errMsg", errMsg);
+			this.doGet(request, response);
+		}
 
 		// ログイン処理
 		UserDao userDao = new UserDao();
