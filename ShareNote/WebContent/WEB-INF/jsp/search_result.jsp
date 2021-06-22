@@ -64,21 +64,21 @@
 <table border="1">
 	<form method="POST" action="/ShareNote/Note_detail">
 		<tr>
-			<td rowspan="3"><img src="${e.image_files }"><input type="hidden" name="image_files" value="${e.image_files} "></td>
+			<td rowspan="3"><img src="${e.image_files}"><input type="hidden" name="image_files" value="${e.image_files}"></td>
 			<td>
-			${e.year}年度<input type="hidden" name="year" value="${e.year} ">
+			${e.year}年度<input type="hidden" name="year" value="${e.year}">
 			</td>
 			<td>
-			${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} ">
+			${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}">
 			</td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 			</tr>
 			<tr>
-			<td colspan="2">${e.title}<input type="hidden" name="title" value="${e.title} "></td>
+			<td colspan="2">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 			</tr>
 
 		<tr>
-			<td>${e.tag}<input type="hidden" name="tag" value="${e.tag} "></td>
+			<td>${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
