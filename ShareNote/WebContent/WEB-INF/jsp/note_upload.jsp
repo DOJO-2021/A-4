@@ -56,7 +56,9 @@
 	</c:if>
 </c:forEach>
 
+<div class="smalltitle">
 <p>ノートのアップロード ${dbEerrMsg}</p>
+</div>
 
 	<form method="POST" name="form" action="/ShareNote/Note_upload" enctype="multipart/form-data">
 	<table border="1" class="notes">

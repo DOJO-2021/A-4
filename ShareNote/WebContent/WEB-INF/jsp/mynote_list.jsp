@@ -11,7 +11,9 @@
 
 <body>
 
+<div class="smalltitle">
 <p>マイノート一覧  ${msg}</p>
+</div>
 
 <c:forEach var="e" items="${noteList}" >
 	<table border="1" class="notes">
@@ -28,8 +30,8 @@
 			<tr>
 				<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 				<!-- <td><input type="submit" name="download" value="ダウンロード"></td> -->
-				<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
-							  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+				<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
+							  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 						</c:choose>
 			</tr>
 			<input type="hidden" name="note_id" value="${e.note_id}">

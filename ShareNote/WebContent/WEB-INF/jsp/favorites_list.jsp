@@ -10,9 +10,9 @@
 <title>mynote++</title>
 </head>
 <body>
-
+<div class="smalltitle">
 <p>お気に入り一覧</p>
-
+</div>
 <c:forEach var="e" items="${latestFavoritesList}">
 <form method="POST" action="/ShareNote/Note_detail">
 	<table border="1" class="notes">
