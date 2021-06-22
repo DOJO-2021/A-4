@@ -326,7 +326,7 @@ public class NoteDao {
 
 //検索画面
 	//検索内容にあった検索をする
-	public List<Note> search(String nickname, String title, String tag, String order) {
+	public List<Note> search(String nickname, String title, String tag, String order, String keyword) {
 			Connection conn = null;
 			List<Note> noteList = new ArrayList<Note>();
 			int noteCount;
@@ -340,7 +340,7 @@ public class NoteDao {
 
 
 				// SQL文を準備する
-				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? AND(nickname LIKE ? OR title LIKE ?) AND public_select = 1 ORDER BY "+order;
+				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? "+keyword + "AND public_select = 1 ORDER BY "+order;
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
 
@@ -350,17 +350,23 @@ public class NoteDao {
 				else {
 					pStmt.setString(1, "%");
 				}
-				if (nickname != "") {
-					pStmt.setString(2, "%" + nickname + "%");
-				}
-				else {
-					pStmt.setString(2, "%");
-				}
-				if (title != "") {
-					pStmt.setString(3, "%" +title + "%");
-				}
-				else {
-					pStmt.setString(3, "%");
+				String[] titles=title.split(" ",0);
+				String[] nicknames=nickname.split(" ",0);
+				int j=0;
+				for(int i=2; i<2+titles.length; i+=2) {
+					if (nicknames[j] != "") {
+						pStmt.setString(i, "%" + nicknames[j] + "%");
+					}
+					else {
+						pStmt.setString(i, "%");
+					}
+					if (titles[j] != "") {
+						pStmt.setString(i+1, "%" +titles[j] + "%");
+					}
+					else {
+						pStmt.setString(i+1, "%");
+					}
+					j++;
 				}
 
 

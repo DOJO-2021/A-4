@@ -44,11 +44,19 @@ public class Search_result extends HttpServlet {
 		 		tag += values + " ";
 			 }
 			}
+		String[] titles=title.split(" ",0);
+		String keyword="AND(nickname LIKE ? OR title LIKE ? )";
+		if(titles.length>1) {
+			for(int i=0;i<titles.length; i++) {
+				keyword += "AND(nickname LIKE ? OR title LIKE ? ) ";
+			}
+		}
 	    if(order.equals("新着順")) {
 	    	order="n.note_id ASC";
 	    }if(order.equals("お気に入り順")){
 	    	order="n.favorites_num DESC";
 	    }
+
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
 		List<Note> noteList;
@@ -63,11 +71,11 @@ public class Search_result extends HttpServlet {
 		// タグ検索が完全一致ではなかった場合
 				} else {
 					System.out.print(request.getParameter("matching"));
-					noteList = nDao.search(nickname, title, tag , order);
+					noteList = nDao.search(nickname, title, tag , order, keyword);
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag ,order);
+			noteList = nDao.search(nickname, title, tag ,order,keyword);
 		}
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
@@ -104,7 +112,14 @@ public class Search_result extends HttpServlet {
 				 		tag += values + " ";
 					 }
 					}
-			    if(order.equals("新着順")) {
+				String[] titles=title.split(" ",0);
+				String keyword="AND(nickname LIKE ? OR title LIKE ? )";
+				if(titles.length>1) {
+					for(int i=0;i<titles.length; i++) {
+						keyword += "AND(nickname LIKE ? OR title LIKE ? ) ";
+					}
+				}
+				if(order.equals("新着順")) {
 			    	order="n.note_id ASC";
 			    }if(order.equals("お気に入り順")){
 			    	order="n.favorites_num DESC";
@@ -114,7 +129,7 @@ public class Search_result extends HttpServlet {
 
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();
-				List<Note> noteList = nDao.search( nickname,  title,  tag ,order);
+				List<Note> noteList = nDao.search( nickname,  title,  tag ,order, keyword);
 				List<Note> hitList =nDao.searchHit(nickname, title, tag);
 				try {
 					// タグ検索が完全一致だった場合
@@ -126,12 +141,12 @@ public class Search_result extends HttpServlet {
 				// タグ検索が完全一致ではなかった場合
 						} else {
 							System.out.print(request.getParameter("matching"));
-							noteList = nDao.search(nickname, title, tag ,order);
+							noteList = nDao.search(nickname, title, tag ,order, keyword);
 							hitList=nDao.searchHit(nickname, title, tag);
 						}
 				}
 				catch(NullPointerException e){
-					noteList = nDao.search(nickname, title, tag ,order);
+					noteList = nDao.search(nickname, title, tag ,order, keyword);
 					hitList=nDao.searchHit(nickname, title, tag);
 				}
 				// 検索結果をリクエストスコープに格納する
