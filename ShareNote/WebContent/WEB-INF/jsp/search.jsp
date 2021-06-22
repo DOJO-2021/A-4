@@ -12,7 +12,7 @@
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 <h2>検索</h2>
-<form method="POST" action="/ShareNote/Search">
+<form method="POST" action="/ShareNote/Search" name="form">
 	<table align="center">
 			<tr>
 				<td><label><input type="checkbox" name="matching" value="matching">完全一致</label><td>
@@ -53,28 +53,29 @@
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 <script>
-	 // 「全て選択」チェックで全てにチェック付く
-	 function AllChecked(){
-	   var all = document.form.all.checked;
-	   for (var i=0; i<document.form.tag.length; i++){
-	     document.form.tag[i].checked = all;
-	   }
-	 }
+	// 「全て選択」チェックで全てにチェック付く
+	function AllChecked(){
+		window.alert("クリック");
+		var all = document.form.all.checked;
+		for (var i=0; i<document.form.tag.length; i++){
+			document.form.tag[i].checked = all;
+		}
+	}
 
-	 // 一つでもチェックを外すと「全て選択」のチェック外れる
-	 function DisChecked(){
-	   var checks = document.form.test;
-	   var checksCount = 0;
-	   for (var i=0; i<checks.length; i++){
-	     if(checks[i].checked == false){
-	       document.form.all.checked = false;
-	     }else{
-	       checksCount += 1;
-	       if(checksCount == checks.length){
-	         document.form.all.checked = true;
-	       }
-	     }
-	   }
-	 }
+	// 一つでもチェックを外すと「全て選択」のチェック外れる
+	function DisChecked(){
+		var checks = document.form.tag;
+		var checksCount = 0;
+		for (var i=0; i<checks.length; i++){
+			if(checks[i].checked == false){
+				document.form.all.checked = false;
+			}else{
+				checksCount += 1;
+				if(checksCount == checks.length){
+					document.form.all.checked = true;
+				}
+	    	}
+		}
+	}
 </script>
 </html>

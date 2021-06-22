@@ -61,7 +61,7 @@
 
 
 <h2>検索結果</h2>
-<form method="POST" action="/ShareNote/Search">
+<form method="POST" action="/ShareNote/Search" name="form">
 	<table align="center">
 			<tr>
 				<td><label><input type="checkbox" name="matching" value="matching" <c:if test="${param.matching == 'matching'}">checked</c:if>>完全一致</label><td>
@@ -154,7 +154,7 @@
 
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
-<script language="JavaScript" type="text/javascript">
+<script>
 	 // 「全て選択」チェックで全てにチェック付く
 	 function AllChecked(){
 	   var all = document.form.all.checked;
@@ -165,7 +165,7 @@
 
 	 // 一つでもチェックを外すと「全て選択」のチェック外れる
 	 function DisChecked(){
-	   var checks = document.form.test;
+	   var checks = document.form.tag;
 	   var checksCount = 0;
 	   for (var i=0; i<checks.length; i++){
 	     if(checks[i].checked == false){

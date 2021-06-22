@@ -134,7 +134,7 @@
 
   // 一つでもチェックを外すと「全て選択」のチェック外れる
   function DisChecked(){
-    var checks = document.form.test;
+    var checks = document.form.tag;
     var checksCount = 0;
     for (var i=0; i<checks.length; i++){
       if(checks[i].checked == false){
