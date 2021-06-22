@@ -88,6 +88,7 @@ a:hover{
 /*フッターCSS*/
 
 .footer{
+	margin-top:30px;
 	display:flex;
 	height:100px;
 	background-color:#99CCFF;
@@ -97,11 +98,15 @@ a:hover{
 }
 
 .copyright{
-	margin-left:30px;
+
+	margin-top:30px;
+	margin-left:50px;
 }
 
 .footerLogo{
-	margin-left:480px;
+
+	margin-top:30px;
+	margin-left:750px;
 }
 
 /*ログイン画面CSS*/
@@ -157,7 +162,7 @@ h2{
 
 .information{
 	margin-top:20px;
-	margin-left:110px;
+	margin-left:70px;
 }
 
 
@@ -237,6 +242,7 @@ h2{
 .guide{
 	height:2em;
 	width:30em;
+
 }
 
 .file-guide{
@@ -248,4 +254,34 @@ h2{
 	margin-bottom:40px;
 }
 
+.up_note{
+	/*margin-left:60px;*/
+	margin-top:20px;
+	margin-right:35px;
+	background-color:white;
+	border-collapse:collapse;
+}
+
+/*編集画面のCSS*/
+.edit_title{
+	font-size:21px;
+	margin-left:30px;
+	margin-top:30px;
+	margin-bottom:30px;
+}
+
+.edit_note{
+	margin-right:20px;
+	margin-left:20px;
+	margin-bottom:40px;
+}
+
+.buttons{
+	text-align:center;
+}
+
+
+.mynote_link{
+	margin-top:20px;
+}
 

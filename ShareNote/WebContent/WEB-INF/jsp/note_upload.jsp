@@ -61,7 +61,7 @@
 </div>
 
 	<form method="POST" name="form" action="/ShareNote/Note_upload" enctype="multipart/form-data">
-	<table border="1" class="notes">
+	<table border="1" class="up_note">
 	<tr>
 		<td class="guide">1.ファイル登録（いずれか必須）</td>
 	</tr>

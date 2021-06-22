@@ -9,6 +9,7 @@
 <title>mynote++</title>
 </head>
 <body>
+<div class="wrapper">
 <div class="image">
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 </div>
@@ -57,6 +58,7 @@
 		</tr>
 	</table>
 </form>
+</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 <script src="script/common.js"></script>
 </body>

@@ -59,9 +59,11 @@
 </c:forEach>
 
 <form method="POST" name="form" action="/ShareNote/Edit" enctype="multipart/form-data">
+<div class="edit_title">
 <p>ノートの編集 ${msg} ${dbErrMsg} ${errMsg}</p>
+</div>
 	<input type="hidden" name="note_id" value="${param.note_id}">
-	<table border="1">
+	<table border="1" class="edit_note">
 	<tr>
 		<td>1.ファイルの変更</td>
 	</tr>
@@ -117,12 +119,18 @@
 		<label><input type="radio" name="public_select" value="0"<c:if test="${param.public_select == 0}">checked</c:if>> 非公開</label></td>
 	</tr>
 	</table>
+		<div class="buttons">
 		<input type="submit" name="edit" value="ノート削除" onclick="return onDelete()">
 		<input type="submit" name="edit" value="編集を完了">
+		<br>
+		<div class="mynote_link">
 		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
+		</div>
+		</div>
 		<input type="hidden" name="pre_image_files" value="${image_files}">
 		<input type="hidden" name="pre_text_files" value="${text_files}">
 </form>
+<jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 <script>
 	 // 「全て選択」チェックで全てにチェック付く
