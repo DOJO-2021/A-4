@@ -16,16 +16,16 @@
 	<table border="1" class="notes">
 		<form method="POST" action="/ShareNote/Edit">
 			<tr>
-				<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="100em" height="100em"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+				<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
 				<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
 				<td rowspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 				<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 			</tr>
 			<tr>
-				<td class="fav-num">${e.favorites_num}<input type="hidden" name="favorites_num" value="${e.favorites_num}"></td>
+				<td class="fav-num"><span class="fav">★</span>${e.favorites_num}<input type="hidden" name="favorites_num" value="${e.favorites_num}"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+				<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 				<!-- <td><input type="submit" name="download" value="ダウンロード"></td> -->
 				<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 							  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
