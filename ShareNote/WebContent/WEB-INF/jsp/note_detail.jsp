@@ -37,12 +37,8 @@
 	</table>
 
 <!-- お気に入り一覧から遷移してきたとき、お気に入り一覧に戻す -->
-<%if(true) { %>
-<a href="/ShareNote/Favorites_list">1つ前のページに戻る</a>
-<!-- 検索結果画面から遷移してきたとき、検索結果画面に戻す -->
-<%} else { %>
-<a href="/ShareNote/Search_result">1つ前のページに戻る</a>
-<%} %>
+
+<a href="#" onClick="history.back(); return false;">1つ前のページに戻る</a>
 
 <hr>
 <h3>こちらもおすすめ</h3>
