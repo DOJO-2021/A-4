@@ -58,6 +58,15 @@ public class Search extends HttpServlet {
 	 		tag += values + " ";
 		 }
 		}
+		String[] titles=title.split(" ",0);
+		String[] nicknames=nickname.split(" ",0);
+		String keyword="AND(nickname LIKE ? OR title LIKE ? )";
+		if(titles.length>1) {
+			for(int i=1;i<titles.length-1; i++) {
+			keyword += "AND(nickname LIKE ? OR title LIKE ? ) ";
+			}
+		}
+
 
 
 
@@ -86,13 +95,13 @@ public class Search extends HttpServlet {
 		// タグ検索が完全一致ではなかった場合
 				} else {
 
-					noteList = nDao.search(nickname, title, tag , order);
+					noteList = nDao.search(nickname, title, tag , order,keyword);
 					hitList=nDao.searchHit(nickname, title, tag);
 
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag ,order);
+			noteList = nDao.search(nickname, title, tag ,order,keyword);
 			hitList=nDao.searchHit(nickname, title, tag);
 
 		}
