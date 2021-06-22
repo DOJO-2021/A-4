@@ -9,7 +9,9 @@
 <title>mynote++</title>
 </head>
 <body>
+<div class="image">
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
+</div>
 ${msg}
 <h2 align="center">パスワードの再設定</h2>
 <form method="POST" action="/ShareNote/Re_regist">
