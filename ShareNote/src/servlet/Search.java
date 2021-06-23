@@ -58,21 +58,30 @@ public class Search extends HttpServlet {
 	 		tag += values + " ";
 		 }
 		}
-		String[] titles=title.split(" ",0);
-		String[] nicknames=nickname.split(" ",0);
-		String keyword="AND(nickname LIKE ? OR title LIKE ? )";
+
+		String[] titles=title.split(" |　",0);
+		String[] nicknames=nickname.split(" |　",0);
+		String keyword="";
+		if(!(title.equals(""))) {
+		keyword="AND(nickname LIKE '%"+nicknames[0]+"%' OR title LIKE '%"+titles[0]+"%')";
 		if(titles.length>1) {
-			for(int i=1;i<titles.length-1; i++) {
-			keyword += "AND(nickname LIKE ? OR title LIKE ? ) ";
+			for(int i=1;i<titles.length; i++) {
+			keyword += " OR(nickname LIKE '%"+nicknames[i]+ "%' OR title LIKE '%"+titles[i]+"%' ) ";
 			}
 		}
+//		else {
+//			keyword="AND(nickname LIKE % OR title LIKE % )";
+//		}
+
+		}
+		System.out.println(keyword);
 
 
 
 
 	    String order=request.getParameter("sort");
 	    if(order.equals("新着順")) {
-	    	order="n.note_id ASC";
+	    	order="n.note_id DESC";
 	    }if(order.equals("お気に入り順")){
 	    	order="n.favorites_num DESC";
 	    }
@@ -88,21 +97,21 @@ public class Search extends HttpServlet {
 			// タグ検索が完全一致だった場合
 
 			if (matching.equals("matching")) {
-				noteList = nDao.searchMatching(nickname, title, tag , order);
-				hitList=nDao.searchHitMatching(nickname, title, tag);
+				noteList = nDao.searchMatching(nicknames, titles, tag , order,keyword);
+				hitList=nDao.searchHitMatching(nicknames, titles, tag, keyword);
 
 
 		// タグ検索が完全一致ではなかった場合
 				} else {
 
-					noteList = nDao.search(nickname, title, tag , order,keyword);
-					hitList=nDao.searchHit(nickname, title, tag);
+					noteList = nDao.search(nicknames, titles, tag , order,keyword);
+					hitList=nDao.searchHit(nicknames, titles, tag, keyword);
 
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag ,order,keyword);
-			hitList=nDao.searchHit(nickname, title, tag);
+			noteList = nDao.search(nicknames, titles, tag ,order,keyword);
+			hitList=nDao.searchHit(nicknames, titles, tag, keyword);
 
 		}
 

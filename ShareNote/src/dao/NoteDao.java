@@ -326,7 +326,7 @@ public class NoteDao {
 
 //検索画面
 	//検索内容にあった検索をする
-	public List<Note> search(String nickname, String title, String tag, String order, String keyword) {
+	public List<Note> search(String[] nicknames, String[] titles, String tag, String order, String keyword) {
 			Connection conn = null;
 			List<Note> noteList = new ArrayList<Note>();
 			int noteCount;
@@ -350,24 +350,7 @@ public class NoteDao {
 				else {
 					pStmt.setString(1, "%");
 				}
-				String[] titles=title.split(" ",0);
-				String[] nicknames=nickname.split(" ",0);
-				int j=0;
-				for(int i=2; i<2+titles.length; i+=2) {
-					if (nicknames[j] != "") {
-						pStmt.setString(i, "%" + nicknames[j] + "%");
-					}
-					else {
-						pStmt.setString(i, "%");
-					}
-					if (titles[j] != "") {
-						pStmt.setString(i+1, "%" +titles[j] + "%");
-					}
-					else {
-						pStmt.setString(i+1, "%");
-					}
-					j++;
-				}
+
 
 
 				// SQL文を実行し、結果表を取得する
@@ -415,7 +398,7 @@ public class NoteDao {
 		}
 
 	//検索内容にあった検索をする  タグの完全一致が選択されているとき
-	public List<Note> searchMatching(String nickname, String title, String tag, String order) {
+	public List<Note> searchMatching(String[] nicknames, String[] titles, String tag, String order, String keyword) {
 			Connection conn = null;
 			List<Note> noteList = new ArrayList<Note>();
 
@@ -428,7 +411,7 @@ public class NoteDao {
 				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 				// SQL文を準備する
-				String sql = "select  n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag = ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ORDER BY "+order;
+				String sql = "select  n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag = ? "+keyword+" AND public_select = 1 ORDER BY "+order;
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 
 				// SQL文を完成させる
@@ -438,18 +421,8 @@ public class NoteDao {
 				else {
 					pStmt.setString(1, "%");
 				}
-				if (nickname != "") {
-					pStmt.setString(2, "%" + nickname + "%");
-				}
-				else {
-					pStmt.setString(2, "%");
-				}
-				if (title != "") {
-					pStmt.setString(3, "%" +title + "%");
-				}
-				else {
-					pStmt.setString(3, "%");
-				}
+
+//
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
@@ -491,7 +464,7 @@ public class NoteDao {
 			return noteList;
 	}
 	//検索件数表示
-	public List<Note> searchHit(String nickname, String title, String tag) {
+	public List<Note> searchHit(String[] nicknames, String[] titles, String tag, String keyword) {
 		Connection conn = null;
 		List<Note> hitList = new ArrayList<Note>();
 
@@ -503,7 +476,7 @@ public class NoteDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag like ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ";
+			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag like ? "+keyword+"AND public_select = 1 ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			if (tag != null) {
 				pStmt.setString(1, "%"+tag+"%");
@@ -511,18 +484,7 @@ public class NoteDao {
 			else {
 				pStmt.setString(1, "%");
 			}
-			if (nickname != "") {
-				pStmt.setString(2, "%" + nickname + "%");
-			}
-			else {
-				pStmt.setString(2, "%");
-			}
-			if (title != "") {
-				pStmt.setString(3, "%" +title + "%");
-			}
-			else {
-				pStmt.setString(3, "%");
-			}
+
 
 
 			// SQL文を実行し、結果表を取得する
@@ -558,7 +520,7 @@ public class NoteDao {
 
 		return hitList;
 	}
-	public List<Note> searchHitMatching(String nickname, String title, String tag) {
+	public List<Note> searchHitMatching(String[] nicknames, String[] titles, String tag, String keyword) {
 		Connection conn = null;
 		List<Note> hitList = new ArrayList<Note>();
 
@@ -570,7 +532,7 @@ public class NoteDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag = ? AND (nickname LIKE ? OR title LIKE ?) AND public_select = 1 ";
+			String sql = "select  count(*) as count from note as n inner join user as u on n.user_id = u.user_id WHERE tag = ? "+keyword+" AND public_select = 1 ";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			if (tag != null) {
 				pStmt.setString(1, tag);
@@ -578,18 +540,8 @@ public class NoteDao {
 			else {
 				pStmt.setString(1, "%");
 			}
-			if (nickname != "") {
-				pStmt.setString(2, "%" + nickname + "%");
-			}
-			else {
-				pStmt.setString(2, "%");
-			}
-			if (title != "") {
-				pStmt.setString(3, "%" +title + "%");
-			}
-			else {
-				pStmt.setString(3, "%");
-			}
+
+
 
 
 			// SQL文を実行し、結果表を取得する

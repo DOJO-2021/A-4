@@ -65,15 +65,16 @@
 	<table border="1" class="up_note">
 	<tr>
 		<td class="guide">1.ファイル登録（いずれか必須）</td>
-	</tr>
-	<tr>
-		<td class="file-guide">  画像ファイル（.jpg、.png）はこちら</td>
 		<td colspan="4" class="guide">2.タイトルの記入（必須）</td>
 	</tr>
 	<tr>
-		<td rowspan="5"><canvas id="preview" style="max-width:200px;"></canvas></td>
+		<td class="file-guide">  画像ファイル（.jpg、.png）はこちら</td>
+		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>
+	</tr>
+	<tr>
+		<td rowspan="5"><canvas id="preview"></canvas></td>
 
-		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title" value="${param.title}" maxlength="50"></td>
+
 	</tr>
 	<tr>
 	</tr>
@@ -100,7 +101,7 @@
 		<td><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"
 			<c:if test="${DAO == '1'}">checked</c:if>>DAO</label></td>
 	</tr>
-	<tr>
+	<tr class="tag3">
 		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${image_files}</td>
 		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()"
 			<c:if test="${jQuery == '1'}">checked</c:if>>jQuery</label></td>
@@ -110,16 +111,18 @@
 	</tr>
 	<tr>
 		<td class="file-guide">テキストファイル（.docx、.txt）はこちら</td>
-		<td class="guide">4.公開設定</td>
+		<td  colspan="4" class="guide" >4.公開設定</td>
 	</tr>
-	<tr>
+	<tr class="tag3">
 		<td><input type="file" name="text_files" accept=" .docx, .txt"></td>
-		<td><label><input type="radio" name="public_select" value="1" checked>公開</label>
+		<td colspan="4"><label><input type="radio" name="public_select" value="1" checked>公開</label>
 			<label><input type="radio" name="public_select" value="0">非公開</label></td>
 	</tr>
 	</table>
 		<p>${errMsg}</p>
-		<input type="submit" name="upload" value="アップロード">
+		<div align="center">
+		<input type="submit" name="upload" value="アップロード" >
+		</div>
 	</form>
 
 </body>
