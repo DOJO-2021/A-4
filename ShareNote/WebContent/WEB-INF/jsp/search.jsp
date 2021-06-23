@@ -6,12 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>mynote++</title>
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
+
 <body>
-
+<div class="wrapper">
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+<div class="search-whole">
 
-<h2>検索</h2>
+<div class="search-title">
+検索
+</div>
+
 <form method="POST" action="/ShareNote/Search" name="form">
 	<table align="center">
 			<tr>
@@ -34,10 +40,10 @@
 				<td><label><input type="checkbox" name="tag" value="other" onClick="DisChecked()">その他</label></td>
 				<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 			</tr>
-			<tr>
-				<td colspan="4" align="center"><label><input type="text" name="keyword" placeholder="キーワード（タイトル・ニックネーム）検索"></label></td>
+			<tr class="table-word">
+				<td colspan="4" align="center"><label><input type="text" name="keyword" placeholder="キーワード（タイトル・ニックネーム）検索" width="50em"></label></td>
 			</tr>
-			<tr>
+			<tr class="table-word2">
 			 	<td colspan="4" align="center"><label><select name="sort">
 						<option  selected value ="新着順">新着順</option>
 						<option  value ="お気に入り順">お気に入り数順</option>
@@ -45,11 +51,14 @@
 					</label>
 				</td>
 			</tr>
-			<tr>
+			<tr class="table-button">
 				<td colspan="4" align="center"><label><input type="submit" name="search" value="検索" ></label></td>
 			</tr>
 	</table>
 </form>
+</div>
+</div>
+<br><br>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 <script>
