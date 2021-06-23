@@ -16,15 +16,15 @@
 <form method="POST" name="form" action="/ShareNote/Note_detail">
 	<table align="center" border="1">
 	<tr>
-		<td rowspan="3">${param.image_files}ノート画像</td>
+		<td rowspan="3"><img src="${param.image_files}"></td>
 		<td>${param.year}年度</td>
-		<td align="center" colspan="2">${param.nickname}ニックネーム</td>
+		<td align="center" colspan="2">${param.nickname}</td>
 	</tr>
 	<tr>
-		<td align="center" colspan="3">${param.title}タイトル</td>
+		<td align="center" colspan="3">${param.title}</td>
 	</tr>
 	<tr>
-		<td>${param.tag}タグ</td>
+		<td>${param.tag}</td>
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
  <input type="text" name="count" value="${count}" id="count">
@@ -67,7 +67,7 @@
 		<form method="POST" action="/ShareNote/Note_detail">
 
 		<tr>
-			<td rowspan="3">${e.image_files}</td>
+			<td rowspan="3"><img src="${e.image_files}"></td>
 			<td>${e.year}年度</td>
 			<td align="center" colspan="2">${e.nickname}</td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
@@ -82,6 +82,13 @@
 				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
 		</tr>
+		<input type="hidden" name="note_id" value="${e.note_id}">
+		<input type="hidden" name="image_files" value="${e.image_files}">
+		<input type="hidden" name="year" value="${e.year}">
+		<input type="hidden" name="nickname" value="${e.nickname}">
+		<input type="hidden" name="title" value="${title}">
+		<input type="hidden" name="tag" value="${tag}">
+
 		</form>
 	</table>
 </c:forEach>
