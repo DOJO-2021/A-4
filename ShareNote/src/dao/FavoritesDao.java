@@ -261,109 +261,110 @@ try {
 	}
 
 	//お気に入り解除する
-//お気に入り解除したらtrueを返す
-	public boolean isFavoriteRelease(int user_id, int note_id) {
-		boolean result = false;
-		Connection conn = null;
-		//boolean favoritesRelease = false;
-try {
-	// JDBCドライバを読み込む
-	Class.forName("org.h2.Driver");
-
-	// データベースに接続する
-	conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
-
-		// SQL文を準備する
-		String sql = "delete from favorites where user_id = ? and note_id = ? " ;
-		String sql2 = "update note set favorites_num=favorites_num-1 where note_id=?";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		pStmt.setInt(1, user_id);
-		pStmt.setInt(2, note_id);
-
-		// SELECT文を実行し、結果表を取得する
-		if (pStmt.executeUpdate() == 1) {
-			pStmt = conn.prepareStatement(sql2);
-			pStmt.setInt(1, note_id);
-			if(pStmt.executeUpdate()==1) {
-				return true;
-			}else {
-				return false;
-			}
-		}else {
-			return false;
-		}
-
-	}catch (SQLException e){
-		e.printStackTrace();
-	}catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	}finally {
-		// データベースを切断
-		if (conn != null) {
-			try {
-				conn.close();
-			}
-			catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	// 結果を返す
-	return result;
-	}
-
-
-//ユーザーが登録しているかの判断
-public boolean selectFavorites(int user_id, int note_id) {
-	boolean result = false;
-	List<Favorites> select = new ArrayList<Favorites>();
-	//接続されるとConnectionオブジェクトが入る
-	Connection conn = null;
+	//お気に入り解除したらtrueを返す
+		public boolean isFavoriteRelease(int user_id, int note_id) {
+			boolean result = false;
+			Connection conn = null;
+			//boolean favoritesRelease = false;
 	try {
 		// JDBCドライバを読み込む
-
 		Class.forName("org.h2.Driver");
 
 		// データベースに接続する
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
-		// SQL文を準備する
-		String sql = "select * from favorites where user_id = ? and note_id = ?";
-		PreparedStatement pStmt = conn.prepareStatement(sql);
-		pStmt.setInt(1, user_id);
-		pStmt.setInt(2, note_id);
-		// SQL文を実行し、結果表を取得する
-		ResultSet rs = pStmt.executeQuery();
-		int count1 = 0;
-		while (rs.next()) {
-			count1 ++;
+			// SQL文を準備する
+			String sql = "delete from favorites where user_id = ? and note_id = ? " ;
+			String sql2 = "update note set favorites_num=favorites_num-1 where note_id=?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+			pStmt.setInt(2, note_id);
+			System.out.println(note_id + "←DAOのnote_id");
+			System.out.println(user_id + "←DAOのuser_id");
+			// SELECT文を実行し、結果表を取得する
+			if (pStmt.executeUpdate() == 1) {
+				pStmt = conn.prepareStatement(sql2);
+				pStmt.setInt(1, note_id);
+				if(pStmt.executeUpdate()==1) {
+					return true;
+				}else {
+					return false;
+				}
+			}else {
+				return false;
+			}
+
+		}catch (SQLException e){
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 
-		if (count1 == 1) {
-			result = true;
-	}
-	}
-	//例外
-	catch (SQLException e) {
-		e.printStackTrace();
-	}
-	catch (ClassNotFoundException e) {
-		e.printStackTrace();
-	}
-	//例外が起きてもどっちにしろ切断
-	finally {
-		// データベースを切断
-		if (conn != null) {
-			try {
-				conn.close();
+		// 結果を返す
+		return result;
+		}
+
+
+	//ユーザーが登録しているかの判断
+	public boolean selectFavorites(int user_id, int note_id) {
+		boolean result = false;
+		List<Favorites> select = new ArrayList<Favorites>();
+		//接続されるとConnectionオブジェクトが入る
+		Connection conn = null;
+		try {
+			// JDBCドライバを読み込む
+
+			Class.forName("org.h2.Driver");
+
+			// データベースに接続する
+			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+			// SQL文を準備する
+			String sql = "select * from favorites where user_id = ? and note_id = ?";
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setInt(1, user_id);
+			pStmt.setInt(2, note_id);
+			// SQL文を実行し、結果表を取得する
+			ResultSet rs = pStmt.executeQuery();
+			int count1 = 0;
+			while (rs.next()) {
+				count1 ++;
 			}
-			catch (SQLException e) {
-				e.printStackTrace();
+
+			if (count1 == 1) {
+				result = true;
+		}
+		}
+		//例外
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//例外が起きてもどっちにしろ切断
+		finally {
+			// データベースを切断
+			if (conn != null) {
+				try {
+					conn.close();
+				}
+				catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 		}
+		// 結果を返す
+		return result;
 	}
-	// 結果を返す
-	return result;
-}
-}
+	}

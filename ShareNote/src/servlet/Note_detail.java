@@ -57,9 +57,9 @@ public class Note_detail extends HttpServlet {
 	   int count;
 
 	   if(fDao.selectFavorites(user_id, note_id)) {
-		   count = 0;
-	   } else {
 		   count = 1;
+	   } else {
+		   count = 0;
 	   }
 	   // count=1;
 	   request.setAttribute("count", count);

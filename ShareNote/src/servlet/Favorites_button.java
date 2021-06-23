@@ -43,7 +43,7 @@ public class Favorites_button extends HttpServlet {
 			}
 			//お気に入りボタンを押してお気に入り解除するとき
 			else {
-				fDao.isFavoriteRelease(note_id, note_id);
+				fDao.isFavoriteRelease(user_id, note_id);
 
 			}
 		System.out.println(num);
