@@ -26,9 +26,9 @@
 		<td>${param.tag}タグ</td>
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- <input type="hidden" name="count" value="${param.count}" id="count">
-<input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
-<img src="/ShareNote/images/0.png" id="gazo"></a></td>
+ <input type="hidden" name="count" value="${count}" id="count">
+<input type="text" name="note_id" value="${param.note_id}" id="note_id">
+<img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
 
 
 
@@ -90,7 +90,7 @@
 <p id="msg"></p>
 
 <script>
-var cnt =0;
+//var cnt =0;
 function valueChange(event){
 	//画像を配列に格納する
  	var pics_src = new Array("images/0.png","images/1.png");
@@ -98,7 +98,7 @@ function valueChange(event){
 
 
 	//画像番号用のグローバル変数
-//	var cnt = document.getElementById("count");
+	var cnt = document.getElementById("count");
 
 	//画像番号を進める
 	  if (cnt == 1) {

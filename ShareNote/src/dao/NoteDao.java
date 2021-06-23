@@ -485,8 +485,6 @@ public class NoteDao {
 				pStmt.setString(1, "%");
 			}
 
-
-
 			// SQL文を実行し、結果表を取得する
 			ResultSet rs = pStmt.executeQuery();
 			while(rs.next()) {

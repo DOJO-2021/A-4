@@ -69,4 +69,5 @@ public class Note_detail extends HttpServlet {
 
 	}
 
+
 }
