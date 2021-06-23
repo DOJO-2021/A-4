@@ -27,7 +27,7 @@
 		<td>${param.tag}タグ</td>
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- <input type="hidden" name="count" value="${count}" id="count">
+ <input type="text" name="count" value="${count}" id="count">
 <input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 <img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
 
@@ -94,24 +94,24 @@
 //var cnt =0;
 function valueChange(event){
 	//画像を配列に格納する
- 	var pics_src = new Array("images/0.png","images/1.png");
+ 	var pics_src = new Array("images/1.png","images/0.png");
 
 
 
 	//画像番号用のグローバル変数
-	var cnt = document.getElementById("count");
-
+	var cnt = document.getElementById("count").value;
+alert(cnt == 0);
 	//画像番号を進める
-	  if (cnt == 1) {
-		  cnt = 0;
+	  if (cnt == 0) {
+		  document.getElementById("count").value=1;
 
-	  }else if (cnt == 0) {
-		  cnt = 1;
+	  }else if (cnt == 1) {
+		  document.getElementById("count").value=0;
 	  }
 	  //画像を切り替える
 	  document.getElementById("gazo").src=pics_src[cnt];
 	  let note_id = document.getElementById("note_id").value;
-	  //alert(note_id);
+
 	$.ajax({
 		type:'post',
 		url: '/ShareNote/Favorites_button',
@@ -121,7 +121,7 @@ function valueChange(event){
 
 			  }
 	});
-	//alert("owata");
+	alert("owata");
 
 }
 

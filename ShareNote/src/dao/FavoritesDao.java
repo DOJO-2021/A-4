@@ -272,15 +272,23 @@ try {
 	conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 		// SQL文を準備する
-		String sql = "delete from favorites where user_id = ? and note_id = ?; " +
-				"update note set favorites_num=favorites_num-1 where note_id=?";
+		String sql = "delete from favorites where user_id = ? and note_id = ? " ;
+		String sql2 = "update note set favorites_num=favorites_num-1 where note_id=?";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, user_id);
 		pStmt.setInt(2, note_id);
-		pStmt.setInt(3, note_id);
+
 		// SELECT文を実行し、結果表を取得する
-		if (pStmt.executeUpdate() == 2) {
-			result = true;
+		if (pStmt.executeUpdate() == 1) {
+			pStmt = conn.prepareStatement(sql2);
+			pStmt.setInt(1, note_id);
+			if(pStmt.executeUpdate()==1) {
+				return true;
+			}else {
+				return false;
+			}
+		}else {
+			return false;
 		}
 
 	}catch (SQLException e){

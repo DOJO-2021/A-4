@@ -37,7 +37,7 @@ public class Favorites_button extends HttpServlet {
 		System.out.println(num+"←if文判定");
 		//お気に入り登録する
 		FavoritesDao fDao = new FavoritesDao();
-			if (num == 1) {
+			if (num == 0) {
 			//if (画像が0なら) {	// 登録成功
 				fDao.isFavoriteRegist(user_id,note_id);
 			}
