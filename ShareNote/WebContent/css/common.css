@@ -246,7 +246,13 @@ h2{
 
 }
 
-.file-guide{
+.file-guide1{
+	font-size:13px;
+	background-color:#e6ebff;
+	height:30px;
+}
+
+.file-guide2{
 	font-size:13px;
 	background-color:#e6ebff;
 }
@@ -286,6 +292,8 @@ h2{
 	margin-right:20px;
 	margin-left:20px;
 	margin-bottom:40px;
+	background-color:white;
+	border-collapse:collapse;
 }
 
 .buttons{
@@ -297,3 +305,44 @@ h2{
 	margin-top:20px;
 }
 
+.edit1{
+	background-color:#b0c4de;
+	height:27px;
+
+}
+.edit2{
+	background-color:#b0c4de;
+	height:27px;
+
+}
+
+.edit3{
+	background-color:#b0c4de;
+	height:27px;
+
+}
+
+.file-edit1{
+	font-size:13px;
+	background-color:#e6ebff;
+	height:27px;
+}
+
+.file-edit2{
+	font-size:13px;
+	background-color:#e6ebff;
+	height:27px;
+}
+
+.edit-title{
+	width:200px;
+}
+
+.edit-check{
+	width:150px;
+}
+
+.edit-check3{
+	width:150px;
+	height:50px;
+}

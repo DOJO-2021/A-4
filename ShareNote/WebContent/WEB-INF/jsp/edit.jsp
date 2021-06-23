@@ -66,53 +66,55 @@
 	<input type="hidden" name="note_id" value="${param.note_id}">
 	<table border="1" class="edit_note">
 	<tr>
-		<td>1.ファイルの変更</td>
+		<td class="edit1">1.ファイルの変更</td>
+		<td colspan="4" class="edit2">2.タイトルの変更</td>
 	</tr>
 	<tr>
-		<td>画像ファイル（.jpg、.png）はこちら</td>
-		<td colspan="1">2.タイトルの変更</td>
+		<td class="file-edit1">画像ファイル（.jpg、.png）はこちら</td>
+		<td colspan="1" class="edit-check">${param.year}</td>
+		<td rowspan="2" colspan="3" class="edit-title" ><input type ="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>
 	</tr>
 	<tr>
-		<td rowspan="5" valign="middle">編集前<img src="${image_files}" width="200em" height="200em">編集後<canvas id="preview" style="max-width:300px;"></canvas></td>
-		<td colspan="1">${param.year}</td>
-		<td rowspan="2" colspan="3" height="80em" width="500em"><input type ="text" name="title" value="${param.title}" maxlength="50"></td>
+		<td rowspan="5" align="middle">編集前<img src="${image_files}" width="200em" height="200em">編集後<canvas id="preview" style="max-width:300px;"></canvas></td>
+		<!--<td colspan="1" class="edit-check">${param.year}</td>
+		<td rowspan="2" colspan="3" class="edit-title" ><input type ="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>-->
 	</tr>
 	<tr>
 	</tr>
 	<tr>
-		<td colspan="4">3.タグの変更</td>
+		<td colspan="4" class="edit3">3.タグの変更</td>
 	</tr>
 	<tr>
-		<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()"
 			<c:if test="${HTML == '1'}">checked</c:if>>HTML</label></td>
-		<td><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="CSS" onClick="DisChecked()"
 			<c:if test="${CSS == '1'}">checked</c:if>>CSS</label></td>
-		<td><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="JavaScript" onClick="DisChecked()"
 			<c:if test="${JavaScript == '1'}">checked</c:if>>JavaScript</label></td>
-		<td><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="Java" onClick="DisChecked()"
 			<c:if test="${Java == '1'}">checked</c:if>>Java</label></td>
 	</tr>
 	<tr>
-		<td><label><input type="checkbox" name="tag" value="SQL" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="SQL" onClick="DisChecked()"
 			<c:if test="${SQL == '1'}">checked</c:if>>SQL</label></td>
-		<td><label><input type="checkbox" name="tag" value="jsp" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="jsp" onClick="DisChecked()"
 			<c:if test="${jsp == '1'}">checked</c:if>>jsp</label></td>
-		<td><label><input type="checkbox" name="tag" value="Servlet" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="Servlet" onClick="DisChecked()"
 			<c:if test="${Servlet == '1'}">checked</c:if>>Servlet</label></td>
-		<td><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"
+		<td class="edit-check"><label><input type="checkbox" name="tag" value="DAO" onClick="DisChecked()"
 			<c:if test="${DAO == '1'}">checked</c:if>>DAO</label></td>
 	</tr>
 	<tr>
 		<td><input type="file" name="image_files" accept="image/jpeg, image/png" onchange="previewImage(this);">${image_files}</td>
-		<td><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()"
+		<td class="edit-check3"><label><input type="checkbox" name="tag" value="jQuery" onClick="DisChecked()"
 			<c:if test="${jQuery == '1'}">checked</c:if>>jQuery</label></td>
-		<td><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()"
+		<td class="edit-check3"><label><input type="checkbox" name="tag" value="その他" onClick="DisChecked()"
 			<c:if test="${その他 == '1'}">checked</c:if>>その他</label></td>
-		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
+		<td class="edit-check3"><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
-		<td>テキストファイル（.docx、.txt）はこちら</td>
-		<td colspan="4">4.公開設定の変更</td>
+		<td class="file-edit2">テキストファイル（.docx、.txt）はこちら</td>
+		<td colspan="4" class="edit3">4.公開設定の変更</td>
 	</tr>
 	<tr>
 		<td><input type="file" name="text_files" accept=" .docx, .txt">${text_files}</td>
@@ -125,7 +127,7 @@
 		<input type="submit" name="edit" value="編集を完了">
 		<br>
 		<div class="mynote_link">
-		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
+		<a href="/ShareNote/Mynote_list">マイノート一覧へ戻る</a>
 		</div>
 		</div>
 		<input type="hidden" name="pre_image_files" value="${image_files}">

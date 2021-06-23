@@ -68,8 +68,8 @@
 		<td colspan="4" class="guide">2.タイトルの記入（必須）</td>
 	</tr>
 	<tr>
-		<td class="file-guide">  画像ファイル（.jpg、.png）はこちら</td>
-		<td rowspan="2" colspan="4" height="80em"><input type="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>
+		<td class="file-guide1" >  画像ファイル（.jpg、.png）はこちら</td>
+		<td rowspan="2" colspan="4" height="70em"><input type="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>
 	</tr>
 	<tr>
 		<td rowspan="5"><canvas id="preview"></canvas></td>
@@ -110,7 +110,7 @@
 		<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 	</tr>
 	<tr>
-		<td class="file-guide">テキストファイル（.docx、.txt）はこちら</td>
+		<td class="file-guide2">テキストファイル（.docx、.txt）はこちら</td>
 		<td  colspan="4" class="guide" >4.公開設定</td>
 	</tr>
 	<tr class="tag3">
