@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.FavoritesDao;
+import model.Favorites;
 
 @WebServlet("/Note_detail")
 public class Note_detail extends HttpServlet {
@@ -39,12 +40,12 @@ public class Note_detail extends HttpServlet {
 	    FavoritesDao fDao = new FavoritesDao();
 	    request.setCharacterEncoding("UTF-8");
 	    String tag = request.getParameter("tag");
-	    System.out.println(tag + "a");
+	    //System.out.println(tag + "a");
 
 
 	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
-//	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
-//	    request.setAttribute("RecommendedList", favoritesList);
+	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
+	    request.setAttribute("RecommendedList", favoritesList);
 
 	 // ノート詳細ページにフォワードする
 	 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");
