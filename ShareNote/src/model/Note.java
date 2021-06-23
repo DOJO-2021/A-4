@@ -16,10 +16,10 @@ public class Note implements Serializable {
 	private String tag;
 	private String order;
 	private int noteCount;
-
-
+	private int isFavorites;
 
 	//getter・setter
+
 	public int getNote_id() {
 		return note_id;
 	}
@@ -92,5 +92,11 @@ public class Note implements Serializable {
 	}
 	public void setNoteCount(int noteCount) {
 		this.noteCount = noteCount;
+	}
+	public int getIsFavorites() {
+		return isFavorites;
+	}
+	public void setIsFavorites(int isFavorites) {
+		this.isFavorites = isFavorites;
 	}
 }
