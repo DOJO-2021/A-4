@@ -72,11 +72,11 @@ li a{
 }
 
 a:link{
-	color:#5D99FF;
+	color:7a99cf;
 }
 
 a:visited{
-	color:#5D99FF;
+	color:#7a99cf;
 }
 
 a:hover{
@@ -91,7 +91,7 @@ a:hover{
 	margin-top:30px;
 	display:flex;
 	height:100px;
-	background-color:#99CCFF;
+	background-color:#a3b9e0;
 	margin-bottom:0;
 
 
@@ -227,7 +227,7 @@ h2{
 
 .fav-num{
 	height:1em;
-		background-color:#b0c4de;
+	background-color:#b0c4de;
 }
 
 /*お気に入り数表示欄の★を黄色にするためだけのやつ*/
@@ -241,12 +241,14 @@ h2{
 
 .guide{
 	height:2em;
-	width:30em;
+	width:27em;
+	background-color:#b0c4de;
 
 }
 
 .file-guide{
 	font-size:13px;
+	background-color:#e6ebff;
 }
 
 .smalltitle{
@@ -260,6 +262,16 @@ h2{
 	margin-right:35px;
 	background-color:white;
 	border-collapse:collapse;
+}
+
+
+#preview{
+	height:250px;
+	width: 300px;
+}
+
+.tag3{
+	height:3em;
 }
 
 /*編集画面のCSS*/

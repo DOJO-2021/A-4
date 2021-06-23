@@ -96,7 +96,7 @@ public class FavoritesDao {
 			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 			// SQL文を準備する
-			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.user_id "
+			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.note_id, n.user_id "
 					+ "from (( note as n left join user as u on n.user_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) "
 					+ "where tag = ? and public_select=1 order by favorites_num asc limit 3";
 			System.out.println(sql+"←sql文");
@@ -302,4 +302,54 @@ try {
 	// 結果を返す
 	return result;
 	}
+
+
+//ユーザーが登録しているかの判断
+public boolean selectFavorites(int user_id, int note_id) {
+	boolean result = false;
+
+	//接続されるとConnectionオブジェクトが入る
+	Connection conn = null;
+	try {
+		// JDBCドライバを読み込む
+
+		Class.forName("org.h2.Driver");
+
+		// データベースに接続する
+		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+
+		// SQL文を準備する
+		String sql = "select count(*) as count from favorites where user_id = ? and note_id = ?";
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, user_id);
+		pStmt.setInt(2, note_id);
+		// SQL文を実行し、結果表を取得する
+		ResultSet rs = pStmt.executeQuery();
+
+		if (rs.getInt("count") == 1) {
+			result = true;
+	}
+	}
+	//例外
+	catch (SQLException e) {
+		e.printStackTrace();
+	}
+	catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
+	//例外が起きてもどっちにしろ切断
+	finally {
+		// データベースを切断
+		if (conn != null) {
+			try {
+				conn.close();
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	// 結果を返す
+	return result;
+}
 }
