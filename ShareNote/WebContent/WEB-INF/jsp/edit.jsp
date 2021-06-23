@@ -125,7 +125,7 @@
 		<input type="submit" name="edit" value="編集を完了">
 		<br>
 		<div class="mynote_link">
-		<a href="#" onclick="window.history.go(-1); return false;">マイノート一覧へ戻る</a>
+		<a href="/ShareNote/Mynote_list">マイノート一覧へ戻る</a>
 		</div>
 		</div>
 		<input type="hidden" name="pre_image_files" value="${image_files}">

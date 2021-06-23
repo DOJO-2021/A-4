@@ -46,5 +46,7 @@ public class Favorites_button extends HttpServlet {
 				fDao.isFavoriteRelease(note_id, note_id);
 
 			}
+		System.out.println(num);
+		request.setAttribute("count", num);
 	}
 }

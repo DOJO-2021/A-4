@@ -2,6 +2,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.FavoritesDao;
 import dao.NoteDao;
 import model.Note;
+import model.User;
 
 @WebServlet("/Search")
 public class Search extends HttpServlet {
@@ -122,6 +125,29 @@ public class Search extends HttpServlet {
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
 		request.setAttribute("hitList",hitList);
+
+		// お気に入りボタンを表示するメソッドを呼ぶ
+		FavoritesDao fDao = new FavoritesDao();
+		// お気に入りしているかどうかの判断をする
+
+		//お気に入りかどうかの判断の配列
+		ArrayList<Integer> isFavoritesList = new ArrayList<Integer>();
+		User user = (User)session.getAttribute("user");
+		int user_id = user.getUser_id();
+		int count;
+		for(Note n : noteList) {
+		   int note_id = n.getNote_id();
+		   if(fDao.selectFavorites(user_id, note_id)) {
+			   count = 1;
+		   } else {
+			   count = 0;
+		   }
+		   isFavoritesList.add(count);
+		}
+		for(Integer e : isFavoritesList) {
+			System.out.println(e);
+		}
+		request.setAttribute("isFavoritesList", isFavoritesList);
 
 		//検索結果ページにフォワード
 	    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/search_result.jsp");

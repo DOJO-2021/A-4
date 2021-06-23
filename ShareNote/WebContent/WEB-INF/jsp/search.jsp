@@ -1,7 +1,7 @@
 <!-- 検索jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +56,6 @@
 <script>
 	// 「全て選択」チェックで全てにチェック付く
 	function AllChecked(){
-		window.alert("クリック");
 		var all = document.form.all.checked;
 		for (var i=0; i<document.form.tag.length; i++){
 			document.form.tag[i].checked = all;

@@ -27,13 +27,13 @@
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
  <input type="hidden" name="count" value="${count}" id="count">
-<input type="text" name="note_id" value="${param.note_id}" id="note_id">
+<input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 <img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
 
 
 
-<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
-					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
+					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
 	</tr>
 	</table>
@@ -77,8 +77,8 @@
 		</tr>
 		<tr>
 			<td>${e.tag}</td>
-			<c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
-				<c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
+				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
 		</tr>
 		</form>
@@ -110,7 +110,7 @@ function valueChange(event){
 	  //画像を切り替える
 	  document.getElementById("gazo").src=pics_src[cnt];
 	  let note_id = document.getElementById("note_id").value;
-	  alert(note_id);
+	  //alert(note_id);
 	$.ajax({
 		type:'post',
 		url: '/ShareNote/Favorites_button',
@@ -120,7 +120,7 @@ function valueChange(event){
 
 			  }
 	});
-	alert("owata");
+	//alert("owata");
 
 }
 
