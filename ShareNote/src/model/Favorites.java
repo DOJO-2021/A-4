@@ -13,9 +13,16 @@ private String text_files;
 private int year;
 private String title;
 private String tag;
+private int favoritesCount;
 
 //getter・setter
 
+public int getFavoritesCount() {
+	return favoritesCount;
+}
+public void setFavoritesCount(int favoritesCount) {
+	this.favoritesCount = favoritesCount;
+}
 public int getFavorites_id() {
 	return favorites_id;
 }

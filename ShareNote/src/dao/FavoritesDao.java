@@ -279,7 +279,7 @@ try {
 		pStmt.setInt(2, note_id);
 		pStmt.setInt(3, note_id);
 		// SELECT文を実行し、結果表を取得する
-		if (pStmt.executeUpdate() == 1) {
+		if (pStmt.executeUpdate() == 2) {
 			result = true;
 		}
 
@@ -307,7 +307,7 @@ try {
 //ユーザーが登録しているかの判断
 public boolean selectFavorites(int user_id, int note_id) {
 	boolean result = false;
-
+	List<Favorites> select = new ArrayList<Favorites>();
 	//接続されるとConnectionオブジェクトが入る
 	Connection conn = null;
 	try {
@@ -319,14 +319,18 @@ public boolean selectFavorites(int user_id, int note_id) {
 		conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
 		// SQL文を準備する
-		String sql = "select count(*) as count from favorites where user_id = ? and note_id = ?";
+		String sql = "select * from favorites where user_id = ? and note_id = ?";
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, user_id);
 		pStmt.setInt(2, note_id);
 		// SQL文を実行し、結果表を取得する
 		ResultSet rs = pStmt.executeQuery();
+		int count1 = 0;
+		while (rs.next()) {
+			count1 ++;
+		}
 
-		if (rs.getInt("count") == 1) {
+		if (count1 == 1) {
 			result = true;
 	}
 	}
