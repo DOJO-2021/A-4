@@ -80,77 +80,79 @@ public class FavoritesDao {
 
 
 
-//ノート詳細
-//こちらもおススメを3件表示する
-	public List<Favorites> selectLatestUpload(String tag) {
-		//接続されるとConnectionオブジェクトが入る
-		Connection conn = null;
-		//検索結果を入れる配列を用意
-		List<Favorites> favoritesList = new ArrayList<Favorites>();
+	//ノート詳細
+	//こちらもおススメを3件表示する
+		public List<Favorites> selectLatestUpload(String tag, int user_id) {
+			//接続されるとConnectionオブジェクトが入る
+			Connection conn = null;
+			//検索結果を入れる配列を用意
+			List<Favorites> favoritesList = new ArrayList<Favorites>();
 
-		try {
-			// JDBCドライバを読み込む
-			Class.forName("org.h2.Driver");
+			try {
+				// JDBCドライバを読み込む
+				Class.forName("org.h2.Driver");
 
-			// データベースに接続する
-			conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
+				// データベースに接続する
+				conn = DriverManager.getConnection("jdbc:h2:file:C:/pleiades/workspace/data/ShareNote", "sa", "");
 
-			// SQL文を準備する
-			String sql = "select n.image_files, n.year, u.nickname, n.title, n.tag, f.favorites_flag, n.text_files, n.note_id, n.user_id "
-					+ "from (( note as n left join user as u on n.user_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) "
-					+ "where tag = ? and public_select=1 order by favorites_num asc limit 3";
-			System.out.println(sql+"←sql文");
-			System.out.println(tag+"←タグ");
-			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, tag);
+				// SQL文を準備する
+				String sql = "select distinct n.image_files, n.year, u.nickname, n.title, n.tag, n.text_files, n.note_id, n.user_id, n.favorites_num " +
+						"from (( note as n left join user as u on n.user_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) " +
+						"where tag =? and public_select=1 and n.user_id<>? order by favorites_num limit 3";
+				System.out.println(sql+"←sql文");
+				System.out.println(tag+"←タグ");
+				PreparedStatement pStmt = conn.prepareStatement(sql);
+				pStmt.setString(1, tag);
+				pStmt.setInt(2, user_id);
 
-			// SQL文を実行し、結果表を取得する
-			ResultSet rs = pStmt.executeQuery();
-			System.out.println(rs);
+				// SQL文を実行し、結果表を取得する
+				ResultSet rs = pStmt.executeQuery();
+				System.out.println(rs);
 
-			// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
-			while (rs.next()) {
-				Favorites favorites = new Favorites();
-//				favorites.setFavorites_id(rs.getInt("favorites_id"));
-				favorites.setNote_id(rs.getInt("note_id"));
-				favorites.setFavorites_flag(rs.getInt("favorites_flag"));
-				favorites.setNickname(rs.getString("nickname"));
-				favorites.setImage_files(rs.getString("image_files"));
-				favorites.setText_files(rs.getString("text_files"));
-				favorites.setYear(rs.getInt("year"));
-				favorites.setTitle(rs.getString("title"));
-				favorites.setTag(rs.getString("tag"));
-				favoritesList.add(favorites);
-			}
-			System.out.println(favoritesList.size()+"←取ってきたリストの要素数だよ");
-		}
-
-		//例外
-		catch (SQLException e) {
-			e.printStackTrace();
-			favoritesList = null;
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-			favoritesList = null;
-		}
-		//例外が起きてもどっちにしろ切断
-		finally {
-			// データベースを切断
-			if (conn != null) {
-				try {
-					conn.close();
+				// 結果表をコレクションにコピーする	（javaの構文で返すため書き換え）
+				while (rs.next()) {
+					Favorites favorites = new Favorites();
+//					favorites.setFavorites_id(rs.getInt("favorites_id"));
+					favorites.setNote_id(rs.getInt("note_id"));
+					favorites.setNickname(rs.getString("nickname"));
+					favorites.setImage_files(rs.getString("image_files"));
+					favorites.setText_files(rs.getString("text_files"));
+					favorites.setYear(rs.getInt("year"));
+					favorites.setTitle(rs.getString("title"));
+					favorites.setTag(rs.getString("tag"));
+					favorites.setFavorites_num(rs.getInt("favorites_num"));
+					favoritesList.add(favorites);
 				}
-				catch (SQLException e) {
-					e.printStackTrace();
-					favoritesList = null;
+				System.out.println(favoritesList.size()+"←取ってきたリストの要素数だよ");
+			}
+
+			//例外
+			catch (SQLException e) {
+				e.printStackTrace();
+				favoritesList = null;
+			}
+			catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				favoritesList = null;
+			}
+			//例外が起きてもどっちにしろ切断
+			finally {
+				// データベースを切断
+				if (conn != null) {
+					try {
+						conn.close();
+					}
+					catch (SQLException e) {
+						e.printStackTrace();
+						favoritesList = null;
+					}
 				}
 			}
+
+			// 結果を返す
+			return favoritesList;
 		}
 
-		// 結果を返す
-		return favoritesList;
-	}
 //お気に入り登録してあるノートを引っ張てくる
 	public List<Favorites> select(int user_id) {
 		Connection conn = null;
