@@ -45,6 +45,7 @@ public class Search_result extends HttpServlet {
 			 }
 			}
 		String[] titles=title.split(" ",0);
+		String[] nicknames=nickname.split(" ",0);
 		String keyword="AND(nickname LIKE ? OR title LIKE ? )";
 		if(titles.length>1) {
 			for(int i=0;i<titles.length; i++) {
@@ -60,22 +61,22 @@ public class Search_result extends HttpServlet {
 		// 検索処理を行う
 		NoteDao nDao = new NoteDao();
 		List<Note> noteList;
-		List<Note> hitList =nDao.searchHit(nickname, title, tag);
+		List<Note> hitList =nDao.searchHit(nicknames, titles, tag, keyword);
 
 		try {
 			// タグ検索が完全一致だった場合
 
 			if (matching.equals("matching")) {
-				noteList = nDao.searchMatching(nickname, title, tag, order );
+				noteList = nDao.searchMatching(nicknames, titles, tag, order , keyword);
 
 		// タグ検索が完全一致ではなかった場合
 				} else {
 					System.out.print(request.getParameter("matching"));
-					noteList = nDao.search(nickname, title, tag , order, keyword);
+					noteList = nDao.search(nicknames, titles, tag , order, keyword);
 				}
 		}
 		catch(NullPointerException e){
-			noteList = nDao.search(nickname, title, tag ,order,keyword);
+			noteList = nDao.search(nicknames, titles, tag ,order,keyword);
 		}
 		// 検索結果をリクエストスコープに格納する
 		request.setAttribute("noteList", noteList);
@@ -113,6 +114,7 @@ public class Search_result extends HttpServlet {
 					 }
 					}
 				String[] titles=title.split(" ",0);
+				String[] nicknames=nickname.split(" ",0);
 				String keyword="AND(nickname LIKE ? OR title LIKE ? )";
 				if(titles.length>1) {
 					for(int i=0;i<titles.length; i++) {
@@ -129,25 +131,25 @@ public class Search_result extends HttpServlet {
 
 				// 検索処理を行う
 				NoteDao nDao = new NoteDao();
-				List<Note> noteList = nDao.search( nickname,  title,  tag ,order, keyword);
-				List<Note> hitList =nDao.searchHit(nickname, title, tag);
+				List<Note> noteList = nDao.search( nicknames,  titles,  tag ,order, keyword);
+				List<Note> hitList =nDao.searchHit(nicknames, titles, tag, keyword);
 				try {
 					// タグ検索が完全一致だった場合
 
 					if (matching.equals("matching")) {
-						noteList = nDao.searchMatching(nickname, title, tag ,order);
-						hitList=nDao.searchHitMatching(nickname, title, tag);
+						noteList = nDao.searchMatching(nicknames, titles, tag ,order, keyword);
+						hitList=nDao.searchHitMatching(nicknames, titles, tag, keyword);
 
 				// タグ検索が完全一致ではなかった場合
 						} else {
 							System.out.print(request.getParameter("matching"));
-							noteList = nDao.search(nickname, title, tag ,order, keyword);
-							hitList=nDao.searchHit(nickname, title, tag);
+							noteList = nDao.search(nicknames, titles, tag ,order, keyword);
+							hitList=nDao.searchHit(nicknames, titles, tag, keyword);
 						}
 				}
 				catch(NullPointerException e){
-					noteList = nDao.search(nickname, title, tag ,order, keyword);
-					hitList=nDao.searchHit(nickname, title, tag);
+					noteList = nDao.search(nicknames, titles, tag ,order, keyword);
+					hitList=nDao.searchHit(nicknames, titles, tag, keyword);
 				}
 				// 検索結果をリクエストスコープに格納する
 				request.setAttribute("noteList", noteList);
