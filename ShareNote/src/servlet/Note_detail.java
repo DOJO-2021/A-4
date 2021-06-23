@@ -2,7 +2,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.FavoritesDao;
-import model.Favorites;
 
 @WebServlet("/Note_detail")
 public class Note_detail extends HttpServlet {
@@ -45,8 +43,8 @@ public class Note_detail extends HttpServlet {
 
 
 	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
-	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
-	    request.setAttribute("RecommendedList", favoritesList);
+//	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag);
+//	    request.setAttribute("RecommendedList", favoritesList);
 
 	 // ノート詳細ページにフォワードする
 	 	RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/note_detail.jsp");

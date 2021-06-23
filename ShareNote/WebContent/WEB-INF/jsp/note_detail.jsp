@@ -31,6 +31,7 @@
 <img src="/ShareNote/images/0.png" id="gazo"></a></td>
 
 
+
 <c:choose><c:when test="${empty e.text_files}"><td><a href="/ShareNote/upload_files/${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="/ShareNote/upload_files/${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
@@ -38,12 +39,7 @@
 	</table>
 
 <!-- お気に入り一覧から遷移してきたとき、お気に入り一覧に戻す -->
-<%if(true) { %>
-<a href="/ShareNote/Favorites_list">1つ前のページに戻る</a>
-<!-- 検索結果画面から遷移してきたとき、検索結果画面に戻す -->
-<%} else { %>
-<a href="#" onClick="history.back(); return false;">1つ前のページに戻る</a>
-<%} %>
+<a href="javascript:history.go(-1)">1つ前のページに戻る</a>
 
 <hr>
 <h3>こちらもおすすめ</h3>
