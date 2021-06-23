@@ -27,7 +27,7 @@
 		<td>${param.tag}</td>
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- <input type="text" name="count" value="${count}" id="count">
+ <input type="hidden" name="count" value="${count}" id="count">
 <input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 <img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
 
@@ -107,7 +107,7 @@ function valueChange(event){
 
 	//画像番号用のグローバル変数
 	var cnt = document.getElementById("count").value;
-alert(cnt == 0);
+
 	//画像番号を進める
 	  if (cnt == 0) {
 		  document.getElementById("count").value=1;
@@ -128,7 +128,7 @@ alert(cnt == 0);
 
 			  }
 	});
-	alert("owata");
+
 
 }
 
