@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -15,18 +16,18 @@
 <form method="POST" name="form" action="/ShareNote/Note_detail">
 	<table align="center" border="1">
 	<tr>
-		<td rowspan="3">${param.image_files}ノート画像</td>
+		<td rowspan="3"><img src="${param.image_files}"></td>
 		<td>${param.year}年度</td>
-		<td align="center" colspan="2">${param.nickname}ニックネーム</td>
+		<td align="center" colspan="2">${param.nickname}</td>
 	</tr>
 	<tr>
-		<td align="center" colspan="3">${param.title}タイトル</td>
+		<td align="center" colspan="3">${param.title}</td>
 	</tr>
 	<tr>
-		<td>${param.tag}タグ</td>
+		<td>${param.tag}</td>
 </form>
 <td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- <input type="hidden" name="count" value="${count}" id="count">
+ <input type="text" name="count" value="${count}" id="count">
 <input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 <img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
 
@@ -66,7 +67,7 @@
 		<form method="POST" action="/ShareNote/Note_detail">
 
 		<tr>
-			<td rowspan="3">${e.image_files}</td>
+			<td rowspan="3"><img src="${e.image_files}"></td>
 			<td>${e.year}年度</td>
 			<td align="center" colspan="2">${e.nickname}</td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
@@ -81,6 +82,13 @@
 				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
 		</tr>
+		<input type="hidden" name="note_id" value="${e.note_id}">
+		<input type="hidden" name="image_files" value="${e.image_files}">
+		<input type="hidden" name="year" value="${e.year}">
+		<input type="hidden" name="nickname" value="${e.nickname}">
+		<input type="hidden" name="title" value="${title}">
+		<input type="hidden" name="tag" value="${tag}">
+
 		</form>
 	</table>
 </c:forEach>
@@ -93,24 +101,24 @@
 //var cnt =0;
 function valueChange(event){
 	//画像を配列に格納する
- 	var pics_src = new Array("images/0.png","images/1.png");
+ 	var pics_src = new Array("images/1.png","images/0.png");
 
 
 
 	//画像番号用のグローバル変数
-	var cnt = document.getElementById("count");
-
+	var cnt = document.getElementById("count").value;
+alert(cnt == 0);
 	//画像番号を進める
-	  if (cnt == 1) {
-		  cnt = 0;
+	  if (cnt == 0) {
+		  document.getElementById("count").value=1;
 
-	  }else if (cnt == 0) {
-		  cnt = 1;
+	  }else if (cnt == 1) {
+		  document.getElementById("count").value=0;
 	  }
 	  //画像を切り替える
 	  document.getElementById("gazo").src=pics_src[cnt];
 	  let note_id = document.getElementById("note_id").value;
-	  //alert(note_id);
+
 	$.ajax({
 		type:'post',
 		url: '/ShareNote/Favorites_button',
@@ -120,7 +128,7 @@ function valueChange(event){
 
 			  }
 	});
-	//alert("owata");
+	alert("owata");
 
 }
 

@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,10 +144,15 @@
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
-			<td align="center"><input type="submit" name="favorite" value="★"></td>
 		</tr>
+		<input type="hidden" name="note_id" value="${e.note_id}">
 		</form>
 		</table>
+
+		<a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
+ 		<input type="hidden" name="count" value="${count}" id="count">
+		<input type="hidden" name="note_id" value="${e.note_id}" id="note_id">
+		<img src="/ShareNote/images/${count}.png" id="gazo"></a>
 		<hr>
 
 </c:forEach>
@@ -180,5 +185,5 @@
 	   }
 	 }
 </script>
-
+<script type="text/javascript" src="/ShareNote/script/favorites_button.js"></script>
 </html>
