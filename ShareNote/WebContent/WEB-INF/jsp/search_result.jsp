@@ -122,7 +122,9 @@
 <table align="center" border="1" class="notes">
 	<form method="POST" action="/ShareNote/Note_detail">
 		<tr>
-			<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+			<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}">
+			<c:if test="${!empty e.text_files}"><img src="/ShareNote/images/text_icon.png" width="20px"></c:if>
+			</td>
 			<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
 			<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
