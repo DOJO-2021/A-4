@@ -367,10 +367,11 @@ h2{
 /*検索画面*/
 .search-whole{
 	width:500px;
-	height:400px;
+	height:420px;
 	background-color:#D9E5FF;
 	margin-right:auto;
 	margin-left:auto;
+	border-radius:20px 20px 20px 20px;
 
 }
 .search-title{
@@ -387,8 +388,15 @@ h2{
 }
 
 .table-word2{
-	height:15px;
+	height:20px;
 }
+
+.table-button{
+	height:80px;
+}
+
+
+
 
 /*詳細画面*/
 .detail-year{
@@ -404,6 +412,6 @@ h2{
 }
 
 /*お気に入りボタン*/
-.favorites_button {
+/*.favorites_button {
 
-}
+}*/

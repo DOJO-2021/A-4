@@ -19,7 +19,9 @@
 </div>
 
 <form method="POST" action="/ShareNote/Search" name="form">
+
 	<table align="center">
+
 			<tr>
 				<td><label><input type="checkbox" name="matching" value="matching">完全一致</label><td>
 			</tr>
@@ -40,11 +42,12 @@
 				<td><label><input type="checkbox" name="tag" value="other" onClick="DisChecked()">その他</label></td>
 				<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 			</tr>
+
 			<tr class="table-word">
-				<td colspan="4" align="center"><label><input type="text" name="keyword" placeholder="キーワード（タイトル・ニックネーム）検索" width="50em"></label></td>
+				<td colspan="4" align="center"><label><input type="text" name="keyword" placeholder="キーワード（タイトル・ニックネーム）検索" style="width:22em;"></label></td>
 			</tr>
 			<tr class="table-word2">
-			 	<td colspan="4" align="center"><label><select name="sort">
+			 	<td colspan="4" align="center"><label><select name="sort" style="width:22em;">
 						<option selected value ="新着順">新着順</option>
 						<option value ="お気に入り数順">お気に入り数順</option>
 					</select>

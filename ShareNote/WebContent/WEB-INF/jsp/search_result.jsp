@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
 <body>
-<div class="wrapper">
+
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 <div class="search-whole">
 
@@ -62,7 +62,7 @@
 	</c:if>
 </c:forEach>
 
-<div class="search-title">
+<div class="result-title">
 検索結果
 </div>
 <form method="POST" action="/ShareNote/Search" name="form">
@@ -141,7 +141,8 @@
 	</form>
 </table>
 </c:forEach>
-</div>
+
+<br><br>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 
