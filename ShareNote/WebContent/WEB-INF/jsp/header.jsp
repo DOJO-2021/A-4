@@ -19,7 +19,6 @@ outline: 1px solid #ff0000;
 </head>
 <body>
 <div class="box">
-
 <div class="logo">
 <a href="/ShareNote/Mypage"><img src="/ShareNote/images/logo1.png"  alt="ロゴ"></a>
 <div class="version">ver1.0.0</div>
