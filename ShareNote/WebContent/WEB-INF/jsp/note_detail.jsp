@@ -11,7 +11,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-
+<!--  -->
 <h2>ノート詳細</h2>
 <form method="POST" name="form" action="/ShareNote/Note_detail">
 	<table align="center" border="1">
