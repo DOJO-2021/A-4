@@ -11,12 +11,14 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
-<!--  -->
+<div class="wrapper">
 <h2>ノート詳細</h2>
 <form method="POST" name="form" action="/ShareNote/Note_detail">
 	<table align="center" border="1" class="notes">
 	<tr>
-		<td rowspan="3"><img src="${param.image_files}" width="670em" height="450em"></td>
+		<td colspan="3"><img src="${param.image_files}" width="850em" height="550em"></td>
+	</tr>
+	<tr>
 		<td class="detail-year">${param.year}年度</td>
 		<td align="center" class="detail-nn">${param.nickname}</td>
 		<td rowspan="2" class="favorites_button"><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
@@ -25,13 +27,13 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="3">${param.title}</td>
+		<td colspan="2" class="detail-title">${param.title}</td>
 	</tr>
 	<tr>
-		<td align="center" colspan="2">#　${param.tag}</td>
+		<td align="center" colspan="2" class="detail-tag">#　${param.tag}</td>
 		<c:choose>
-			<c:when test="${empty param.text_files}"><td><a href="${param.image_files}" download>ダウンロード</a></td></c:when>
-			<c:otherwise><td><a href="${param.text_files}" download>ダウンロード</a></td></c:otherwise>
+			<c:when test="${empty param.text_files}"><td align="center"><a href="${param.image_files}" download>ダウンロード</a></td></c:when>
+			<c:otherwise><td align="center"><a href="${param.text_files}" download>ダウンロード</a></td></c:otherwise>
 		</c:choose>
 
 	</tr>
@@ -60,7 +62,7 @@
 			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${tag}"></td>
+			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${tag}"></td>
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
 				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
@@ -73,7 +75,8 @@
 
 
 <p id="msg"></p>
-
+</div>
+</body>
 <script>
 //var cnt =0;
 function valueChange(event){
