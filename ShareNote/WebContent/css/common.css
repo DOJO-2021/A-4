@@ -64,7 +64,8 @@ li{
 }
 
 .box{
-		display:flex;
+	display:flex;
+	/*position:fixed;*/
 }
 
 li a{
@@ -172,6 +173,14 @@ h2{
 .image1{
 	margin-top:20px;
 	margin-left:23px;
+}
+.image1 input:hover{
+	transform: scale(1.03, 1.03);
+	transition: 0.4s;
+}
+.image1 input:active{
+	transform: scale(1, 1);
+	transition: 0.01s;
 }
 
 /*お気に入り一覧ボタン*/

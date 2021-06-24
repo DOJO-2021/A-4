@@ -45,8 +45,8 @@
 			</tr>
 			<tr class="table-word2">
 			 	<td colspan="4" align="center"><label><select name="sort">
-						<option  selected value ="新着順">新着順</option>
-						<option  value ="お気に入り順">お気に入り数順</option>
+						<option selected value ="新着順">新着順</option>
+						<option value ="お気に入り数順">お気に入り数順</option>
 					</select>
 					</label>
 				</td>
