@@ -411,7 +411,23 @@ h2{
 
 }
 
-/*お気に入りボタン*/
-/*.favorites_button {
-
-}*/
+/*詳細画面*/
+.detail-year{
+	width:10em;
+	background-color:#b0c4de;
+}
+.detail-nn{
+	/*width:17em;*/
+	background-color:#b0c4de;
+}
+.detail-title{
+	width:30em;
+}
+.detail-tag{
+	height:2.5em;
+}
+.favorites_button {
+	text-align:center;
+	padding-right:5px;
+	padding-top:8px
+}
