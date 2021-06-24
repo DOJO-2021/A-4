@@ -14,81 +14,58 @@
 <!--  -->
 <h2>ノート詳細</h2>
 <form method="POST" name="form" action="/ShareNote/Note_detail">
-	<table align="center" border="1">
+	<table align="center" border="1" class="notes">
 	<tr>
-		<td rowspan="3"><img src="${param.image_files}"></td>
-		<td>${param.year}年度</td>
-		<td align="center" colspan="2">${param.nickname}</td>
+		<td rowspan="3"><img src="${param.image_files}" width="500em" height="350em"></td>
+		<td class="detail-year">${param.year}年度</td>
+		<td align="center" class="detail-nn">${param.nickname}</td>
+		<td rowspan="2" class="favorites_button"><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
+			<input type="hidden" name="count" value="${count}" id="count">
+			<img src="/ShareNote/images/${count}.png" id="gazo" width="100px" height="100px"></a>
+		</td>
 	</tr>
 	<tr>
-		<td align="center" colspan="3">${param.title}</td>
+		<td colspan="3">${param.title}</td>
 	</tr>
 	<tr>
-		<td>${param.tag}</td>
-</form>
-<td><a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- <input type="hidden" name="count" value="${count}" id="count">
-<input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
-<img src="/ShareNote/images/${count}.png" id="gazo"></a></td>
+		<td align="center" colspan="2">#　${param.tag}</td>
+		<c:choose>
+			<c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
+			<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+		</c:choose>
 
-
-
-<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
-					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
-				</c:choose>
 	</tr>
+	<input type="hidden" name="note_id" value="${param.note_id}" id="note_id">
 	</table>
+</form>
 
 <!-- お気に入り一覧から遷移してきたとき、お気に入り一覧に戻す -->
 <a href="javascript:history.go(-1)">1つ前のページに戻る</a>
 
 <hr>
 <h3>こちらもおすすめ</h3>
-<!-- 試しにforの外に書いてみる -->
-<!--
-	<form method="POST" action="/ShareNote/Note_detail">
-		<table align="center" border="1">
-		<tr>
-			<td rowspan="2">${e.note_files}ノート画像</td>
-			<td>${e.title}タイトル</td>
-			<td><input type="submit" name="detail" value="詳細"></td>
-		</tr>
-		<tr>
-			<td>${e.tag}タグ</td>
-			<td><input type="submit" name="download" value="ダウンロード"></td>
-		</tr>
-		</table>
-	</form>
--->
-	<!-- 試しにforの外に書いてみる -->
 
 <c:forEach var="e" items="${RecommendedList}">
-	<table border="1">
+	<table border="1" align="center" class="notes">
 		<form method="POST" action="/ShareNote/Note_detail">
 
 		<tr>
-			<td rowspan="3"><img src="${e.image_files}"></td>
-			<td>${e.year}年度</td>
-			<td align="center" colspan="2">${e.nickname}</td>
+			<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+			<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
+			<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 
 		<tr>
-			<td>${e.title}</td>
+			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 		</tr>
 		<tr>
-			<td>${e.tag}</td>
+			<td colspan="2" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
 				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
 		</tr>
 		<input type="hidden" name="note_id" value="${e.note_id}">
-		<input type="hidden" name="image_files" value="${e.image_files}">
-		<input type="hidden" name="year" value="${e.year}">
-		<input type="hidden" name="nickname" value="${e.nickname}">
-		<input type="hidden" name="title" value="${title}">
-		<input type="hidden" name="tag" value="${tag}">
-
 		</form>
 	</table>
 </c:forEach>

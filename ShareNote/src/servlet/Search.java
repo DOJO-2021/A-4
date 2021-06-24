@@ -85,7 +85,7 @@ public class Search extends HttpServlet {
 	    String order=request.getParameter("sort");
 	    if(order.equals("新着順")) {
 	    	order="n.note_id DESC";
-	    }if(order.equals("お気に入り順")){
+	    }if(order.equals("お気に入り数順")){
 	    	order="n.favorites_num DESC";
 	    }
 
