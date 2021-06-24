@@ -27,7 +27,9 @@
 				<td rowspan="2" align="center"><input type="submit" name="edit" value="編集"></td>
 			</tr>
 			<tr>
-				<td class="fav-num"><span class="fav">★</span>${e.favorites_num}<input type="hidden" name="favorites_num" value="${e.favorites_num}"></td>
+			<c:choose><c:when test = "${0 != e.public_select }"><td class="fav-num"><span class="fav">★</span>${e.favorites_num}</td></c:when>
+							  <c:otherwise><td>非公開</td></c:otherwise>
+					</c:choose>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
