@@ -65,7 +65,9 @@ li{
 
 .box{
 	display:flex;
+	background:rgba(217,225,242,0.5); /*背景透過(赤,緑,青,透過度)*/
 	/*position:fixed;*/
+
 }
 
 li a{
@@ -73,7 +75,7 @@ li a{
 }
 
 a:link{
-	color:7a99cf;
+	color:#7a99cf;
 }
 
 a:visited{
@@ -84,6 +86,11 @@ a:hover{
  	text-decoration:underline;
 }
 
+.version{
+	display:inline;
+	color:#7a99cf;
+	padding-bottom:30px;
+}
 
 
 /*フッターCSS*/
@@ -381,4 +388,22 @@ h2{
 
 .table-word2{
 	height:15px;
+}
+
+/*詳細画面*/
+.detail-year{
+	height:3em;
+	width:6em;
+	background-color:#b0c4de;
+}
+.detail-nn{
+	height:3em;
+	width:17em;
+	background-color:#b0c4de;
+
+}
+
+/*お気に入りボタン*/
+.favorites_button {
+
 }

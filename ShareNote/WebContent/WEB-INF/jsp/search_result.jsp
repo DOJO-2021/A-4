@@ -114,13 +114,6 @@
 	</table>
 </form>
 </div>
-<!--
-<form action ="POST"  >
-	<select name=sort>
-	<option value="新着順">新着順</option>
-	<option value="お気に入り順">お気に入り順</option>
-	</select>
--->
 <c:forEach var ="c" items="${hitList}">
 ヒット数：${c.noteCount}
 </c:forEach>
@@ -151,6 +144,7 @@
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
+
 <script>
 	 // 「全て選択」チェックで全てにチェック付く
 	 function AllChecked(){

@@ -26,7 +26,7 @@ outline: 1px solid #ff0000;
 </div>
 
 <div class="footerLogo">
-<p>world Map</p>
+<p>worldMap</p>
 </div>
 
 </div>
