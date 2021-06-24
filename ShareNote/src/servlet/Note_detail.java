@@ -47,13 +47,14 @@ public class Note_detail extends HttpServlet {
 	    //System.out.println(tag + "a");
 	    User user = (User)session.getAttribute("user");
 	    int user_id = user.getUser_id();
+	    int note_id = Integer.parseInt(request.getParameter("note_id"));
+
 
 	    // FavoritesDaoから「こちらもおすすめ」を検索するメソッドを呼ぶ
-	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag, user_id);
+	    List<Favorites> favoritesList = fDao.selectLatestUpload(tag, user_id, note_id);
 	    request.setAttribute("RecommendedList", favoritesList);
 
 	 // お気に入りしているかどうかの判断をする
-	   int note_id = Integer.parseInt(request.getParameter("note_id"));
 	   int count;
 
 	   if(fDao.selectFavorites(user_id, note_id)) {

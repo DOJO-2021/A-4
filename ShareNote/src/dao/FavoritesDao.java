@@ -82,7 +82,7 @@ public class FavoritesDao {
 
 	//ノート詳細
 	//こちらもおススメを3件表示する
-		public List<Favorites> selectLatestUpload(String tag, int user_id) {
+		public List<Favorites> selectLatestUpload(String tag, int user_id, int note_id) {
 			//接続されるとConnectionオブジェクトが入る
 			Connection conn = null;
 			//検索結果を入れる配列を用意
@@ -98,12 +98,13 @@ public class FavoritesDao {
 				// SQL文を準備する
 				String sql = "select distinct n.image_files, n.year, u.nickname, n.title, n.tag, n.text_files, n.note_id, n.user_id, n.favorites_num " +
 						"from (( note as n left join user as u on n.user_id=u.user_id ) left join favorites as f on n.note_id=f.note_id) " +
-						"where tag =? and public_select=1 and n.user_id<>? order by favorites_num limit 3";
+						"where tag =? and public_select=1 and n.user_id<>? and n.note_id<>? order by favorites_num limit 3";
 				System.out.println(sql+"←sql文");
 				System.out.println(tag+"←タグ");
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				pStmt.setString(1, tag);
 				pStmt.setInt(2, user_id);
+				pStmt.setInt(3, note_id);
 
 				// SQL文を実行し、結果表を取得する
 				ResultSet rs = pStmt.executeQuery();
