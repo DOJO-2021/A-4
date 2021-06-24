@@ -8,10 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>mynote++</title>
+<link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
 <body>
-
+<div class="wrapper">
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+<div class="search-whole">
 
 <!-- タグのチェックボックスのための処理 -->
 <!-- 各タグの名前で、初期値0の変数を用意 -->
@@ -60,8 +62,9 @@
 	</c:if>
 </c:forEach>
 
-
-<h2>検索結果</h2>
+<div class="search-title">
+検索結果
+</div>
 <form method="POST" action="/ShareNote/Search" name="form">
 	<table align="center">
 			<tr>
@@ -94,22 +97,23 @@
 					<c:if test="${その他 == '1'}">checked</c:if>>その他</label></td>
 				<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 			</tr>
-			<tr>
+			<tr class="table-word">
 				<td colspan="4" align="center"><label><input type="text" name="keyword" value="${param.keyword}" placeholder="キーワード（タイトル・ニックネーム）検索" ></label></td>
 			</tr>
-			<tr>
+			<tr class="table-word2">
 			 	<td colspan="4" align="center"><label><select name="sort">
 						<option value ="新着順" <c:if test="${param.sort == '新着順'}">selected</c:if>>新着順</option>
-						<option value="お気に入り順" <c:if test="${param.sort == 'お気に入り順'}">selected</c:if>>お気に入り順</option>
+						<option value="お気に入り数順" <c:if test="${param.sort == 'お気に入り数順'}">selected</c:if>>お気に入り数順</option>
 					</select>
 					</label>
 				</td>
 			</tr>
-			<tr>
+			<tr class="table-button">
 				<td colspan="4" align="center"><input type="submit" name="search" value="検索" ></td>
 			</tr>
 	</table>
 </form>
+</div>
 <!--
 <form action ="POST"  >
 	<select name=sort>
@@ -122,42 +126,29 @@
 </c:forEach>
 
 <c:forEach var ="e" items="${noteList}">
-<table border="1">
+<table align="center" border="1" class="notes">
 	<form method="POST" action="/ShareNote/Note_detail">
 		<tr>
-			<td rowspan="3"><img src="${e.image_files}"><input type="hidden" name="image_files" value="${e.image_files}"></td>
-			<td>
-			${e.year}年度<input type="hidden" name="year" value="${e.year}">
-			</td>
-			<td>
-			${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}">
-			</td>
+			<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
+			<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
+			<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
-			</tr>
-			<tr>
-			<td colspan="2">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
-			</tr>
-
+		</tr>
 		<tr>
-			<td>${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
+			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
 					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
-				</c:choose>
+			</c:choose>
 		</tr>
 		<input type="hidden" name="note_id" value="${e.note_id}">
-		</form>
-		</table>
-
-		<a href="javascript:;" id="saveCheckbox" onclick="valueChange(event)">
- 		<input type="hidden" name="count" value="${count}" id="count">
-		<input type="hidden" name="note_id" value="${e.note_id}" id="note_id">
-		<img src="/ShareNote/images/${count}.png" id="gazo"></a>
-		<hr>
-
+	</form>
+</table>
 </c:forEach>
-
-
+</div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
 <script>
