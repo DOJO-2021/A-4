@@ -23,7 +23,7 @@
 	<table align="center">
 
 			<tr>
-				<td><label><input type="checkbox" name="matching" value="matching">完全一致</label><td>
+				<td colspan="2"><label><input type="checkbox" name="matching" value="matching">タグの完全一致</label><td>
 			</tr>
 			<tr>
 				<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()">HTML</label></td>

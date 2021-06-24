@@ -38,10 +38,13 @@ body{
 
 
 /*ヘッダーCSS*/
-
 .logo{
 	margin-top:10px;
 	margin-left:40px;
+}
+.logo img:hover{
+	transform: scale(1.03, 1.03);
+	transition: 0.4s;
 }
 
 ul{
@@ -67,7 +70,6 @@ li{
 	display:flex;
 	background:rgba(217,225,242,0.5); /*背景透過(赤,緑,青,透過度)*/
 	/*position:fixed;*/
-
 }
 
 li a{
@@ -101,8 +103,6 @@ a:hover{
 	height:100px;
 	background-color:#a3b9e0;
 	margin-bottom:0;
-
-
 }
 
 .copyright{
@@ -142,16 +142,13 @@ a:hover{
 
 /*マイページのCSS*/
 
-
 .whole{
 	display:flex;
-
 }
 
 h2{
 	margin-top:70px;
 	margin-left:80px;
-
 }
 
 .subfavorite{
@@ -167,6 +164,31 @@ h2{
 	width:328px;
 	height:80px;
 }
+.image2 input:hover{
+	transform: scale(1.03, 1.03);
+	transition: 0.4s;
+}
+.image2 input:active{
+	transform: scale(1, 1);
+	transition: 0.01s;
+}
+.image3 input:hover{
+	transform: scale(1.03, 1.03);
+	transition: 0.4s;
+}
+.image3 input:active{
+	transform: scale(1, 1);
+	transition: 0.01s;
+}
+.image4 input:hover{
+	transform: scale(1.03, 1.03);
+	transition: 0.4s;
+}
+.image4 input:active{
+	transform: scale(1, 1);
+	transition: 0.01s;
+}
+
 
 .information{
 	margin-top:20px;
