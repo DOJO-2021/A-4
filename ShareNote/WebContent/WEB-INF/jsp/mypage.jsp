@@ -21,8 +21,9 @@
 	<tr>
 		<td align="center">
 			<div class="image1">
-			<input type="image" src="images/button1.png"  name="page_switch" value="ノートのアップロード" onclick="document.inform1.para.value='ノートのアップロード'">
-			<input type="hidden"  name="para" value="">
+			<input type="hidden" name="count1" value="${count1}" id="count1">
+			<input type="image" src="images/button${count1}.png"  name="page_switch" value="ノートのアップロード" id="noteUpload" onclick="note(upload)">
+
 			</div>
 		</td>
 	</tr>
@@ -32,8 +33,9 @@
 	<tr>
 		<td align="center">
 		<div class="image2">
-		<input type="image" src="images/button2.png"   name="page_switch" value="マイノート一覧" onclick="document.inform2.para.value='マイノート一覧'">
-		<input type="hidden"  name="para" value="">
+		<input type="hidden" name="count2" value="${count2}" id="count2">
+		<input type="image" src="images/button${count2}.png" name="page_switch" value="マイノート一覧" id="noteList" onclick="note(list)">
+
 		</div>
 		</td>
 	</tr>
@@ -43,8 +45,9 @@
 	<tr>
 		<td align="center">
 		<div class="image3">
-		<input type="image" src="images/button3.png"  name="page_switch" value="お気に入り一覧" onclick="document.inform2.para.value='お気に入り一覧'">
-		<input type="hidden"  name="para" value="">
+		<input type="hidden" name="count3" value="${count3}" id="count3">
+		<input type="image" src="images/button${count3}.png" name="page_switch" value="お気に入り一覧" id="noteFavorites" onclick="note(favorites)">
+
 		</td>
 		</div>
 	</tr>
@@ -87,7 +90,7 @@
 					<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 					<!--  <td><input type="submit" name="download" value="ダウンロード"></td> -->
 					<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
-							  <c:otherwise><td><a href="{e.text_files}" download>ダウンロード</a></td></c:otherwise>
+							  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 						</c:choose>
 				</tr>
 				<input type="hidden" name="note_id" value="${e.note_id}">

@@ -40,6 +40,9 @@ public class Note_upload extends HttpServlet {
 		request.setAttribute("isInitial", isInitial);
 		String page_switch = "ノートのアップロード";
 		request.setAttribute("page_switch", page_switch);
+		request.setAttribute("count1", 5);
+		request.setAttribute("count2", 2);
+		request.setAttribute("count3", 3);
 		// マイページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);

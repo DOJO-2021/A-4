@@ -40,6 +40,9 @@ public class Favorites_list extends HttpServlet {
 		request.setAttribute("isInitial", isInitial);
 		String page_switch = "お気に入り一覧";
 		request.setAttribute("page_switch", page_switch);
+		request.setAttribute("count1", 1);
+		request.setAttribute("count2", 2);
+		request.setAttribute("count3", 7);
 
 		// お気に入り一覧ページにフォワードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");

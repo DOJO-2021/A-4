@@ -1,6 +1,7 @@
 'use strict';
 
 
+
 //新規登録画面
 
 function onRegist(){

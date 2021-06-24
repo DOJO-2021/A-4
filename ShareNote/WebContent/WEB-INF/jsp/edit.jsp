@@ -135,6 +135,7 @@
 </form>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 </body>
+<script src="script/common.js"></script>
 <script>
 	 // 「全て選択」チェックで全てにチェック付く
 	 function AllChecked(){

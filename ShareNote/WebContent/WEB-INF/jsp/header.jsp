@@ -18,6 +18,7 @@ outline: 1px solid #ff0000;
 -->
 </head>
 <body>
+<script type="text/javascript" src="common.js"></script>
 <div class="box">
 
 <div class="logo">

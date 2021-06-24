@@ -41,6 +41,9 @@ public class Mynote_list extends HttpServlet {
 		String page_switch = "マイノート一覧";
 		request.setAttribute("page_switch", page_switch);
 		// マイノート一覧ページをインクルードする
+		request.setAttribute("count1", 1);
+		request.setAttribute("count2", 6);
+		request.setAttribute("count3", 3);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -65,7 +68,7 @@ public class Mynote_list extends HttpServlet {
 		request.setAttribute("isInitial", isInitial);
 		String page_switch = "マイノート一覧";
 		request.setAttribute("page_switch", page_switch);
-		
+
 		// マイノート一覧ページをインクルードする
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);

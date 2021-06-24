@@ -63,6 +63,12 @@ public class Mypage extends HttpServlet {
 
 		// メニューページにフォワードする
 		String isInitial = "yes"; //マイページが初期状態かどうか判別するための変数
+		int count1 = 1;
+		int count2 = 2;
+		int count3 = 3;
+		request.setAttribute("count1", 1);
+		request.setAttribute("count2", 2);
+		request.setAttribute("count3", 3);
 		request.setAttribute("isInitial", isInitial);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/mypage.jsp");
 		dispatcher.forward(request, response);
