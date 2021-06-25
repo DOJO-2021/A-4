@@ -9,15 +9,20 @@
 <title>mynote++</title>
 </head>
 <body>
-<div class="wrapper">
-<div class="image">
+<div class="regist_wrapper">
+<div class="login_logo">
 <img src="/ShareNote/images/logo1.png"  alt="ロゴ">
 </div>
-<p class="errMsg">${errMsg6}</p>
 
-<h2 align="center">ユーザー登録</h2>
+<div class="regist-whole">
+
+<div class="regist-title">
+<p class="errMsg">${errMsg6}</p>
+ユーザー登録
+</div>
+
 <form method="POST" action="/ShareNote/New_regist" id='form' name="inform">
-	<table align="center">
+	<table align="center" class="registtable">
 	    <tr>
 			<th>ニックネーム</th>
 			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname" value="${param.nickname}"></td>
@@ -50,14 +55,17 @@
 		<tr>
 			<td><div style = "color:#ff0000" id = "errMsg"></div></td>
 		</tr>
-		<tr>
-			<td colspan="2" align="center"><input type="submit" name="login" value="登録" onclick="return onRegist()"  ></td>
-		</tr>
-		<tr>
-			<td><a href="Login">ログイン画面に戻る</a></td>
-		</tr>
-	</table>
+		</table>
+
+			<input type="submit" name="login" value="登録" onclick="return onRegist()"  >
+
+
+			<a href="Login">ログイン画面に戻る</a>
+
+
 </form>
+<br><br>
+</div>
 </div>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
 <script src="script/common.js"></script>

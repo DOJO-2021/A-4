@@ -120,19 +120,112 @@ a:hover{
 }
 
 /*ログイン画面CSS*/
-.image{
-	margin-top:20px;
-	margin-left:40px;
+.login_logo img{
+	margin-top:60px;
+	margin-left:505px;
+	width:350px;
+
+
 }
 
 .wrapper{
+	margin-top:0px;
 	height:570px;
 }
 
-/*新規登録画面CSS*/
-.image{
+.login-wrapper{
+	margin-top:0px;
+	height:550px;
+
+}
+
+.login-whole{
+
+	width:500px;
+	height:430px;
+	background-color:#D9E5FF;
+	margin-right:auto;
+	margin-left:auto;
+	border-radius:20px 20px 20px 20px;
+	margin-bottom:140px;
+}
+
+.login-title{
+
+	font-size:23px;
+	margin-left:200px;
+	padding-right:0px;
+	padding-top:28px;
+	margin-top:30px;
+
+}
+
+.logintable{
+	margin-top:50px;
+}
+
+.login1{
+	height:30px;
+}
+
+.login2{
+	height:30px;
+}
+
+.login_button{
 	margin-top:20px;
-	margin-left:40px;
+	margin-left:215px;
+}
+
+.login_link{
+	margin-top:45px;
+}
+
+.login_link1{
+	margin-bottom:20px;
+	margin-left:220px;
+}
+
+.login_link2{
+	margin-bottom:20px;
+	margin-left:170px;
+}
+
+.login_errMsg{
+	color:red;
+	padding-top:15px;
+}
+
+/*新規登録画面CSS*/
+.regist-whole{
+	width:600px;
+	height:550px;
+	background-color:#D9E5FF;
+	margin-right:auto;
+	margin-left:auto;
+	border-radius:20px 20px 20px 20px;
+}
+
+.regist_wrapper{
+	margin-top:0px;
+	height:600px;
+
+}
+
+.regist-title{
+
+	font-size:23px;
+	margin-left:240px;
+	padding-right:0px;
+	padding-top:10px;
+	padding-bottom:30px;
+	margin-top:30px;
+	margin-bottom:10px;
+
+}
+
+.registtable{
+	margin-left:20px;
 }
 
 /*PW再設定画面CSS*/
@@ -428,6 +521,12 @@ h2{
 	margin-top:50px;
 	padding-top:30px;
 	padding-bottom:35px;
+}
+
+.hitcount{
+	text-align:center;
+	margin-top:50px;
+	margin-bottom:50px;
 }
 
 

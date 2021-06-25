@@ -114,9 +114,11 @@
 	</table>
 </form>
 </div>
+<div class="hitcount">
 <c:forEach var ="c" items="${hitList}">
 ヒット数：${c.noteCount}
 </c:forEach>
+</div>
 
 <c:forEach var ="e" items="${noteList}">
 <table align="center" border="1" class="notes">
