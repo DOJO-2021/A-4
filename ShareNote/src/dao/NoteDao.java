@@ -341,7 +341,7 @@ public class NoteDao {
 
 
 				// SQL文を準備する
-				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? "+keyword + "AND public_select = 1 ORDER BY "+order;
+				String sql = "select n.note_id, n.image_files, n.text_files, u.nickname, n.year, n.title, n.public_select ,n.favorites_num, n.tag from note as n inner join user as u on n.user_id=u.user_id WHERE tag LIKE ? "+keyword + " AND public_select = 1 ORDER BY "+order;
 				PreparedStatement pStmt = conn.prepareStatement(sql);
 				// SQL文を完成させる
 
