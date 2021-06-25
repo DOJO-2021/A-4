@@ -11,6 +11,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
+<div class="header-fixed">
 <div class="wrapper">
 <h2>ノート詳細</h2>
 <form method="POST" name="form" action="/ShareNote/Note_detail">
@@ -27,7 +28,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td colspan="2" class="detail-title">${param.title}</td>
+		<td colspan="2" class="detail-title" align="center">${param.title}</td>
 	</tr>
 	<tr>
 		<td align="center" colspan="2" class="detail-tag">#　${param.tag}</td>
@@ -75,6 +76,7 @@
 
 
 <p id="msg"></p>
+</div>
 </div>
 </body>
 <script>

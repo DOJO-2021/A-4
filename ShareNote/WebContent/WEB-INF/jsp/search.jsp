@@ -12,8 +12,8 @@
 <body>
 <div class="wrapper">
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+<div class="header-fixed">
 <div class="search-whole">
-
 <div class="search-title">
 検索
 </div>
@@ -59,6 +59,7 @@
 			</tr>
 	</table>
 </form>
+</div>
 </div>
 </div>
 <br><br>
