@@ -98,10 +98,10 @@
 				<td><label><input type="checkbox" name="all" onClick="AllChecked();" />全て選択</label></td>
 			</tr>
 			<tr class="table-word">
-				<td colspan="4" align="center"><label><input type="text" name="keyword" value="${param.keyword}" placeholder="キーワード（タイトル・ニックネーム）検索" ></label></td>
+				<td colspan="4" align="center"><label><input type="text" name="keyword" value="${param.keyword}" placeholder="キーワード（タイトル・ニックネーム）検索" style="width:22em;"></label></td>
 			</tr>
 			<tr class="table-word2">
-			 	<td colspan="4" align="center"><label><select name="sort">
+			 	<td colspan="4" align="center"><label><select name="sort" style="width:22em;">
 						<option value ="新着順" <c:if test="${param.sort == '新着順'}">selected</c:if>>新着順</option>
 						<option value="お気に入り数順" <c:if test="${param.sort == 'お気に入り数順'}">selected</c:if>>お気に入り数順</option>
 					</select>

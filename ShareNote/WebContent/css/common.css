@@ -417,7 +417,15 @@ h2{
 	height:80px;
 }
 
+/*検索結果画面*/
 
+.result-title{
+	font-size:23px;
+	margin-left:205px;
+	margin-top:50px;
+	padding-top:30px;
+	padding-bottom:35px;
+}
 
 
 /*詳細画面*/
