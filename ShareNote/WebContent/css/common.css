@@ -68,8 +68,11 @@ li{
 
 .box{
 	display:flex;
-	background:rgba(217,225,242,0.5); /*背景透過(赤,緑,青,透過度)*/
-	/*position:fixed;*/
+	background:rgba(217,225,242,0.8); /*背景透過(赤,緑,青,透過度)*/
+	position:fixed;
+	width:100%;
+	-webkit-transform: translateY(0);
+	transform: translateY(0);
 }
 
 li a{
@@ -86,11 +89,12 @@ a:visited{
 
 a:hover{
  	text-decoration:underline;
+ 	/*color:#ff7043;*/
 }
 
 .version{
 	display:inline;
-	color:#7a99cf;
+	color:#33558e;
 	padding-bottom:30px;
 }
 
@@ -144,6 +148,7 @@ a:hover{
 
 .whole{
 	display:flex;
+	padding-top:100px;
 }
 
 h2{
