@@ -66,7 +66,12 @@ public class Search extends HttpServlet {
 		String[] nicknames=nickname.split(" |　",0);
 		String keyword="";
 		if(!(title.equals(""))) {
+		if(titles.length==0) {
+			keyword="";
+		}
+		if(titles.length==1) {
 		keyword="AND(nickname LIKE '%"+nicknames[0]+"%' OR title LIKE '%"+titles[0]+"%')";
+		}
 		if(titles.length>1) {
 			for(int i=1;i<titles.length; i++) {
 			keyword += " OR(nickname LIKE '%"+nicknames[i]+ "%' OR title LIKE '%"+titles[i]+"%' ) ";
