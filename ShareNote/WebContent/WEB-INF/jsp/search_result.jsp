@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+<div class="header-fixed">
 <div class="search-whole">
 
 <!-- タグのチェックボックスのための処理 -->
@@ -128,11 +128,11 @@
 			<c:if test="${!empty e.text_files}"><img src="/ShareNote/images/text_icon.png" width="20px"></c:if>
 			</td>
 			<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
-			<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
+			<td class="inf-nn" align="center">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 		<tr>
-			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
+			<td colspan="2" align="center" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
@@ -148,6 +148,7 @@
 
 <br><br>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+</div>
 </body>
 
 <script>

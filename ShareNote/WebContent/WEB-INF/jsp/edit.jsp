@@ -58,7 +58,7 @@
 		<c:set var="その他" value="1"/>
 	</c:if>
 </c:forEach>
-
+<div class="header-fixed">
 <form method="POST" name="form" action="/ShareNote/Edit" enctype="multipart/form-data">
 <div class="edit_title">
 <p>ノートの編集 ${msg} ${dbErrMsg} ${errMsg}</p>
@@ -71,7 +71,7 @@
 	</tr>
 	<tr>
 		<td class="file-edit1">画像ファイル（.jpg、.png）はこちら</td>
-		<td colspan="1" class="edit-check">${param.year}</td>
+		<td colspan="1" class="edit-check">${param.year}年度</td>
 		<td rowspan="2" colspan="3" class="edit-title" ><input type ="text" name="title" value="${param.title}" maxlength="50" style="width:30em;"></td>
 	</tr>
 	<tr>
@@ -134,6 +134,7 @@
 		<input type="hidden" name="pre_text_files" value="${text_files}">
 </form>
 <jsp:include page="/WEB-INF/jsp/footer.jsp"/>
+</div>
 </body>
 <script src="script/common.js"></script>
 <script>
@@ -145,7 +146,7 @@
 	   }
 	 }
 
-	 // 一つでもチェックを外すと「全て選択」のチェック外れる
+	// 一つでもチェックを外すと「全て選択」のチェック外れる
 	 function DisChecked(){
 	   var checks = document.form.tag;
 	   var checksCount = 0;

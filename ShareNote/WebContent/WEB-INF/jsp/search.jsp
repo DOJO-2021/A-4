@@ -1,6 +1,7 @@
 <!-- 検索jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +13,8 @@
 <body>
 <div class="wrapper">
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
+<div class="header-fixed">
 <div class="search-whole">
-
 <div class="search-title">
 検索
 </div>
@@ -59,6 +60,7 @@
 			</tr>
 	</table>
 </form>
+</div>
 </div>
 </div>
 <br><br>
