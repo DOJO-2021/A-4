@@ -73,6 +73,7 @@ public class Search extends HttpServlet {
 		keyword="AND(nickname LIKE '%"+nicknames[0]+"%' OR title LIKE '%"+titles[0]+"%')";
 		}
 		if(titles.length>1) {
+			keyword="AND(nickname LIKE '%"+nicknames[0]+"%' OR title LIKE '%"+titles[0]+"%')";
 			for(int i=1;i<titles.length; i++) {
 			keyword += " OR(nickname LIKE '%"+nicknames[i]+ "%' OR title LIKE '%"+titles[i]+"%' ) ";
 			}
