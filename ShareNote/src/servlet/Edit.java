@@ -24,7 +24,7 @@ import dao.NoteDao;
 
 public class Edit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// もしもログインしていなかったらログインサーブレットにリダイレクトする
@@ -74,6 +74,12 @@ public class Edit extends HttpServlet {
 				if(nDao.deleteNote(note_id)) {
 					String msg = "削除が完了しました";
 					request.setAttribute("msg", msg);
+					int count1 = 1;
+					int count2 = 2;
+					int count3 = 3;
+					request.setAttribute("count1", 1);
+					request.setAttribute("count2", 2);
+					request.setAttribute("count3", 3);
 					RequestDispatcher dispatcher = request.getRequestDispatcher("Mynote_list");
 					dispatcher.forward(request, response);
 				}
