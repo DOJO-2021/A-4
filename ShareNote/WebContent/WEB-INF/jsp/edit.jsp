@@ -146,7 +146,7 @@
 	   }
 	 }
 
-	 // 一つでもチェックを外すと「全て選択」のチェック外れる
+	// 一つでもチェックを外すと「全て選択」のチェック外れる
 	 function DisChecked(){
 	   var checks = document.form.tag;
 	   var checksCount = 0;

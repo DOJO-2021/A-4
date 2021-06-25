@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/ShareNote/css/common.css">
 </head>
 <body>
-
 <jsp:include page="/WEB-INF/jsp/header.jsp" />
 <div class="header-fixed">
 <div class="search-whole">
