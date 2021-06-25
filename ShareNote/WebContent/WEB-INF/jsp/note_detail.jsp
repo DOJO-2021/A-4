@@ -54,12 +54,12 @@
 		<tr>
 			<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
 			<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
-			<td class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
+			<td align="center" class="inf-nn">${e.nickname}<input type="hidden" name="nickname" value="${e.nickname}"></td>
 			<td rowspan="2" align="center"><input type="submit" name="detail" value="詳細"></td>
 		</tr>
 
 		<tr>
-			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
+			<td colspan="2" align="center" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>

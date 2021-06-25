@@ -69,8 +69,9 @@ li{
 	background:rgba(217,225,242,0.8); /*背景透過(赤,緑,青,透過度)*/
 	position:fixed;
 	width:100%;
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
+}
+.header-fixed{
+	padding-top:100px;/*ヘッダー固定のため、ヘッダー以外の要素を下げる*/
 }
 
 li a{
@@ -124,8 +125,6 @@ a:hover{
 	margin-top:60px;
 	margin-left:473px;
 	width:350px;
-
-
 }
 
 .wrapper{
@@ -299,7 +298,7 @@ a:hover{
 
 .whole{
 	display:flex;
-	padding-top:100px;
+	padding-top:100px;/*ヘッダー固定のため、ヘッダー以外の要素を下げる*/
 }
 
 h2{

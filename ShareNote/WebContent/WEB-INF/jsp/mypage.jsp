@@ -13,7 +13,6 @@
 <body>
 <jsp:include page="/WEB-INF/jsp/header.jsp"/>
 <div class="whole">
-
 <div class="menu">
 <!-- サイドメニュー -->
 <h2>${nickname}さんのマイページ</h2>
@@ -66,9 +65,8 @@
 	</table>
 </form>
 </div>
+
 <!-- マイページ初期状態 -->
-
-
 <div class="information">
 <%if(request.getAttribute("isInitial").equals("yes")) { %>
 	<div class="title2">
@@ -117,7 +115,7 @@
 			<form method="POST" action="/ShareNote/Note_detail">
 				<tr>
 					<td rowspan="3" class="inf-img"><img src="${e.image_files}" width="200px" height="120px"><input type="hidden" name="image_files" value="${e.image_files}"></td>
-					<td class="inf-year">${e.year}<input type="hidden" name="year" value="${e.year}"></td>
+					<td class="inf-year">${e.year}年度<input type="hidden" name="year" value="${e.year}"></td>
 					<td class="inf-nn" align="center">
 					${e.nickname}<input type="hidden" name="nickname" value="${e.nickname} ">
 					<input type="hidden" name="note_id" value="${e.note_id }">
