@@ -68,7 +68,7 @@
 <form method="POST" action="/ShareNote/Search" name="form">
 	<table align="center">
 			<tr>
-				<td colspan="2"><label><input type="checkbox" name="matching" value="matching" <c:if test="${param.matching == 'matching'}">checked</c:if>>タグの完全一致</label><td>
+				<td colspan="2" style="padding-bottom:5px;"><label><input type="checkbox" name="matching" value="matching"  style="transform:scale(1.3);"<c:if test="${param.matching == 'matching'}">checked</c:if>>タグの完全一致</label><td>
 			</tr>
 			<tr>
 				<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()"

@@ -1,7 +1,7 @@
 <!-- 検索jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +24,7 @@
 	<table align="center">
 
 			<tr>
-				<td colspan="2"><label><input type="checkbox" name="matching" value="matching">タグの完全一致</label><td>
+				<td colspan="2" style="padding-bottom:5px;"><label><input type="checkbox" name="matching" value="matching" style="transform:scale(1.3);">タグの完全一致</label><td>
 			</tr>
 			<tr>
 				<td><label><input type="checkbox" name="tag" value="HTML" onClick="DisChecked()">HTML</label></td>
