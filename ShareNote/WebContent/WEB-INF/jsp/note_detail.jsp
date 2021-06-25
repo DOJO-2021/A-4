@@ -62,7 +62,7 @@
 			<td colspan="2" class="inf-title">${e.title}<input type="hidden" name="title" value="${e.title}"></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${tag}"></td>
+			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
 				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
