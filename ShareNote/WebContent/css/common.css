@@ -74,7 +74,7 @@ li{
 	padding-top:100px;/*ヘッダー固定のため、ヘッダー以外の要素を下げる*/
 }
 
-li a{
+a{
 	text-decoration:none;
 }
 
@@ -88,7 +88,7 @@ a:visited{
 
 a:hover{
  	text-decoration:underline;
- 	/*color:#ff7043;*/
+ 	color:#ff7043;
 }
 
 .version{
@@ -195,6 +195,31 @@ a:hover{
 	padding-top:15px;
 }
 
+.login_link1 a{
+	text-decoration:none;
+}
+
+.login_link2 a{
+	text-decoration:none;
+}
+
+.download a{
+	text-decoration:none;
+}
+
+a:link{
+	color:#7a99cf;
+}
+
+a:visited{
+	color:#7a99cf;
+}
+
+a:hover{
+ 	text-decoration:underline;
+ 	color:#ff7043;
+}
+
 /*新規登録画面CSS*/
 
 .regist_logo img{
@@ -293,6 +318,7 @@ a:hover{
 .Reregist_link{
 	margin-left:370px;
 }
+
 
 /*マイページのCSS*/
 

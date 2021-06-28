@@ -34,7 +34,7 @@
 	<tr>
 		<td colspan="3" align="center" class="inf-tag">${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 		<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
-					  <c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+					  <c:otherwise><td class="download"><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 				</c:choose>
 	</tr>
 <!--

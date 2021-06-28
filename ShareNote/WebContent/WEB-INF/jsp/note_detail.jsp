@@ -33,7 +33,7 @@
 		<td align="center" colspan="2" class="detail-tag">#　${param.tag}</td>
 		<c:choose>
 			<c:when test="${empty param.text_files}"><td align="center"><a href="${param.image_files}" download>ダウンロード</a></td></c:when>
-			<c:otherwise><td align="center"><a href="${param.text_files}" download>ダウンロード</a></td></c:otherwise>
+			<c:otherwise><td align="center" class="download"><a href="${param.text_files}" download>ダウンロード</a></td></c:otherwise>
 		</c:choose>
 
 	</tr>
@@ -64,7 +64,7 @@
 		<tr>
 			<td colspan="2" align="center" class="inf-tag">#　${e.tag}<input type="hidden" name="tag" value="${e.tag}"></td>
 			<c:choose><c:when test="${empty e.text_files}"><td><a href="${e.image_files}" download>ダウンロード</a></td></c:when>
-				<c:otherwise><td><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
+				<c:otherwise><td class="download"><a href="${e.text_files}" download>ダウンロード</a></td></c:otherwise>
 			</c:choose>
 		</tr>
 		<input type="hidden" name="note_id" value="${e.note_id}">
