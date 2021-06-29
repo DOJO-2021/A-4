@@ -123,7 +123,7 @@ a:hover{
 /*ログイン画面CSS*/
 .login_logo img{
 	margin-top:60px;
-	margin-left:505px;
+	margin-left:510px;
 	width:350px;
 }
 
@@ -173,7 +173,7 @@ a:hover{
 
 .login_button{
 	margin-top:20px;
-	margin-left:225px;
+	margin-left:215px;
 }
 
 .login_link{
@@ -182,12 +182,12 @@ a:hover{
 
 .login_link1{
 	margin-bottom:20px;
-	margin-left:235px;
+	margin-left:230px;
 }
 
 .login_link2{
 	margin-bottom:20px;
-	margin-left:190px;
+	margin-left:185px;
 }
 
 .login_errMsg{
@@ -224,7 +224,7 @@ a:hover{
 
 .regist_logo img{
 	margin-top:60px;
-	margin-left:530px;
+	margin-left:520px;
 	width:350px;
 	margin-bottom:20px;
 
@@ -264,12 +264,12 @@ a:hover{
 
 .regist_button{
 	margin-top:40px;
-	margin-left:425px;
-	height:60px;
+	margin-left:410px;
+	height:70px;
 }
 
 .regist_link{
-	margin-left:380px;
+	margin-left:367px;
 }
 
 
@@ -284,7 +284,7 @@ a:hover{
 
 .Reregist_logo img{
 	margin-top:60px;
-	margin-left:530px;
+	margin-left:520px;
 	width:350px;
 	margin-bottom:20px;
 
@@ -311,8 +311,8 @@ a:hover{
 
 .Reregist_button{
 	margin-top:20px;
-	margin-left:420px;
-	height:60px;
+	margin-left:413px;
+	height:70px;
 }
 
 .Reregist_link{
