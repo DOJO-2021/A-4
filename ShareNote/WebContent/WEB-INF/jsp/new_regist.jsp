@@ -33,7 +33,7 @@ outline: 1px solid #ff0000;
 </div>
 
 <form method="POST" action="/ShareNote/New_regist" id='form' name="inform">
-	<table align="center" class="registtable">
+	<table  class="registtable">
 	    <tr class="regist1">
 			<th>ニックネーム</th>
 			<td><input type="text" name="nickname" placeholder="重複不可" id="nickname" value="${param.nickname}"></td>
